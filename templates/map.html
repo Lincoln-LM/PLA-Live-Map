@@ -102,7 +102,8 @@
                     coordinates[i.toString()] = [item['x'],item['y'],item['z']];
                     let coords = convertCoords([item['x'],item['y'],item['z']])
                     console.log(coords);
-                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] })}).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${i}])">Teleport to spawner id ${key}</button>`)
+                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${i}])">Teleport to spawner id ${key}</button>`)
+                    .on("click",popupOnClick);
                 }
             }
             xhr.setRequestHeader('Content-Type', 'application/json');
