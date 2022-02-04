@@ -107,7 +107,7 @@ def read_coords():
 def update_positions():
     """Scan all active spawns"""
     spawns = {}
-    size = reader.read_pointer_int("{SPAWNER_PTR}+18",4)
+    size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
     size = int(size//0x80 - 1)
     print(f"Checking up to index {size}")
     for index in range(0,size):
