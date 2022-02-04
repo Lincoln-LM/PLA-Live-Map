@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:regular">
+    <style>
+        * {
+		    font-family: "Montserrat", sans-serif
+	    }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Map</title>
+</head>
+<body>
+    <script>
+        function update() {
+            window.location.href=`/map/${document.getElementById("locationSelect").value}`;
+        }
+    </script>
+    <div id="main">
+        <select id="locationSelect" onchange=update()>
+            <option>Select Map...</option>
+            <option value="obsidianfieldlands">Obsidian Fieldlands</option>
+            <option value="crimsonmirelands">Crimson Mirelands</option>
+            <option value="cobaltcoastlands">Cobalt Coastlands</option>
+            <option value="coronethighlands">Coronet Highlands</option>
+            <option value="alabastericelands">Alabaster Icelands</option>
+        </select>
+    </div>
+</body>
+</html>
