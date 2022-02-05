@@ -45,7 +45,7 @@ def generate_from_seed(seed,rolls,guaranteed_ivs):
 
 def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
     """Find the next shiny advance for a spawner"""
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
     spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     main_rng = XOROSHIRO(spawner_seed)
     for adv in range(40960):
@@ -64,7 +64,7 @@ def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
 def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
     spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     rng = XOROSHIRO(generator_seed)
     fixed_seed = rng.next()
@@ -108,13 +108,13 @@ def update_positions():
     """Scan all active spawns"""
     spawns = {}
     size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
-    size = int(size//0x80 - 1)
+    size = int(size//0x40 - 1)
     print(f"Checking up to index {size}")
     for index in range(0,size):
         if index % int(size//100) == 0:
             print(f"{index/size*100}% done scanning")
-        position_bytes = reader.read_pointer(f"{SPAWNER_PTR}+{0x70+index*0x80:X}",12)
-        seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x80:X}",12)
+        position_bytes = reader.read_pointer(f"{SPAWNER_PTR}+{0x70+index*0x40:X}",12)
+        seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x40:X}",12)
         pos = struct.unpack('fff', position_bytes)
         if not (seed == 0 or pos[0] < 1 or pos[1] < 1 or pos[2] < 1):
             print(f"Active: spawner_id {index} {pos[0]},{pos[1]},{pos[2]} {seed:X}")
@@ -132,7 +132,8 @@ def root():
 @app.route("/map/<name>")
 def load_map(name):
     """Read markers and generate map based on location"""
-    url = f"https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/{name}.json"
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+         f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
     return render_template('map.html',markers=markers.values(),map_name=name)
 

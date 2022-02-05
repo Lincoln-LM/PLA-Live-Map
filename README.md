@@ -19,5 +19,5 @@ Flask application that displays live information on an interactive map for Pokem
 
 # Credits
 - berichan's [PLA Warper](https://github.com/berichan/PLAWarper) for the pointer to player location
-- Serebii's [Pokearth](https://www.serebii.net/pokearth/hisui/) for the spawner locations
+- Serebii's [Pokearth](https://www.serebii.net/pokearth/hisui/) for the map images
 - Everyone in the rng community who is helping to catalog the spawner ids shown on the [PLA Spawner Map](https://lincoln-lm.github.io/JS-Finder/Gen8/PLA-Spawner-Map/)
