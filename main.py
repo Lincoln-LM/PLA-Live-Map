@@ -67,6 +67,7 @@ def read_seed():
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
     spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     rng = XOROSHIRO(generator_seed)
+    rng.next()
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
