@@ -112,8 +112,7 @@
             xhr.send(null);
         }
         function popupOnClick(e) {
-            let latlng = e.latlng;
-            popupCoordinates = revertCoordinates([latlng["lat"], latlng["lng"]]);
+            popupCoordinates = e.sourceTarget.options.coords;
             if (e.sourceTarget.options.spawnerID != -1) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/read-seed", true);
@@ -156,7 +155,7 @@
             }
         }
         function teleportPopup() {
-            teleport([popupCoordinates[0],parseInt(document.getElementById("y").value),popupCoordinates[2]]);
+            teleport(popupCoordinates);
         }
         let alpha = L.icon({
                 iconUrl: "https://www.serebii.net/pokearth/hisui/icons/alpha.png",
@@ -166,14 +165,9 @@
         let iURL;
         let popupText;
         {% for marker in markers %}
-            {% if marker.spawnerID == -1 +%}
-        popupText = `<button onclick=teleportPopup()>Teleport to marker id ${"{{marker.markerID}}"}</button>`;
-        iURL = `https://github.com/Lincoln-LM/JS-Finder/raw/main/Resources/${"{{marker.icon}}".split("/")[4].slice(0,-4)}-greyed.png`;
-            {% else %}
-        popupText = `<button onclick=teleportPopup()>Teleport to marker id ${"{{marker.markerID}}"} spawner id ${"{{marker.spawnerID}}"}</button>`;
+        popupText = `<button onclick=teleportPopup()>Teleport to spawner id ${"{{marker.spawnerID}}"}</button>`;
         iURL = "https://www.serebii.net{{marker.icon}}"
-            {% endif %}
-        L.marker({{ marker.coords }}, { riseOnHover: true, icon:  L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: {{ marker.spawnerID }}, markerID: {{ marker.markerID }}, ivs: {{ marker.ivs }} }).addTo(map)
+        L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon:  L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: {{ marker.spawnerID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}}).addTo(map)
         .bindPopup(popupText)
         .on("click",popupOnClick);
         {% endfor %}
