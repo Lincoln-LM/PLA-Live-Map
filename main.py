@@ -67,16 +67,18 @@ def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
     thresh = request.json['thresh']
-#    thresh = 50
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
     spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     rng = XOROSHIRO(generator_seed)
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
-    display = f"Spawner Seed: {spawner_seed:X}<br>" \
-              f"Shiny: {shiny}<br>" \
-              f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
+    display = f"Spawner Seed: {spawner_seed:X}<br>"
+    if shiny:
+        display += f"Shiny: <font color=\"green\"><b>{shiny}</b></font></br>"
+    else:
+        display += f"Shiny: <font color=\"red\"><b>{shiny}</b></font><br>"
+    display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
