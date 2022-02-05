@@ -3,6 +3,8 @@
 import json
 import struct
 import requests
+import colorama
+from colorama import Fore, Back, Style
 from flask import Flask, render_template, request
 import nxreader
 from xoroshiro import XOROSHIRO
@@ -64,6 +66,8 @@ def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
 def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
+    thresh = request.json['thresh']
+#    thresh = 50
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
     spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     rng = XOROSHIRO(generator_seed)
@@ -77,8 +81,11 @@ def read_seed():
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
         = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
-    display += f"Next Shiny: {adv}<br>" \
-               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
+    if adv <= thresh:
+        display += f"Next Shiny: <font color=\"green\"><b> {adv} </b></font><br>"
+    else:
+        display += f"Next Shiny: {adv} <br>"
+    display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
                f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
                f"{'/'.join(str(iv) for iv in ivs)}<br>"
     return display
