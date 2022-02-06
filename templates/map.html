@@ -148,14 +148,28 @@
                     let item = spawns[key];
 					coordinates[s.toString()] = [item['x'],item['y'],item['z']];
 					underthresh = [item['check']];
+					ivs = [item['ivs']];
+					console.log(ivs);
 					coords = convertCoords([item['x'],item['y'],item['z']]);
 					if ( underthresh == "True" ) {
-						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
-						.on("click",popupOnClick);
+						if ( ivs == 0 ){
+							L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
+							.on("click",popupOnClick);
+							}
+						else {
+							L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/alpha2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
+							.on("click",popupOnClick);
+						}
 					}
 					else if ( underthresh == "False" ) {
-						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
-						.on("click",popupOnClick);
+						if (ivs == 0) {
+							L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokeball.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
+							.on("click",popupOnClick);
+						}
+						else {
+							L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/alpha.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
+							.on("click",popupOnClick);
+						}
 					}
 				}
 			}

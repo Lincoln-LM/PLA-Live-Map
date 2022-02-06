@@ -157,7 +157,6 @@ def getshiny():
         rng.next()
         fixed_seed = rng.next()
         ident = index*17
-        print(ident)
         encryption_constant,pid,ivs,ability,gender,nature,shiny \
             = generate_from_seed(fixed_seed,request.json['rolls'],markers[str(ident)]["ivs"])
         adv,encryption_constant,pid,ivs,ability,gender,nature \
@@ -165,11 +164,13 @@ def getshiny():
         pos = markers[str(ident)]["coords"]
         if adv <= thresh:
             spawns[str(ident)] = {"check":"True",
+                                  "ivs":markers[str(ident)]["ivs"],
                                   "x":pos[0],
                                   "y":pos[1],
                                   "z":pos[2]}
         else:
             spawns[str(ident)] = {"check":"False",
+                                  "ivs":markers[str(ident)]["ivs"],
                                   "x":pos[0],
                                   "y":pos[1],
                                   "z":pos[2]}
