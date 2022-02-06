@@ -139,6 +139,7 @@ def update_positions():
 @app.route('/get-shiny', methods=['POST'])
 def getshiny():
     thresh = request.json['thresh']
+    name = request.json['name']
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
@@ -147,7 +148,7 @@ def getshiny():
     size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
     size = int(size//0x40 - 1)
     print(f"Checking up to index {size}")
-    for index in range(0,size):
+    for index in range(0,443):
         if index % int(size//100) == 0:
             print(f"{index/size*100}% done scanning")
         generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x80:X}",8)
@@ -156,16 +157,28 @@ def getshiny():
         rng = XOROSHIRO(generator_seed)
         rng.next()
         fixed_seed = rng.next()
+        ident = index*17
+        print(ident)
         encryption_constant,pid,ivs,ability,gender,nature,shiny \
-            = generate_from_seed(fixed_seed,request.json['rolls'],markers[str(spawner_id)]["ivs"])
+            = generate_from_seed(fixed_seed,request.json['rolls'],markers[str(ident)]["ivs"])
         adv,encryption_constant,pid,ivs,ability,gender,nature \
-            = generate_next_shiny(spawner_id,request.json['rolls'],markers[str(spawner_id)]["ivs"])
+            = generate_next_shiny(ident,request.json['rolls'],markers[str(ident)]["ivs"])
+        pos = markers[str(ident)]["coords"]
+#        print("x = ",pos[0]," y = ",pos[1]," z = ",pos[2])
         if adv <= thresh:
-            spawns[str(spawner_id)] = {"check":True,
-                                      "seed":seed}
+            print("Spawn - ",ident," Advances - ",adv," Shiny - True")
+            spawns[str(ident)] = {"check":"True",
+#                                  "pos":markers[str(ident)]["coords"]}
+                                  "x":pos[0],
+                                  "y":pos[1],
+                                  "z":pos[2]}
         else:
-            spawns[str(spawner_id)] = {"check":False,
-                                      "seed":seed}
+            print("Spawn - ",ident," Advances - ",adv," Shiny - False")
+            spawns[str(ident)] = {"check":"False",
+#                                  "pos":markers[str(ident)]["coords"]}
+                                  "x":pos[0],
+                                  "y":pos[1],
+                                  "z":pos[2]}
     return json.dumps(spawns)
     
 #@app.route('/get-shiny', methods=['POST'])

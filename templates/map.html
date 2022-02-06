@@ -76,8 +76,7 @@
                 if (player_marker != null) {
                     player_marker.remove();
                 }
-                player_marker = L.marker(convert
-				([coords["x"], coords["y"], coords["z"]]), { riseOnHover: true, icon:  L.icon({ iconUrl: "{{ url_for('static', filename='resources/player.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] })});
+                player_marker = L.marker(convertCoords([coords["x"], coords["y"], coords["z"]]), { riseOnHover: true, icon:  L.icon({ iconUrl: "{{ url_for('static', filename='resources/player.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] })});
                 player_marker.addTo(map);
             }
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -135,34 +134,40 @@
         }
 		function populateShinymap(e) {
 			var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/get-shiny", false);;
+            xhr.open("POST", "/get-shiny", false);
 			xhr.onload = parseInfo;
 			function parseInfo() 
 			{
+				coordinates = { };
 				underthresh = "";
                 let spawns = JSON.parse(xhr.responseText);
                 let keys = Object.keys(spawns);
-                var i = 0;
-				while (i != keys.length ){
-					underthresh[i.toString()] = [item['check']];
+				for(let s = 0; s < keys.length; s++)
+				{
+					let key = keys[s];
+                    let item = spawns[key];
+					coordinates[s.toString()] = [item['x'],item['y'],item['z']];
+					underthresh = [item['check']];
+					coords = convertCoords([item['x'],item['y'],item['z']]);
+					console.log(key);
 					console.log(underthresh);
+					console.log(coords);
 					if ( underthresh == "True" ) {
-						L.marker( {{markerDict[i.toString()].coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{markerDict[i.toString()].coords}})">Teleport to spawner id ${key}</button>`)
+						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
 					}
 					else if ( underthresh == "False" ) {
-						L.marker( {{markerDict[i.toString()].coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{markerDict[i.toString()].coords}})">Teleport to spawner id ${key}</button>`)
+						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
 					}
 					else {
 						console.log("Sorry, underthresh was something weird.")
 					}
-					i++;
 				}
 			}
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.send(JSON.stringify({
-                    ivs: {{marker.ivs}},
+					name: "{{map_name}}",
                     rolls: parseInt(document.getElementById("rolls").value),
 					thresh: parseInt(document.getElementById("thresh").value)
 			})) 			
@@ -216,5 +221,6 @@
 		.on("click",popupOnClick);
 		markerDict[{{ marker.spawnerID }}] = markerTemp;
 		{% endfor %}
+    </script>
 </body>
 </html>
