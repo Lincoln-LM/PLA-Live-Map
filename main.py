@@ -143,12 +143,14 @@ def getshiny():
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
+    print("Number of keys in dict - ", len(markers.keys()))
+    size = (len(markers.keys()))-1
     """Scan all active spawns"""
     spawns = {}
-    size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
-    size = int(size//0x40 - 1)
+#    size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
+#    size = int(size//0x40 - 1)
     print(f"Checking up to index {size}")
-    for index in range(0,443):
+    for index in range(0,size):
         if index % int(size//100) == 0:
             print(f"{index/size*100}% done scanning")
         generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x80:X}",8)
