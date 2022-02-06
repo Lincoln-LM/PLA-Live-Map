@@ -91,7 +91,7 @@
                 coords: coords
             }));
         }
-		function updatePositions(e) {
+        function updatePositions(e) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/update-positions", true);
             xhr.onload = parseInfo;
@@ -142,22 +142,23 @@
 				underthresh = "";
                 let spawns = JSON.parse(xhr.responseText);
                 let keys = Object.keys(spawns);
-                for (let i = 0; i < keys.length; i++) {
-                    let key = keys[i];
-                    let item = spawns[key];
+                var i = 0;
+				while (i != keys.length ){
 					underthresh[i.toString()] = [item['check']];
-					console.log(underthresh)
-					if ( underthresh == "true" ) {
-						L.marker( {{marker.coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{marker.coords}})">Teleport to spawner id ${key}</button>`)
+					console.log(underthresh);
+					if ( underthresh == "True" ) {
+						L.marker( {{markerDict[i.toString()].coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{markerDict[i.toString()].coords}})">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
 					}
-					else if ( underthresh == "false" ) {
-						L.marker( {{marker.coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{marker.coords}})">Teleport to spawner id ${key}</button>`)
+					else if ( underthresh == "False" ) {
+						L.marker( {{markerDict[i.toString()].coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{markerDict[i.toString()].coords}})">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
 					}
 					else {
 						console.log("Sorry, underthresh was something weird.")
 					}
+					i++;
+				}
 			}
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.send(JSON.stringify({
@@ -206,6 +207,14 @@
         .bindPopup(popupText)
         .on("click",popupOnClick);
         {% endfor %}
-    </script>
+		{% for marker in markers %}
+		popupText = `<button onclick=teleportPopup()>Teleport to spawner id ${"{{marker.spawnerID}}"}</button>`;
+		iURL = "https://www.serebii.net{{marker.icon}}"
+		markerTemp = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon:  L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: {{ marker.spawnerID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
+		markerTemp.addTo(map)
+		.bindPopup(popupText)
+		.on("click",popupOnClick);
+		markerDict[{{ marker.spawnerID }}] = markerTemp;
+		{% endfor %}
 </body>
 </html>
