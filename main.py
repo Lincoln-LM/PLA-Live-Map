@@ -43,20 +43,19 @@ def generate_from_seed(seed,rolls,guaranteed_ivs):
     nature = rng.rand(25)
     return encryption_constant,pid,ivs,ability,gender,nature,shiny
 
-def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
+def generate_next_shiny(group_id,rolls,guaranteed_ivs):
     """Find the next shiny advance for a spawner"""
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
-    spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
-    main_rng = XOROSHIRO(spawner_seed)
+    group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
+    main_rng = XOROSHIRO(group_seed)
     for adv in range(40960):
         generator_seed = main_rng.next()
+        main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
         rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(rng.next(),rolls,guaranteed_ivs)
         if shiny:
             break
-        main_rng.next()
         main_rng = XOROSHIRO(main_rng.next())
     return adv,encryption_constant,pid,ivs,ability,gender,nature
 
@@ -64,20 +63,21 @@ def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
 def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
-    spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+    group_id = int(spawner_id//17)
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
+                                             f"+{0x70+group_id*0x440+0x20:X}",8)
     rng = XOROSHIRO(generator_seed)
     rng.next()
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
-    display = f"Spawner Seed: {spawner_seed:X}<br>" \
+    display = f"Generator Seed: {generator_seed:X}<br>" \
               f"Shiny: {shiny}<br>" \
               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
-        = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
+        = generate_next_shiny(group_id,request.json['rolls'],request.json['ivs'])
     display += f"Next Shiny: {adv}<br>" \
                f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
                f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
