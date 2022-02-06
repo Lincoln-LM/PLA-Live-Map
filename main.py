@@ -143,12 +143,9 @@ def getshiny():
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
-    print("Number of keys in dict - ", len(markers.keys()))
     size = (len(markers.keys()))-1
     """Scan all active spawns"""
     spawns = {}
-#    size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
-#    size = int(size//0x40 - 1)
     print(f"Checking up to index {size}")
     for index in range(0,size):
         if index % int(size//100) == 0:
@@ -166,18 +163,13 @@ def getshiny():
         adv,encryption_constant,pid,ivs,ability,gender,nature \
             = generate_next_shiny(ident,request.json['rolls'],markers[str(ident)]["ivs"])
         pos = markers[str(ident)]["coords"]
-#        print("x = ",pos[0]," y = ",pos[1]," z = ",pos[2])
         if adv <= thresh:
-            print("Spawn - ",ident," Advances - ",adv," Shiny - True")
             spawns[str(ident)] = {"check":"True",
-#                                  "pos":markers[str(ident)]["coords"]}
                                   "x":pos[0],
                                   "y":pos[1],
                                   "z":pos[2]}
         else:
-            print("Spawn - ",ident," Advances - ",adv," Shiny - False")
             spawns[str(ident)] = {"check":"False",
-#                                  "pos":markers[str(ident)]["coords"]}
                                   "x":pos[0],
                                   "y":pos[1],
                                   "z":pos[2]}

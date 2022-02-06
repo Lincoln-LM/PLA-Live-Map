@@ -149,9 +149,6 @@
 					coordinates[s.toString()] = [item['x'],item['y'],item['z']];
 					underthresh = [item['check']];
 					coords = convertCoords([item['x'],item['y'],item['z']]);
-					console.log(key);
-					console.log(underthresh);
-					console.log(coords);
 					if ( underthresh == "True" ) {
 						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon2.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
@@ -159,9 +156,6 @@
 					else if ( underthresh == "False" ) {
 						L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${s}])">Teleport to spawner id ${key}</button>`)
 						.on("click",popupOnClick);
-					}
-					else {
-						console.log("Sorry, underthresh was something weird.")
 					}
 				}
 			}
