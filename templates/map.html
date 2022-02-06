@@ -30,6 +30,7 @@
         <input type="number" id="rolls" value=1>
 		<label for="thresh">Shiny Alert Threshold</label>
 		<input type="number" id="thresh" value=50>
+		<button onclick=populateShinymap() id="shinymap">Update Shiny Map</button>
         <br>
         <button onclick="window.location.href='../'">Back</button>
     </div>
@@ -75,7 +76,8 @@
                 if (player_marker != null) {
                     player_marker.remove();
                 }
-                player_marker = L.marker(convertCoords([coords["x"], coords["y"], coords["z"]]), { riseOnHover: true, icon:  L.icon({ iconUrl: "{{ url_for('static', filename='resources/player.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] })});
+                player_marker = L.marker(convert
+				([coords["x"], coords["y"], coords["z"]]), { riseOnHover: true, icon:  L.icon({ iconUrl: "{{ url_for('static', filename='resources/player.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] })});
                 player_marker.addTo(map);
             }
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -89,7 +91,7 @@
                 coords: coords
             }));
         }
-        function updatePositions(e) {
+		function updatePositions(e) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/update-positions", true);
             xhr.onload = parseInfo;
@@ -111,8 +113,6 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(null);
         }
-		function populateShinymap(e) {
-		}
         function popupOnClick(e) {
             popupCoordinates = e.sourceTarget.options.coords;
             if (e.sourceTarget.options.spawnerID != -1) {
@@ -133,6 +133,39 @@
                 }));
             }
         }
+		function populateShinymap(e) {
+			var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/get-shiny", false);;
+			xhr.onload = parseInfo;
+			function parseInfo() 
+			{
+				underthresh = "";
+                let spawns = JSON.parse(xhr.responseText);
+                let keys = Object.keys(spawns);
+                for (let i = 0; i < keys.length; i++) {
+                    let key = keys[i];
+                    let item = spawns[key];
+					underthresh[i.toString()] = [item['check']];
+					console.log(underthresh)
+					if ( underthresh == "true" ) {
+						L.marker( {{marker.coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{marker.coords}})">Teleport to spawner id ${key}</button>`)
+						.on("click",popupOnClick);
+					}
+					else if ( underthresh == "false" ) {
+						L.marker( {{marker.coords}}, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport({{marker.coords}})">Teleport to spawner id ${key}</button>`)
+						.on("click",popupOnClick);
+					}
+					else {
+						console.log("Sorry, underthresh was something weird.")
+					}
+			}
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(JSON.stringify({
+                    ivs: {{marker.ivs}},
+                    rolls: parseInt(document.getElementById("rolls").value),
+					thresh: parseInt(document.getElementById("thresh").value)
+			})) 			
+		}
         function trackPlayer() {
             if (tracking) {
                 player_marker.remove();

@@ -7,6 +7,7 @@ import colorama
 from colorama import Fore, Back, Style
 from flask import Flask, render_template, request
 import nxreader
+import time
 from xoroshiro import XOROSHIRO
 
 natures = ["Hardy","Lonely","Brave","Adamant","Naughty",
@@ -135,6 +136,56 @@ def update_positions():
                                   "seed":seed}
     return json.dumps(spawns)
 
+@app.route('/get-shiny', methods=['POST'])
+def getshiny():
+    thresh = request.json['thresh']
+    """Scan all active spawns"""
+    spawns = {}
+    size = reader.read_pointer_int(f"{SPAWNER_PTR}+18",4)
+    size = int(size//0x40 - 1)
+    print(f"Checking up to index {size}")
+    for index in range(0,size):
+        if index % int(size//100) == 0:
+            print(f"{index/size*100}% done scanning")
+        generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
+        generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
+        spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+        rng = XOROSHIRO(generator_seed)
+        rng.next()
+        fixed_seed = rng.next()
+        encryption_constant,pid,ivs,ability,gender,nature,shiny \
+            = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
+        adv,encryption_constant,pid,ivs,ability,gender,nature \
+            = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
+        if adv <= thresh:
+            spawns[str(index)] = {"check":"true",
+                                  "seed":seed}
+        else:
+            spawns[str(index)] = {"check":"false",
+                                  "seed":seed}
+    return json.dumps(spawns)
+    
+#@app.route('/get-shiny', methods=['POST'])
+#def getshiny():
+#    underthresh = "false"
+#    spawner_id = request.json['spawnerID']
+#    thresh = request.json['thresh']
+#    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
+#   generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
+# #   spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+#    rng = XOROSHIRO(generator_seed)
+#    rng.next()
+#    fixed_seed = rng.next()
+#    encryption_constant,pid,ivs,ability,gender,nature,shiny \
+#        = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
+#    adv,encryption_constant,pid,ivs,ability,gender,nature \
+#        = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
+#    if adv <= thresh:
+#        underthresh = "true"
+#    print(f"Spawner: {spawner_id} Shiny: {underthresh}")
+#    return underthresh
+        
+    
 @app.route("/")
 def root():
     """Display index.html at the root of the application"""
