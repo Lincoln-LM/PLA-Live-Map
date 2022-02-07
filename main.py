@@ -47,7 +47,7 @@ def generate_next_shiny(group_id,rolls,guaranteed_ivs):
     """Find the next shiny advance for a spawner"""
     group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
     main_rng = XOROSHIRO(group_seed)
-    for adv in range(40960):
+    for adv in range(1,40960):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
@@ -62,9 +62,8 @@ def generate_next_shiny(group_id,rolls,guaranteed_ivs):
 @app.route('/read-seed', methods=['POST'])
 def read_seed():
     """Read current information and next shiny for a spawner"""
-    spawner_id = request.json['spawnerID']
+    group_id = request.json['groupID']
     thresh = request.json['thresh']
-    group_id = int(spawner_id//17)
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
     rng = XOROSHIRO(generator_seed)
@@ -139,12 +138,12 @@ def check_near():
     markers = json.loads(requests.get(url).text)
     maximum = list(markers.keys())[-1]
     near = []
-    for spawner_id, marker in markers.items():
-        print(f"Checking spawner_id {spawner_id}/{maximum}")
+    for group_id, marker in markers.items():
+        print(f"Checking group_id {group_id}/{maximum}")
         adv,_,_,_,_,_,_ = \
-            generate_next_shiny(int(int(spawner_id)//17),request.json['rolls'],marker["ivs"])
+            generate_next_shiny(group_id,request.json['rolls'],marker["ivs"])
         if adv <= thresh:
-            near.append(spawner_id)
+            near.append(group_id)
     return json.dumps(near)
 
 @app.route("/")

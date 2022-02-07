@@ -106,7 +106,7 @@
                     coordinates[i.toString()] = [item['x'],item['y'],item['z']];
                     let coords = convertCoords([item['x'],item['y'],item['z']])
                     console.log(coords);
-                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), spawnerID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${i}])">Teleport to spawner id ${key}</button>`)
+                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), groupID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${i}])">Teleport to group id ${key}</button>`)
                     .on("click",popupOnClick);
                 }
             }
@@ -115,7 +115,7 @@
         }
         function popupOnClick(e) {
             popupCoordinates = e.sourceTarget.options.coords;
-            if (e.sourceTarget.options.spawnerID != -1) {
+            if (e.sourceTarget.options.groupID != -1) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/read-seed", true);
                 xhr.onload = parseInfo;
@@ -126,7 +126,7 @@
                 }
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
-                    spawnerID: e.sourceTarget.options.spawnerID,
+                    groupID: e.sourceTarget.options.groupID,
                     ivs: e.sourceTarget.options.ivs,
                     rolls: parseInt(document.getElementById("rolls").value),
                     thresh: parseInt(document.getElementById("thresh").value)
@@ -146,8 +146,8 @@
             {
                 let near = JSON.parse(xhr.responseText);
                 for (let i = 0; i < near.length; i++) {
-                    let spawnerID = near[i];
-                    let marker = markerObjs[spawnerID];
+                    let groupID = near[i];
+                    let marker = markerObjs[groupID];
                     marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl.slice(0,-4) + "-green.png", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
                 }
             }
@@ -188,13 +188,13 @@
         let popupText;
         let markerObj;
         {% for marker in markers %}
-        popupText = `<button onclick=teleportPopup()>Teleport to spawner id ${"{{marker.spawnerID}}"}</button>`;
+        popupText = `<button onclick=teleportPopup()>Teleport to group id ${"{{marker.groupID}}"}</button>`;
         iURL = "{{ url_for('static', filename='resources') }}/" + "{{marker.icon}}".split("/")[4];
-        markerObj = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon: L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), iconUrl: iURL, spawnerID: {{ marker.spawnerID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
+        markerObj = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon: L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), iconUrl: iURL, groupID: {{ marker.groupID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
         markerObj.addTo(map)
         .bindPopup(popupText)
         .on("click",popupOnClick);
-        markerObjs[{{ marker.spawnerID }}] = markerObj;
+        markerObjs[{{ marker.groupID }}] = markerObj;
         {% endfor %}
     </script>
 </body>
