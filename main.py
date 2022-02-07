@@ -141,7 +141,8 @@ def check_near():
     near = []
     for spawner_id, marker in markers.items():
         print(f"Checking spawner_id {spawner_id}/{maximum}")
-        adv,_,_,_,_,_,_ = generate_next_shiny(int(spawner_id),request.json['rolls'],marker["ivs"])
+        adv,_,_,_,_,_,_ = \
+            generate_next_shiny(int(int(spawner_id)//17),request.json['rolls'],marker["ivs"])
         if adv <= thresh:
             near.append(spawner_id)
     return json.dumps(near)
