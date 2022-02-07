@@ -3,11 +3,8 @@
 import json
 import struct
 import requests
-import colorama
-from colorama import Fore, Back, Style
 from flask import Flask, render_template, request
 import nxreader
-import time
 from xoroshiro import XOROSHIRO
 
 natures = ["Hardy","Lonely","Brave","Adamant","Naughty",
@@ -46,20 +43,19 @@ def generate_from_seed(seed,rolls,guaranteed_ivs):
     nature = rng.rand(25)
     return encryption_constant,pid,ivs,ability,gender,nature,shiny
 
-def generate_next_shiny(spawner_id,rolls,guaranteed_ivs):
+def generate_next_shiny(group_id,rolls,guaranteed_ivs):
     """Find the next shiny advance for a spawner"""
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
-    spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
-    main_rng = XOROSHIRO(spawner_seed)
+    group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
+    main_rng = XOROSHIRO(group_seed)
     for adv in range(40960):
         generator_seed = main_rng.next()
+        main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
         rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(rng.next(),rolls,guaranteed_ivs)
         if shiny:
             break
-        main_rng.next()
         main_rng = XOROSHIRO(main_rng.next())
     return adv,encryption_constant,pid,ivs,ability,gender,nature
 
@@ -68,26 +64,23 @@ def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
     thresh = request.json['thresh']
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
-    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
-    spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+    group_id = int(spawner_id//17)
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
+                                             f"+{0x70+group_id*0x440+0x20:X}",8)
     rng = XOROSHIRO(generator_seed)
     rng.next()
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
-    display = f"Spawner Seed: {spawner_seed:X}<br>"
-    if shiny:
-        display += f"Shiny: <font color=\"green\"><b>{shiny}</b></font></br>"
-    else:
-        display += f"Shiny: <font color=\"red\"><b>{shiny}</b></font><br>"
-    display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
+    display = f"Generator Seed: {generator_seed:X}<br>" \
+              f"Shiny: <font color=\"{'green' if shiny else 'red'}\"><b>{shiny}</b></font><br>" \
+              f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
         = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
     if adv <= thresh:
-        display += f"Next Shiny: <font color=\"green\"><b> {adv} </b></font><br>"
+        display += f"Next Shiny: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
         display += f"Next Shiny: {adv} <br>"
     display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
@@ -136,67 +129,23 @@ def update_positions():
                                   "seed":seed}
     return json.dumps(spawns)
 
-@app.route('/get-shiny', methods=['POST'])
-def getshiny():
+@app.route('/check-near', methods=['POST'])
+def check_near():
+    """Check all spawners nearest shiny advance to update icons"""
     thresh = request.json['thresh']
     name = request.json['name']
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
-    size = (len(markers.keys()))-1
-    """Scan all active spawns"""
-    spawns = {}
-    print(f"Checking up to index {size}")
-    for index in range(0,size):
-        if index % int(size//100) == 0:
-            print(f"{index/size*100}% done scanning")
-        generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x80:X}",8)
-        generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+index*0x40:X}",8)
-        spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
-        rng = XOROSHIRO(generator_seed)
-        rng.next()
-        fixed_seed = rng.next()
-        ident = index*17
-        encryption_constant,pid,ivs,ability,gender,nature,shiny \
-            = generate_from_seed(fixed_seed,request.json['rolls'],markers[str(ident)]["ivs"])
-        adv,encryption_constant,pid,ivs,ability,gender,nature \
-            = generate_next_shiny(ident,request.json['rolls'],markers[str(ident)]["ivs"])
-        pos = markers[str(ident)]["coords"]
+    maximum = list(markers.keys())[-1]
+    near = []
+    for spawner_id, marker in markers.items():
+        print(f"Checking spawner_id {spawner_id}/{maximum}")
+        adv,_,_,_,_,_,_ = generate_next_shiny(int(spawner_id),request.json['rolls'],marker["ivs"])
         if adv <= thresh:
-            spawns[str(ident)] = {"check":"True",
-                                  "ivs":markers[str(ident)]["ivs"],
-                                  "x":pos[0],
-                                  "y":pos[1],
-                                  "z":pos[2]}
-        else:
-            spawns[str(ident)] = {"check":"False",
-                                  "ivs":markers[str(ident)]["ivs"],
-                                  "x":pos[0],
-                                  "y":pos[1],
-                                  "z":pos[2]}
-    return json.dumps(spawns)
-    
-#@app.route('/get-shiny', methods=['POST'])
-#def getshiny():
-#    underthresh = "false"
-#    spawner_id = request.json['spawnerID']
-#    thresh = request.json['thresh']
-#    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x80:X}",8)
-#   generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x90+spawner_id*0x40:X}",8)
-# #   spawner_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
-#    rng = XOROSHIRO(generator_seed)
-#    rng.next()
-#    fixed_seed = rng.next()
-#    encryption_constant,pid,ivs,ability,gender,nature,shiny \
-#        = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
-#    adv,encryption_constant,pid,ivs,ability,gender,nature \
-#        = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
-#    if adv <= thresh:
-#        underthresh = "true"
-#    print(f"Spawner: {spawner_id} Shiny: {underthresh}")
-#    return underthresh
-        
-    
+            near.append(spawner_id)
+    return json.dumps(near)
+
 @app.route("/")
 def root():
     """Display index.html at the root of the application"""
