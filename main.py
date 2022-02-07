@@ -141,7 +141,7 @@ def check_near():
     for group_id, marker in markers.items():
         print(f"Checking group_id {group_id}/{maximum}")
         adv,_,_,_,_,_,_ = \
-            generate_next_shiny(group_id,request.json['rolls'],marker["ivs"])
+            generate_next_shiny(int(group_id),request.json['rolls'],marker["ivs"])
         if adv <= thresh:
             near.append(group_id)
     return json.dumps(near)
