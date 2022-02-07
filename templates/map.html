@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:regular">
     <style>
         * {
-		    font-family: "Montserrat", sans-serif
-	    }
+            font-family: "Montserrat", sans-serif
+        }
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,15 +22,15 @@
 <body>
     <div id="main">
         <button onclick=updatePositions()>Update Active Spawns</button>
-		<button onclick=checkNearShinies()>Check Near Shinies</button>
+        <button onclick=checkNearShinies()>Check Near Shinies</button>
         <button onclick=trackPlayer() id="trackPlayerButton">Track Player Position</button>
         <button onclick=placeTeleport() id="placeTeleportButton">Teleport</button>
         <label for="y">Height:</label>
         <input type="number" id="y" value=50>
         <label for="rolls">Shiny Rolls:</label>
         <input type="number" id="rolls" value=1>
-		<label for="thresh">Near Shiny Threshold</label>
-		<input type="number" id="thresh" value=50>
+        <label for="thresh">Near Shiny Threshold</label>
+        <input type="number" id="thresh" value=50>
         <br>
         <button onclick="window.location.href='../'">Back</button>
     </div>
@@ -129,35 +129,35 @@
                     spawnerID: e.sourceTarget.options.spawnerID,
                     ivs: e.sourceTarget.options.ivs,
                     rolls: parseInt(document.getElementById("rolls").value),
-					thresh: parseInt(document.getElementById("thresh").value)
+                    thresh: parseInt(document.getElementById("thresh").value)
                 }));
             }
         }
-		function checkNearShinies(e) {
+        function checkNearShinies(e) {
             let keys = Object.keys(markerObjs);
             for (let i = 0; i < keys.length; i++) {
                 let marker = markerObjs[keys[i]];
                 marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
             }
-			var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
             xhr.open("POST", "/check-near", true);
-			xhr.onload = parseInfo;
-			function parseInfo() 
-			{
+            xhr.onload = parseInfo;
+            function parseInfo() 
+            {
                 let near = JSON.parse(xhr.responseText);
                 for (let i = 0; i < near.length; i++) {
                     let spawnerID = near[i];
                     let marker = markerObjs[spawnerID];
                     marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl.slice(0,-4) + "-green.png", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
                 }
-			}
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.send(JSON.stringify({
-					name: "{{map_name}}",
+            }
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                    name: "{{map_name}}",
                     rolls: parseInt(document.getElementById("rolls").value),
-					thresh: parseInt(document.getElementById("thresh").value)
-			})) 			
-		}
+                    thresh: parseInt(document.getElementById("thresh").value)
+            }))             
+        }
         function trackPlayer() {
             if (tracking) {
                 player_marker.remove();
@@ -187,15 +187,15 @@
         let iURL;
         let popupText;
         let markerObj;
-		{% for marker in markers %}
-		popupText = `<button onclick=teleportPopup()>Teleport to spawner id ${"{{marker.spawnerID}}"}</button>`;
-		iURL = "{{ url_for('static', filename='resources') }}/" + "{{marker.icon}}".split("/")[4];
-		markerObj = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon: L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), iconUrl: iURL, spawnerID: {{ marker.spawnerID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
-		markerObj.addTo(map)
-		.bindPopup(popupText)
-		.on("click",popupOnClick);
-		markerObjs[{{ marker.spawnerID }}] = markerObj;
-		{% endfor %}
+        {% for marker in markers %}
+        popupText = `<button onclick=teleportPopup()>Teleport to spawner id ${"{{marker.spawnerID}}"}</button>`;
+        iURL = "{{ url_for('static', filename='resources') }}/" + "{{marker.icon}}".split("/")[4];
+        markerObj = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon: L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), iconUrl: iURL, spawnerID: {{ marker.spawnerID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
+        markerObj.addTo(map)
+        .bindPopup(popupText)
+        .on("click",popupOnClick);
+        markerObjs[{{ marker.spawnerID }}] = markerObj;
+        {% endfor %}
     </script>
 </body>
 </html>
