@@ -63,6 +63,7 @@ def generate_next_shiny(group_id,rolls,guaranteed_ivs):
 def read_seed():
     """Read current information and next shiny for a spawner"""
     spawner_id = request.json['spawnerID']
+    thresh = request.json['thresh']
     group_id = int(spawner_id//17)
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
@@ -72,14 +73,17 @@ def read_seed():
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
     display = f"Generator Seed: {generator_seed:X}<br>" \
-              f"Shiny: {shiny}<br>" \
+              f"Shiny: <font color=\"{'green' if shiny else 'red'}\"><b>{shiny}</b></font><br>" \
               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
-        = generate_next_shiny(group_id,request.json['rolls'],request.json['ivs'])
-    display += f"Next Shiny: {adv}<br>" \
-               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
+        = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
+    if adv <= thresh:
+        display += f"Next Shiny: <font color=\"green\"><b>{adv}</b></font><br>"
+    else:
+        display += f"Next Shiny: {adv} <br>"
+    display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
                f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
                f"{'/'.join(str(iv) for iv in ivs)}<br>"
     return display
@@ -124,6 +128,23 @@ def update_positions():
                                   "z":pos[2],
                                   "seed":seed}
     return json.dumps(spawns)
+
+@app.route('/check-near', methods=['POST'])
+def check_near():
+    """Check all spawners nearest shiny advance to update icons"""
+    thresh = request.json['thresh']
+    name = request.json['name']
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+         f"pla_spawners/jsons/{name}.json"
+    markers = json.loads(requests.get(url).text)
+    maximum = list(markers.keys())[-1]
+    near = []
+    for spawner_id, marker in markers.items():
+        print(f"Checking spawner_id {spawner_id}/{maximum}")
+        adv,_,_,_,_,_,_ = generate_next_shiny(int(spawner_id),request.json['rolls'],marker["ivs"])
+        if adv <= thresh:
+            near.append(spawner_id)
+    return json.dumps(near)
 
 @app.route("/")
 def root():
