@@ -131,7 +131,7 @@ def update_positions():
 
 @app.route('/check-near', methods=['POST'])
 def check_near():
-    """Check all spawners nearest shiny advance to update icons"""
+    """Check all spawners' nearest shiny advance to update icons"""
     thresh = request.json['thresh']
     name = request.json['name']
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
