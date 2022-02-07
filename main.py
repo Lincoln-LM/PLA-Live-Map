@@ -78,7 +78,7 @@ def read_seed():
               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
-        = generate_next_shiny(spawner_id,request.json['rolls'],request.json['ivs'])
+        = generate_next_shiny(group_id,request.json['rolls'],request.json['ivs'])
     if adv <= thresh:
         display += f"Next Shiny: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
