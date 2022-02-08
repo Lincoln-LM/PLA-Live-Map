@@ -60,7 +60,7 @@
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#mass-outbreak" role="tab"><i class="fa fa-bug"></i></a></li>
-                <li class="disabled"><a href="#battle" role="tab"><i class="icon-pokeball"></i></a></li>
+                <li><a href="#battle" role="tab"><i class="icon-pokeball"></i></a></li>
             </ul>
         </div>
 
@@ -107,6 +107,8 @@
                     Battle Information
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1><br>
+                <button onclick=loadBattleInfo()>Update Battle Info</button><br><br>
+                <div id="battleInfo"></div>
             </div>
         </div>
     </div>
@@ -121,20 +123,27 @@
         let player_marker;
         let positionUpdater;
 
-        let elements = document.getElementsByClassName("collapsible");
-        for (let i = 0; i < elements.length; i++) {
-            let element = elements[i];
-            element.onclick = function() {
-                let info = document.getElementById(this.dataset.for);
-                this.classList.toggle("activeCollapsible")
-                if (info.style.maxHeight) {
-                    info.style.maxHeight = null;
-                }
-                else {
-                    info.style.maxHeight = info.scrollHeight + "px";
-                }
+        function collapsibleOnClick() {
+            console.log(this);
+            let info = document.getElementById(this.dataset.for);
+            this.classList.toggle("activeCollapsible")
+            if (info.style.maxHeight) {
+                info.style.maxHeight = null;
+            }
+            else {
+                 info.style.maxHeight = info.scrollHeight + "px";
             }
         }
+
+        function updateCollapsibleOnClick() {
+        let elements = document.getElementsByClassName("collapsible");
+            for (let i = 0; i < elements.length; i++) {
+                let element = elements[i];
+                element.onclick = collapsibleOnClick;
+            }
+        }
+
+        updateCollapsibleOnClick();
 
         map.on('click', function(e){
             if (teleporting) {
@@ -174,6 +183,18 @@
                     info.style.maxHeight = null;
                 }
             }
+        }
+        function loadBattleInfo() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/read-battle", true);
+            xhr.onload = parseInfo;
+            function parseInfo()
+            {
+                document.getElementById("battleInfo").innerHTML = xhr.responseText;
+                updateCollapsibleOnClick();
+            }
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send();
         }
         function loadMassOutbreakInfo() {
             let currentMassOutbreakInfo = document.getElementById("currentMassOutbreak");

@@ -5,18 +5,22 @@ import struct
 import requests
 from flask import Flask, render_template, request
 import nxreader
+from pa8 import Pa8
 from xoroshiro import XOROSHIRO
 
-natures = ["Hardy","Lonely","Brave","Adamant","Naughty",
-           "Bold","Docile","Relaxed","Impish","Lax",
-           "Timid","Hasty","Serious","Jolly","Naive",
-           "Modest","Mild","Quiet","Bashful","Rash",
-           "Calm","Gentle","Sassy","Careful","Quirky"]
+with open("./static/resources/text_natures.txt",encoding="utf-8") as text_natures:
+    NATURES = text_natures.read().split("\n")
+with open("./static/resources/text_species.txt",encoding="utf-8") as text_species:
+    SPECIES = text_species.read().split("\n")
 PLAYER_LOCATION_PTR = "[[[[[[main+42B2558]+88]+90]+1F0]+18]+80]+90"
 SPAWNER_PTR = "[[main+4267ee0]+330]"
-app = Flask(__name__)
+PARTY_PTR = "[[[main+4268000]+d0]+58]"
+WILD_PTR = "[[[[main+4267f00]+b0]+e0]+d0]"
+
 with open("config.json","r",encoding="utf-8") as config:
     IP_ADDRESS = json.load(config)["IP"]
+
+app = Flask(__name__)
 reader = nxreader.NXReader(IP_ADDRESS)
 
 def generate_from_seed(seed,rolls,guaranteed_ivs):
@@ -91,7 +95,7 @@ def generate_mass_outbreak(main_rng,rolls):
         display += f"<b>Init Spawn {init_spawn}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
-                   f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+                   f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
         shiny_present |= shiny
     group_seed = main_rng.next()
@@ -109,7 +113,7 @@ def generate_mass_outbreak(main_rng,rolls):
         display += f"<b>Respawn {respawn}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
-                   f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+                   f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
         shiny_present |= shiny
     return display,shiny_present
@@ -122,6 +126,33 @@ def generate_next_shiny_mass_outbreak(main_rng,rolls):
         advance += 1
         display, shiny_present = generate_mass_outbreak(main_rng,rolls)
     return f"<b>Advance: {advance}</b><br>{display}"
+
+@app.route('/read-battle', methods=['GET'])
+def read_battle():
+    """Read all battle pokemon and return the information as an html formatted string"""
+    display = ""
+    party_count = reader.read_pointer_int(f"{PARTY_PTR}+88",1)
+    wild_count = reader.read_pointer_int(f"{WILD_PTR}+1a0",1) \
+               - party_count
+    if wild_count > 30:
+        wild_count = 0
+    for i in range(wild_count):
+        pkm = Pa8(reader.read_pointer(f"{WILD_PTR}+{0xb0+8*(i+party_count):X}"\
+                                       "]+70]+60]+98]+10]",Pa8.STOREDSIZE))
+        pokemon_name = f"{SPECIES[pkm.species]}" \
+                       f"{('-' + str(pkm.form_index)) if pkm.form_index > 0 else ''} " \
+                       f"{'' if pkm.shiny_type == 0 else '⋆' if pkm.shiny_type == 1 else '◇'}"
+        pokemon_info = f"EC: {pkm.encryption_constant:08X}<br>" \
+                       f"PID: {pkm.pid:08X}<br>" \
+                       f"Nature: {NATURES[pkm.nature]}<br>" \
+                       f"Ability: {pkm.ability_string}<br>" \
+                       f"IVs: {'/'.join(str(iv) for iv in pkm.ivs)}"
+        if pkm.is_valid:
+            display += f"<button type=\"button\" class=\"collapsible\" " \
+                       f"data-for=\"battle{i}\" onclick=collapsibleOnClick()>{i+1} " \
+                       f"{pokemon_name}</button>" \
+                       f"<div class=\"info\" id=\"battle{i}\">{pokemon_info}</div><br>"
+    return display
 
 @app.route('/read-mass-outbreak', methods=['POST'])
 def read_mass_outbreak():
@@ -162,7 +193,7 @@ def read_seed():
     display = f"Generator Seed: {generator_seed:X}<br>" \
               f"Shiny: <font color=\"{'green' if shiny else 'red'}\"><b>{shiny}</b></font><br>" \
               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
-              f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+              f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
         = generate_next_shiny(group_id,request.json['rolls'],request.json['ivs'])
@@ -171,7 +202,7 @@ def read_seed():
     else:
         display += f"Next Shiny: {adv} <br>"
     display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
-               f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+               f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                f"{'/'.join(str(iv) for iv in ivs)}<br>"
     return display
 
