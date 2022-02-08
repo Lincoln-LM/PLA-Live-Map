@@ -60,11 +60,19 @@ def load_map(name):
     markers = json.loads(requests.get(url).text)
     return render_template('map.html',markers=markers.values(),map_name=name)
 
-def generate_next_shiny(group_id,rolls,guaranteed_ivs):
+def generate_next_shiny(group_id,rolls,guaranteed_ivs,init_spawn=False):
     """Find the next shiny advance for a spawner"""
-    group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
+    # pylint: disable=too-many-locals
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
+                                             f"+{0x70+group_id*0x440+0x20:X}",8)
+    group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     main_rng = XOROSHIRO(group_seed)
-    for adv in range(1,40960):
+    if not init_spawn:
+        # advance once
+        main_rng.next() # spawner 0
+        main_rng.next() # spawner 1
+        main_rng.reseed(main_rng.next())
+    for adv in range(0,40960):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
@@ -185,7 +193,14 @@ def read_seed():
     thresh = request.json['thresh']
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
-    rng = XOROSHIRO(generator_seed)
+    group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+    rng = XOROSHIRO(group_seed)
+    if not request.json['initSpawn']:
+        # advance once
+        rng.next() # spawner 0
+        rng.next() # spawner 1
+        rng.reseed(rng.next()) # reseed group rng
+    rng.reseed(rng.next()) # use spawner 0 to reseed
     rng.next()
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
@@ -196,7 +211,10 @@ def read_seed():
               f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
-        = generate_next_shiny(group_id,request.json['rolls'],request.json['ivs'])
+        = generate_next_shiny(group_id,
+                              request.json['rolls'],
+                              request.json['ivs'],
+                              request.json['initSpawn'])
     if adv <= thresh:
         display += f"Next Shiny: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
