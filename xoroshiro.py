@@ -7,6 +7,10 @@ class XOROSHIRO:
     def __init__(self, seed0, seed1 = 0x82A2B175229D6A5B):
         self.seed = [seed0, seed1]
 
+    def reseed(self, seed0, seed1 = 0x82A2B175229D6A5B):
+        """Reseed rng without creating a new object"""
+        self.seed = [seed0, seed1]
+
     @property
     def state(self):
         """Return the full state of the rng as read from memory"""

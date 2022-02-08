@@ -43,6 +43,19 @@ def generate_from_seed(seed,rolls,guaranteed_ivs):
     nature = rng.rand(25)
     return encryption_constant,pid,ivs,ability,gender,nature,shiny
 
+@app.route("/")
+def root():
+    """Display index.html at the root of the application"""
+    return render_template('index.html')
+
+@app.route("/map/<name>")
+def load_map(name):
+    """Read markers and generate map based on location"""
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+         f"pla_spawners/jsons/{name}.json"
+    markers = json.loads(requests.get(url).text)
+    return render_template('map.html',markers=markers.values(),map_name=name)
+
 def generate_next_shiny(group_id,rolls,guaranteed_ivs):
     """Find the next shiny advance for a spawner"""
     group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
@@ -56,8 +69,83 @@ def generate_next_shiny(group_id,rolls,guaranteed_ivs):
             generate_from_seed(rng.next(),rolls,guaranteed_ivs)
         if shiny:
             break
-        main_rng = XOROSHIRO(main_rng.next())
+        main_rng.reseed(main_rng.next())
     return adv,encryption_constant,pid,ivs,ability,gender,nature
+
+def generate_mass_outbreak(main_rng,rolls):
+    """Generate the current set of a mass outbreak and return a string representing it along with
+       a bool to show if a shiny is present"""
+    # pylint: disable=too-many-locals
+    # this many variables is appropriate to display all the information about
+    # the mass outbreak that a user might want
+    display = ""
+    shiny_present = False
+    for init_spawn in range(1,5):
+        generator_seed = main_rng.next()
+        main_rng.next() # spawner 1's seed, unused
+        fixed_rng = XOROSHIRO(generator_seed)
+        fixed_rng.next()
+        fixed_seed = fixed_rng.next()
+        encryption_constant,pid,ivs,ability,gender,nature,shiny = \
+            generate_from_seed(fixed_seed,rolls,0)
+        display += f"<b>Init Spawn {init_spawn}</b> Shiny: " \
+                   f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
+                   f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+                   f"{'/'.join(str(iv) for iv in ivs)}<br>"
+        shiny_present |= shiny
+    group_seed = main_rng.next()
+    main_rng.reseed(group_seed)
+    respawn_rng = XOROSHIRO(group_seed)
+    for respawn in range(1,9):
+        generator_seed = respawn_rng.next()
+        respawn_rng.next() # spawner 1's seed, unused
+        respawn_rng.reseed(respawn_rng.next())
+        fixed_rng = XOROSHIRO(generator_seed)
+        fixed_rng.next()
+        fixed_seed = fixed_rng.next()
+        encryption_constant,pid,ivs,ability,gender,nature,shiny = \
+            generate_from_seed(fixed_seed,rolls,0)
+        display += f"<b>Respawn {respawn}</b> Shiny: " \
+                   f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
+                   f"Nature: {natures[nature]} Ability: {ability} Gender: {gender}<br>" \
+                   f"{'/'.join(str(iv) for iv in ivs)}<br>"
+        shiny_present |= shiny
+    return display,shiny_present
+
+def generate_next_shiny_mass_outbreak(main_rng,rolls):
+    """Find the next shiny of a mass outbreak and return a string representing it"""
+    shiny_present = False
+    advance = 0
+    while not shiny_present:
+        advance += 1
+        display, shiny_present = generate_mass_outbreak(main_rng,rolls)
+    return f"<b>Advance: {advance}</b><br>{display}"
+
+@app.route('/read-mass-outbreak', methods=['POST'])
+def read_mass_outbreak():
+    """Read current mass outbreak information and predict next shiny"""
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+         f"pla_spawners/jsons/{request.json['name']}.json"
+    minimum = int(list(json.loads(requests.get(url).text).keys())[-1])
+    group_id = 510
+    group_seed = 0
+    while group_seed == 0 and group_id != minimum:
+        group_id -= 1
+        print(f"Finding group_id {510-group_id}/{510-minimum}")
+        group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
+    if group_id == minimum:
+        print("No mass outbreak found")
+        return json.dumps(["No mass outbreak found","No mass outbreak found"])
+    print(f"Found group_id {group_id}")
+    generator_seed = reader.read_pointer_int(f"main+4267ee0]+330]+{0x70+group_id*0x440+0x20:X}",8)
+    group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+    main_rng = XOROSHIRO(group_seed)
+    display = [f"Group Seed: {group_seed:X}<br>"
+               + generate_mass_outbreak(main_rng,request.json['rolls'])[0],
+               generate_next_shiny_mass_outbreak(main_rng,request.json['rolls'])]
+    return json.dumps(display)
 
 @app.route('/read-seed', methods=['POST'])
 def read_seed():
@@ -145,19 +233,6 @@ def check_near():
         if adv <= thresh:
             near.append(group_id)
     return json.dumps(near)
-
-@app.route("/")
-def root():
-    """Display index.html at the root of the application"""
-    return render_template('index.html')
-
-@app.route("/map/<name>")
-def load_map(name):
-    """Read markers and generate map based on location"""
-    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
-         f"pla_spawners/jsons/{name}.json"
-    markers = json.loads(requests.get(url).text)
-    return render_template('map.html',markers=markers.values(),map_name=name)
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8080, debug=True)
