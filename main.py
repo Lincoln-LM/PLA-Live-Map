@@ -16,6 +16,58 @@ PLAYER_LOCATION_PTR = "[[[[[[main+42B2558]+88]+90]+1F0]+18]+80]+90"
 SPAWNER_PTR = "[[main+4267ee0]+330]"
 PARTY_PTR = "[[[main+4268000]+d0]+58]"
 WILD_PTR = "[[[[main+4267f00]+b0]+e0]+d0]"
+CUSTOM_MARKERS = {
+    "obsidianfieldlands": {
+        "camp": {
+            "coords": [
+            365.36,
+            52,
+            136.1
+            ],
+            "faIcon": "campground",
+        }
+    },
+    "crimsonmirelands": {
+        "camp": {
+            "coords": [
+            242.45,
+            55.64,
+            435.84
+            ],
+            "faIcon": "campground",
+        }
+    },
+    "cobaltcoastlands": {
+        "camp": {
+            "coords": [
+            71.06,
+            45.16,
+            625.38
+            ],
+            "faIcon": "campground",
+        }
+    },
+    "coronethighlands": {
+        "camp": {
+            "coords": [
+            892.75,
+            36.45,
+            922.92
+            ],
+            "faIcon": "campground",
+        }
+    },
+    "alabastericelands": {
+        "camp": {
+            "coords": [
+            533.77,
+            31.13,
+            912.42
+            ],
+            "faIcon": "campground",
+        }
+    }
+}
 
 with open("config.json","r",encoding="utf-8") as config:
     IP_ADDRESS = json.load(config)["IP"]
@@ -58,7 +110,10 @@ def load_map(name):
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
-    return render_template('map.html',markers=markers.values(),map_name=name)
+    return render_template('map.html',
+                           markers=markers.values(),
+                           map_name=name,
+                           custom_markers=json.dumps(CUSTOM_MARKERS[name]))
 
 def generate_next_shiny(group_id,rolls,guaranteed_ivs,init_spawn=False):
     """Find the next shiny advance for a spawner"""

@@ -37,11 +37,16 @@
             background-color: #f1f1f1;
             font-size: 10pt;
         }
+
+        .transparent-div-icon {
+            background-color: transparent;
+            outline: transparent;
+        }
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -124,7 +129,19 @@
         let tracking = false;
         let player_marker;
         let positionUpdater;
-
+        let customMarkers = JSON.parse("{{custom_markers}}".replaceAll("&#34;",'"'))
+        let customMarkerNames = Object.keys(customMarkers);
+        for (let i = 0; i < customMarkerNames.length; i++) {
+            let name = customMarkerNames[i];
+            let marker = customMarkers[name];
+            let icon = L.divIcon({
+                html: `<i class="fa fa-${marker['faIcon']} fa-2x" style="color:#dd4659"></i>`,
+                iconSize: [ 32, 32 ],
+                iconAnchor: [ 16, 16 ],
+                className: "transparent-div-icon"
+            });
+            L.marker(convertCoords(marker.coords), { icon: icon }).addTo(map).bindPopup(`<button data-coords=[${marker.coords}] onclick="teleport(JSON.parse(this.dataset.coords))">Teleport to ${name}</button>`);
+        }
         function collapsibleOnClick() {
             console.log(this);
             let info = document.getElementById(this.dataset.for);
@@ -133,7 +150,7 @@
                 info.style.maxHeight = null;
             }
             else {
-                 info.style.maxHeight = info.scrollHeight + "px";
+                info.style.maxHeight = info.scrollHeight + "px";
             }
         }
 
