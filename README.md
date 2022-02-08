@@ -3,7 +3,7 @@ Flask application that displays live information on an interactive map for Pokem
 ![](./Map_Screenshot.png)
 
 # How to run:
-1. Install Flask ``pip install flask``
+1. Install requirements ``pip install -r requirements.txt``
 2. Copy-paste ``config.json.template`` and rename to ``config.json``
 3. Edit the ``IP`` field to contain your switch's IP
 4. Run main.py ``python3 ./main.py``
