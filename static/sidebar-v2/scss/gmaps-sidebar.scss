@@ -1,0 +1,86 @@
+$sidebar-margins: 10px !default;
+$sidebar-left-bottom-margin: $sidebar-margins + 25px !default;
+$sidebar-right-bottom-margin: $sidebar-margins + 14px !default;
+$sidebar-border: 0 !default;
+$sidebar-border-radius: 2px !default;
+$sidebar-shadow: rgba(0, 0, 0, 0.298039) 0 1px 4px -1px !default;
+
+$tab-fg: #666 !default;
+$tabs-bg: #fff !default;
+$tab-active-fg: #000 !default;
+$tab-active-bg: #febf00 !default;
+$tab-hover-fg: #000 !default;
+$tab-hover-bg: ($tabs-bg * 9 + $tab-active-bg) / 10 !default;
+
+@import 'base';
+
+.sidebar {
+    border-right: $sidebar-border;
+    box-shadow: $sidebar-shadow;
+
+    @media(min-width:$threshold-sm) {
+        border: $sidebar-border;
+        border-radius: $sidebar-border-radius;
+    }
+}
+
+.sidebar-left {
+    @media(min-width:$threshold-sm) {
+        bottom: $sidebar-left-bottom-margin;
+    }
+
+    & ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
+        @media(min-width:$threshold-sm) {
+            transition: margin-left $sidebar-transition;
+        }
+
+        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+            margin-left: $width-sm + $sidebar-margins * 2 !important;
+        }
+
+        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+            margin-left: $width-md + $sidebar-margins * 2 !important;
+        }
+
+        @media(min-width:$threshold-lg) {
+            margin-left: $width-lg + $sidebar-margins * 2 !important;
+        }
+    }
+
+    @media(min-width:$threshold-sm) {
+        &.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="left: 0px"] {
+            margin-left: $tab-size + $sidebar-margins * 2 !important;
+        }
+    }
+}
+
+
+.sidebar-right {
+    @media(min-width:$threshold-sm) {
+        bottom: $sidebar-right-bottom-margin;
+    }
+
+    & ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+        @media(min-width:$threshold-sm) {
+            transition: margin-right $sidebar-transition;
+        }
+
+        @media(min-width:$threshold-sm) and (max-width:$threshold-md - 1px) {
+            margin-right: $width-sm + $sidebar-margins * 2 !important;
+        }
+
+        @media(min-width:$threshold-md) and (max-width:$threshold-lg - 1px) {
+            margin-right: $width-md + $sidebar-margins * 2 !important;
+        }
+
+        @media(min-width:$threshold-lg) {
+            margin-right: $width-lg + $sidebar-margins * 2 !important;
+        }
+    }
+
+    @media(min-width:$threshold-sm) {
+        &.collapsed ~ .sidebar-map .gm-style > div.gmnoprint[style*="right: 28px"] {
+            margin-right: $tab-size + $sidebar-margins * 2 !important;
+        }
+    }
+}

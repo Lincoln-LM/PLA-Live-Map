@@ -1,0 +1,80 @@
+$sidebar-margins: 8px !default;
+$sidebar-inner-border-radius: 4px !default;
+
+@import 'ol-base';
+
+.sidebar-left {
+
+    & ~ .sidebar-map {
+
+        .olControlZoom,
+        .olScaleLine {
+            margin-left: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-left $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-left: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-left: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-left: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+
+    &.collapsed ~ .sidebar-map {
+
+        .olControlZoom,
+        .olScaleLine {
+            @media(min-width:$threshold-sm) {
+                margin-left: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+}
+
+.sidebar-right {
+
+    & ~ .sidebar-map {
+
+        .olControlAttribution,
+        .olControlPermalink,
+        .olControlMousePosition {
+            margin-right: $tab-size + $sidebar-border-width * 2;
+
+            @media(min-width: $threshold-sm) {
+                transition: margin-right $sidebar-transition;
+            }
+
+            @media(min-width: $threshold-sm) and (max-width: $threshold-md - 1px) {
+                margin-right: $width-sm + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-md) and (max-width: $threshold-lg - 1px) {
+                margin-right: $width-md + $sidebar-margins + $sidebar-border-width * 2;
+            }
+
+            @media(min-width: $threshold-lg) {
+                margin-right: $width-lg + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+
+    &.collapsed ~ .sidebar-map {
+
+        .olControlAttribution,
+        .olControlPermalink,
+        .olControlMousePosition {
+            @media(min-width:$threshold-sm) {
+                margin-right: $tab-size + $sidebar-margins + $sidebar-border-width * 2;
+            }
+        }
+    }
+}

@@ -6,35 +6,74 @@
         * {
             font-family: "Montserrat", sans-serif
         }
+        input {
+            width: 40%;
+            position: absolute;
+            right: 10px;
+        }
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar-v2/css/leaflet-sidebar.css') }}"/>
+    <script src="{{ url_for('static', filename='sidebar-v2/js/leaflet-sidebar.js') }}"></script>
     <title>{{map_name}} Map</title>
 </head>
 <body>
-    <div id="main">
-        <button onclick=updatePositions()>Update Active Spawns</button>
-        <button onclick=checkNearShinies()>Check Near Shinies</button>
-        <button onclick=trackPlayer() id="trackPlayerButton">Track Player Position</button>
-        <button onclick=placeTeleport() id="placeTeleportButton">Teleport</button>
-        <label for="y">Height:</label>
-        <input type="number" id="y" value=50>
-        <label for="rolls">Shiny Rolls:</label>
-        <input type="number" id="rolls" value=1>
-        <label for="thresh">Near Shiny Threshold</label>
-        <input type="number" id="thresh" value=50>
-        <br>
-        <button onclick="window.location.href='../'">Back</button>
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li class="disabled"><a href="#swarm" role="tab"><i class="fa fa-bug"></i></a></li>
+                <li class="disabled"><a href="#battle" role="tab"><i class="icon-pokeball"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    PLA-Live-Map
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1><br>
+                <button onclick="window.location.href='../'">Pick Another Map</button><br>
+                <button onclick=updatePositions()>Update Active Spawns</button><br>
+                <button onclick=checkNearShinies()>Check Near Shinies</button><br>
+                <button onclick=trackPlayer() id="trackPlayerButton">Track Player Position</button><br>
+                <button onclick=placeTeleport() id="placeTeleportButton">Teleport</button><br>
+                <label for="y">Teleport Height:</label>
+                <input type="number" id="y" value=50><br>
+                <label for="rolls">Shiny Rolls:</label>
+                <input type="number" id="rolls" value=1><br>
+                <label for="thresh">Near Shiny Limit</label>
+                <input type="number" id="thresh" value=50><br>
+            </div>
+
+            <div class="sidebar-pane" id="swarm">
+                <h1 class="sidebar-header">
+                    Swarm Information
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+            </div>
+
+            <div class="sidebar-pane" id="battle">
+                <h1 class="sidebar-header">
+                    Battle Information
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+            </div>
+        </div>
     </div>
-    <div id="map"></div>
+    <div id="map" class="sidebar-map"></div>
     <script src="{{ url_for('static', filename='js/universal.js') }}"></script>
     <script>
         let coordinates = {};
@@ -184,6 +223,7 @@
         function teleportPopup() {
             teleport(popupCoordinates);
         }
+        var sidebar = L.control.sidebar('sidebar').addTo(map);
         let iURL;
         let popupText;
         let markerObj;

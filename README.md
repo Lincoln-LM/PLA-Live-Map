@@ -20,3 +20,6 @@ Flask application that displays live information on an interactive map for Pokem
 # Credits
 - berichan's [PLA Warper](https://github.com/berichan/PLAWarper) for the pointer to player location
 - Serebii's [Pokearth](https://www.serebii.net/pokearth/hisui/) for the map images
+
+# Licensed Software
+- PLA-Live-Map uses [sidebar-v2](https://github.com/Turbo87/sidebar-v2) which is licensed under the [MIT License](./static/sidebar-v2/LICENSE)
