@@ -222,7 +222,7 @@ def read_mass_outbreak():
     """Read current mass outbreak information and predict next shiny"""
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{request.json['name']}.json"
-    minimum = int(list(json.loads(requests.get(url).text).keys())[-1])
+    minimum = int(list(json.loads(requests.get(url).text).keys())[-1])-5
     group_id = 510
     group_seed = 0
     while group_seed == 0 and group_id != minimum:
