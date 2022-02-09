@@ -12,10 +12,10 @@ with open("./static/resources/text_natures.txt",encoding="utf-8") as text_nature
     NATURES = text_natures.read().split("\n")
 with open("./static/resources/text_species.txt",encoding="utf-8") as text_species:
     SPECIES = text_species.read().split("\n")
-PLAYER_LOCATION_PTR = "[[[[[[main+42B2558]+88]+90]+1F0]+18]+80]+90"
-SPAWNER_PTR = "[[main+4267ee0]+330]"
-PARTY_PTR = "[[[main+4268000]+d0]+58]"
-WILD_PTR = "[[[[main+4267f00]+b0]+e0]+d0]"
+PLAYER_LOCATION_PTR = "[[[[[[main+42B3558]+88]+90]+1F0]+18]+80]+90"
+SPAWNER_PTR = "[[main+4268ee0]+330]"
+PARTY_PTR = "[[[main+4269000]+d0]+58]"
+WILD_PTR = "[[[[main+4268f00]+b0]+e0]+d0]"
 CUSTOM_MARKERS = {
     "obsidianfieldlands": {
         "camp": {
