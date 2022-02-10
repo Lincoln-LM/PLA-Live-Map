@@ -233,7 +233,7 @@ def read_mass_outbreak():
         print("No mass outbreak found")
         return json.dumps(["No mass outbreak found","No mass outbreak found"])
     print(f"Found group_id {group_id}")
-    generator_seed = reader.read_pointer_int(f"main+4267ee0]+330]+{0x70+group_id*0x440+0x20:X}",8)
+    generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     main_rng = XOROSHIRO(group_seed)
     display = [f"Group Seed: {group_seed:X}<br>"
