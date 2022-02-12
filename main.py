@@ -234,7 +234,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
         respawn_rng = XOROSHIRO(respawn_rng.next())
 
 def outbreak_pathfind(group_seed,rolls,step=0,steps=None,uniques=None,storage=None):
-    """Recursively pathfind to all possible shinies for the current swarm"""
+    """Recursively pathfind to all possible shinies for the current outbreak"""
     # pylint: disable=too-many-arguments
     # can this algo be improved?
     if steps is None or uniques is None or storage is None:
