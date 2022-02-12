@@ -247,7 +247,7 @@ def outbreak_pathfind(group_seed,rolls,step=0,steps=None,uniques=None,storage=No
     if sum(_steps) + step < 12:
         for _step in range(1, min(5, 12 - sum(_steps) + 1)):
             storage[0] += 1
-            if not outbreak_pathfind(group_seed,rolls,_step,_steps,uniques,storage) is None:
+            if outbreak_pathfind(group_seed,rolls,_step,_steps,uniques,storage) is not None:
                 return storage[1:]
     else:
         _steps.append(12 - sum(_steps))
