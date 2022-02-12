@@ -17,9 +17,9 @@ Flask application that displays live information on an interactive map for Pokem
     - This error means the script could not find your config file in the directory its being run, make sure youre running the script from cmd in the project's directory, and that you've actually renamed ``config.json.template`` to ``config.json``.
 
 - I'm getting ``ModuleNotFoundError: No module named 'requests'`` even though the pip install command runs fine!
-    - Make sure that you do not have multiple python versions installed, and **DO NOT USE THE WINDOWS STORE PYTHON**. You can uninstall versions by searching "Uninstall" and selecting "Add or remove program".
+    - Make sure that you do not have multiple python versions installed, and **DO NOT USE THE WINDOWS STORE PYTHON**. You can uninstall versions by searching "Uninstall" in your windows search bar and selecting "Add or remove program".
 - Windows tells me ``Python was not found; run without arguments to install form the Microsoft Store...`` but I thought we didnt want windows store python?
-    - Windows does this whenever it cant detect an already installed version and you try to use python, you can disable this by typing "Manage app execution aliases" and deselecting python and python3.
+    - Windows does this whenever it cant detect an already installed version and you try to use python, you can disable this by typing "Manage app execution aliases" in your windows search bar and deselecting python and python3.
 - The script is telling me ``TimeoutError: timed out``, what does this mean?
     - This error is a general connection error, common causes include:
         - The ip in your config.json is not your switch's actual ip.
