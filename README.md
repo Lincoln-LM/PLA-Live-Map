@@ -33,6 +33,7 @@ Flask application that displays live information on an interactive map for Pokem
 - Nothing is advancing correctly! or Every marker has the same generator seed! or The near shiny button makes a marker green but its way past the limit I have set?
     - If you've gotten to this point it means that your pc can connect to your switch, and that sysbot-base is able to send information to your pc. The most common causes of these issues are another program running on the switch that accesses memory. Make sure to not have programs like Edizon or CaptureSight running while you are trying to rng (Edizon might be accessing memory by default if its installed, so it may be best to uninstall it.)
     - Also make sure you do not have a mass outbreak active on your map if you are trying to rng a non mass outbreak, this will cause the group ids to be shifted and things will not advance properly.
+    - Lastly, make sure your game is on the **latest version (1.0.2)** as the pointers used are specific to this version.
 
 # Current features
 - Ability to read all active spawns with "Update Active Spawns" (Pokemon are displayed as a red pokeball)
