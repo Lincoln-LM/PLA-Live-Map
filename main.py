@@ -190,6 +190,72 @@ def generate_next_shiny_mass_outbreak(main_rng,rolls):
         display, shiny_present = generate_mass_outbreak(main_rng,rolls)
     return f"<b>Advance: {advance}</b><br>{display}"
 
+def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
+    """Generate all the pokemon of an outbreak based on a provided path"""
+    # pylint: disable=too-many-locals
+    # the generation is unique to each path, no use in splitting this function
+    main_rng = XOROSHIRO(group_seed)
+    for init_spawn in range(1,5):
+        generator_seed = main_rng.next()
+        main_rng.next() # spawner 1's seed, unused
+        fixed_rng = XOROSHIRO(generator_seed)
+        fixed_rng.next()
+        fixed_seed = fixed_rng.next()
+        encryption_constant,pid,ivs,ability,gender,nature,shiny = \
+            generate_from_seed(fixed_seed,rolls,0)
+        if shiny and not fixed_seed in uniques:
+            uniques.add(fixed_seed)
+            storage.append(
+                   f"<b>Init Spawn {init_spawn}</b> Shiny: "
+                   f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>"
+                   f"EC: {encryption_constant:08X} PID: {pid:08X}<br>"
+                   f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>"
+                   f"{'/'.join(str(iv) for iv in ivs)}")
+    group_seed = main_rng.next()
+    respawn_rng = XOROSHIRO(group_seed)
+    for step_i,step in enumerate(steps):
+        for _ in range(1,step+1):
+            generator_seed = respawn_rng.next()
+            respawn_rng.next() # spawner 1's seed, unused
+            fixed_rng = XOROSHIRO(generator_seed)
+            fixed_rng.next()
+            fixed_seed = fixed_rng.next()
+            encryption_constant,pid,ivs,ability,gender,nature,shiny = \
+                generate_from_seed(fixed_seed,rolls,0)
+            if shiny and not fixed_seed in uniques:
+                uniques.add(fixed_seed)
+                storage.append(
+                   f"<b>Path: {'|'.join(str(s) for s in steps[:step_i+1])}</b> Shiny: " \
+                   f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
+                   f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
+                   f"{'/'.join(str(iv) for iv in ivs)}"
+                )
+        respawn_rng = XOROSHIRO(respawn_rng.next())
+
+def outbreak_pathfind(group_seed,rolls,step=0,steps=None,uniques=None,storage=None):
+    """Recursively pathfind to all possible shinies for the current swarm"""
+    # pylint: disable=too-many-arguments
+    # can this algo be improved?
+    if steps is None or uniques is None or storage is None:
+        steps = []
+        uniques = set()
+        storage = [0]
+    _steps = steps.copy()
+    if step != 0:
+        _steps.append(step)
+    if sum(_steps) + step < 12:
+        for _step in range(1, min(5, 12 - sum(_steps) + 1)):
+            storage[0] += 1
+            if not outbreak_pathfind(group_seed,rolls,_step,_steps,uniques,storage) is None:
+                return storage[1:]
+    else:
+        _steps.append(12 - sum(_steps))
+        generate_mass_outbreak_path(group_seed,rolls,_steps,uniques,storage)
+        if storage[0] == 1644:
+            return storage[1:]
+    return None
+
 @app.route('/read-battle', methods=['GET'])
 def read_battle():
     """Read all battle pokemon and return the information as an html formatted string"""
@@ -235,10 +301,14 @@ def read_mass_outbreak():
     print(f"Found group_id {group_id}")
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
-    main_rng = XOROSHIRO(group_seed)
-    display = [f"Group Seed: {group_seed:X}<br>"
-               + generate_mass_outbreak(main_rng,request.json['rolls'])[0],
-               generate_next_shiny_mass_outbreak(main_rng,request.json['rolls'])]
+    if request.json['aggressivePath']:
+        display = "<br>".join(outbreak_pathfind(group_seed,request.json['rolls'])[:-4])
+        display = [display,display]
+    else:
+        main_rng = XOROSHIRO(group_seed)
+        display = [f"Group Seed: {group_seed:X}<br>"
+                + generate_mass_outbreak(main_rng,request.json['rolls'])[0],
+                generate_next_shiny_mass_outbreak(main_rng,request.json['rolls'])]
     return json.dumps(display)
 
 @app.route('/read-seed', methods=['POST'])
@@ -333,7 +403,10 @@ def check_near():
     for group_id, marker in markers.items():
         print(f"Checking group_id {group_id}/{maximum}")
         adv,_,_,_,_,_,_ = \
-            generate_next_shiny(int(group_id),request.json['rolls'],marker["ivs"],request.json['initSpawn'])
+            generate_next_shiny(int(group_id),
+                                request.json['rolls'],
+                                marker["ivs"],
+                                request.json['initSpawn'])
         if adv <= thresh:
             near.append(group_id)
     return json.dumps(near)
