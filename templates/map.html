@@ -56,6 +56,8 @@
     crossorigin=""></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='sidebar-v2/css/leaflet-sidebar.css') }}"/>
     <script src="{{ url_for('static', filename='sidebar-v2/js/leaflet-sidebar.js') }}"></script>
+    <script src="https://unpkg.com/leaflet-responsive-popup@0.6.4/leaflet.responsive.popup.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-responsive-popup@0.6.4/leaflet.responsive.popup.css" />
     <title>{{map_name}} Map</title>
 </head>
 <body>
@@ -142,7 +144,7 @@
                 iconAnchor: [ 16, 16 ],
                 className: "transparent-div-icon"
             });
-            L.marker(convertCoords(marker.coords), { icon: icon }).addTo(map).bindPopup(`<button data-coords=[${marker.coords}] onclick="teleport(JSON.parse(this.dataset.coords))">Teleport to ${name}</button>`);
+            L.marker(convertCoords(marker.coords), { icon: icon }).addTo(map).bindPopup(L.responsivePopup().setContent(`<button data-coords=[${marker.coords}] onclick="teleport(JSON.parse(this.dataset.coords))">Teleport to ${name}</button>`));
         }
         function collapsibleOnClick() {
             console.log(this);
@@ -280,7 +282,7 @@
                     let item = spawns[key];
                     coordinates[i.toString()] = [item['x'],item['y'],item['z']];
                     let coords = convertCoords([item['x'],item['y'],item['z']])
-                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), groupID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(`<button onclick="teleport(coordinates[${i}])">Teleport to spawner id ${key}</button>`)
+                    L.marker(coords, { icon:  L.icon({ riseOnHover: true, iconUrl: "{{ url_for('static', filename='resources/pokemon.png') }}", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), groupID: parseInt(key), ivs: 0 }).addTo(map).bindPopup(L.responsivePopup().setContent(`<button onclick="teleport(coordinates[${i}])">Teleport to spawner id ${key}</button>`))
                     .on("click",popupOnClick);
                 }
             }
@@ -368,7 +370,7 @@
         iURL = "{{ url_for('static', filename='resources') }}/" + "{{marker.icon}}".split("/")[4];
         markerObj = L.marker(convertCoords({{ marker.coords }}), { riseOnHover: true, icon: L.icon({ iconUrl: iURL, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }), iconUrl: iURL, groupID: {{ marker.groupID }}, ivs: {{ marker.ivs }}, coords: {{ marker.coords }}})
         markerObj.addTo(map)
-        .bindPopup(popupText)
+        .bindPopup(L.responsivePopup().setContent(popupText))
         .on("click",popupOnClick);
         markerObjs[{{ marker.groupID }}] = markerObj;
         {% endfor %}
