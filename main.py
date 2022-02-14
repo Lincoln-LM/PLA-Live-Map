@@ -258,6 +258,24 @@ def outbreak_pathfind(group_seed,rolls,spawns,step=0,steps=None,uniques=None,sto
             return storage[1:]
     return None
 
+def next_shiny_outbreak_pathfind(group_seed,rolls,spawns):
+    """Check the next outbreak advances until a path to a shiny exists"""
+    main_rng = XOROSHIRO(group_seed)
+    result = []
+    advance = -1
+    while len(result) == 0:
+        if advance != -1:
+            for _ in range(4*2):
+                main_rng.next()
+            group_seed = main_rng.next()
+            main_rng.reseed(group_seed)
+        advance += 1
+        result = outbreak_pathfind(group_seed, rolls, spawns)
+    info = '<br>'.join(outbreak_pathfind(group_seed,
+                                         request.json['rolls'],
+                                         request.json['aggressiveSpawns']))
+    return f"<b>Advance: {advance}</b><br>{info}"
+
 @app.route('/read-battle', methods=['GET'])
 def read_battle():
     """Read all battle pokemon and return the information as an html formatted string"""
@@ -304,10 +322,13 @@ def read_mass_outbreak():
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     if request.json['aggressivePath']:
-        display = "<br>".join(outbreak_pathfind(group_seed,
+        display = [f"Group Seed: {group_seed:X}<br>"
+                 + "<br>".join(outbreak_pathfind(group_seed,
+                                                 request.json['rolls'],
+                                                 request.json['aggressiveSpawns'])),
+                   next_shiny_outbreak_pathfind(group_seed,
                                                 request.json['rolls'],
-                                                request.json['aggressiveSpawns']))
-        display = [display,display]
+                                                request.json['aggressiveSpawns'])]
     else:
         main_rng = XOROSHIRO(group_seed)
         display = [f"Group Seed: {group_seed:X}<br>"
