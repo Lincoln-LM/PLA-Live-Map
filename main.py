@@ -152,12 +152,13 @@ def generate_mass_outbreak(main_rng,rolls):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         fixed_rng = XOROSHIRO(generator_seed)
-        fixed_rng.next()
+        alpha = (fixed_rng.next() / (2**64) * 101) > 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
         display += f"<b>Init Spawn {init_spawn}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">{alpha}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
@@ -170,12 +171,13 @@ def generate_mass_outbreak(main_rng,rolls):
         respawn_rng.next() # spawner 1's seed, unused
         respawn_rng.reseed(respawn_rng.next())
         fixed_rng = XOROSHIRO(generator_seed)
-        fixed_rng.next()
+        alpha = (fixed_rng.next() / (2**64) * 101) > 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
         display += f"<b>Respawn {respawn}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">{alpha}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
@@ -200,7 +202,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         fixed_rng = XOROSHIRO(generator_seed)
-        fixed_rng.next()
+        alpha = (fixed_rng.next() / (2**64) * 101) > 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
@@ -209,6 +211,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
             storage.append(
                    f"<b>Init Spawn {init_spawn}</b> Shiny: "
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>"
+                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">{alpha}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>"
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>"
                    f"{'/'.join(str(iv) for iv in ivs)}")
@@ -219,7 +222,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
             generator_seed = respawn_rng.next()
             respawn_rng.next() # spawner 1's seed, unused
             fixed_rng = XOROSHIRO(generator_seed)
-            fixed_rng.next()
+            alpha = (fixed_rng.next() / (2**64) * 101) > 100
             fixed_seed = fixed_rng.next()
             encryption_constant,pid,ivs,ability,gender,nature,shiny = \
                 generate_from_seed(fixed_seed,rolls,0)
@@ -229,6 +232,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
                    f"<b>Path: {'|'.join(str(s) for s in steps[:step_i]+[pokemon])} " \
                    f"Spawns: {sum(steps[:step_i])+pokemon+4}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
+                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">{alpha}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}"
