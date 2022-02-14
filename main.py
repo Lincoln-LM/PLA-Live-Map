@@ -68,6 +68,7 @@ CUSTOM_MARKERS = {
         }
     }
 }
+SEARCH_STOPPING_POINT = [23,46,86,172,331,639]
 
 with open("config.json","r",encoding="utf-8") as config:
     IP_ADDRESS = json.load(config)["IP"]
@@ -214,7 +215,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
     group_seed = main_rng.next()
     respawn_rng = XOROSHIRO(group_seed)
     for step_i,step in enumerate(steps):
-        for _ in range(1,step+1):
+        for pokemon in range(1,step+1):
             generator_seed = respawn_rng.next()
             respawn_rng.next() # spawner 1's seed, unused
             fixed_rng = XOROSHIRO(generator_seed)
@@ -225,7 +226,8 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
             if shiny and not fixed_seed in uniques:
                 uniques.add(fixed_seed)
                 storage.append(
-                   f"<b>Path: {'|'.join(str(s) for s in steps[:step_i+1])}</b> Shiny: " \
+                   f"<b>Path: {'|'.join(str(s) for s in steps[:step_i]+[pokemon])} " \
+                   f"Spawns: {sum(steps[:step_i])+pokemon+4}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
@@ -233,7 +235,7 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
                 )
         respawn_rng = XOROSHIRO(respawn_rng.next())
 
-def outbreak_pathfind(group_seed,rolls,step=0,steps=None,uniques=None,storage=None):
+def outbreak_pathfind(group_seed,rolls,spawns,step=0,steps=None,uniques=None,storage=None):
     """Recursively pathfind to all possible shinies for the current outbreak"""
     # pylint: disable=too-many-arguments
     # can this algo be improved?
@@ -244,15 +246,15 @@ def outbreak_pathfind(group_seed,rolls,step=0,steps=None,uniques=None,storage=No
     _steps = steps.copy()
     if step != 0:
         _steps.append(step)
-    if sum(_steps) + step < 12:
-        for _step in range(1, min(5, 12 - sum(_steps) + 1)):
+    if sum(_steps) + step < spawns - 4:
+        for _step in range(1, min(5, (spawns - 4) - sum(_steps))):
             storage[0] += 1
-            if outbreak_pathfind(group_seed,rolls,_step,_steps,uniques,storage) is not None:
+            if outbreak_pathfind(group_seed,rolls,spawns,_step,_steps,uniques,storage) is not None:
                 return storage[1:]
     else:
-        _steps.append(12 - sum(_steps))
+        _steps.append(spawns - sum(_steps) - 4)
         generate_mass_outbreak_path(group_seed,rolls,_steps,uniques,storage)
-        if storage[0] == 1644:
+        if storage[0] == SEARCH_STOPPING_POINT[spawns-10]:
             return storage[1:]
     return None
 
@@ -302,7 +304,9 @@ def read_mass_outbreak():
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     if request.json['aggressivePath']:
-        display = "<br>".join(outbreak_pathfind(group_seed,request.json['rolls'])[:-4])
+        display = "<br>".join(outbreak_pathfind(group_seed,
+                                                request.json['rolls'],
+                                                request.json['aggressiveSpawns']))
         display = [display,display]
     else:
         main_rng = XOROSHIRO(group_seed)

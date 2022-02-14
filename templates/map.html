@@ -101,7 +101,9 @@
                 <label for="massOutbreakRolls">Shiny Rolls:</label>
                 <input type="number" id="massOutbreakRolls" value=26><br>
                 <label for="aggressivePath">Aggressive Shiny Pathfinding</label>
-                <input type="checkbox" id="aggressivePath">
+                <input type="checkbox" id="aggressivePath"><br>
+                <label for="massOutbreakSpawns">Aggressive Total Spawns:</label>
+                <input type="number" id="massOutbreakSpawns" value=10><br>
                 <button onclick=loadMassOutbreakInfo()>Update Mass Outbreak Info</button><br><br>
                 <button type="button" class="collapsible" data-for="currentMassOutbreak">Current Mass Outbreak</button>
                 <div class="info" id="currentMassOutbreak">
@@ -241,7 +243,8 @@
             xhr.send(JSON.stringify({
                 name: "{{map_name}}",
                 rolls: parseInt(document.getElementById("massOutbreakRolls").value),
-                aggressivePath: document.getElementById("aggressivePath").checked
+                aggressivePath: document.getElementById("aggressivePath").checked,
+                aggressiveSpawns: parseInt(document.getElementById("massOutbreakSpawns").value)
             }));
         }
         function readPlayerCoords() {
