@@ -1,0 +1,6036 @@
+{
+  "lnd_no_00": {
+    "Dawn/All Weather": {
+      "Machop": 100,
+      "AlphaMachop": 2,
+      "Machoke": 20,
+      "AlphaMachoke": 1
+    },
+    "Day/All Weather": {
+      "Machop": 100,
+      "AlphaMachop": 2,
+      "Machoke": 20,
+      "AlphaMachoke": 1
+    },
+    "Dusk/All Weather": {
+      "Machop": 100,
+      "AlphaMachop": 2,
+      "Machoke": 20,
+      "AlphaMachoke": 1
+    },
+    "Night/All Weather": {
+      "Machop": 100,
+      "AlphaMachop": 2,
+      "Machoke": 20,
+      "AlphaMachoke": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_01": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1
+    }
+  },
+  "lnd_ra_01": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1,
+      "Gastrodon-1": 30,
+      "AlphaGastrodon-1": 1
+    }
+  },
+  "lnd_no_02": {
+    "Any Time/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    }
+  },
+  "lnd_ra_02": {
+    "Any Time/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Purugly": 40,
+      "AlphaPurugly": 1
+    }
+  },
+  "lnd_no_03": {
+    "Dawn/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Purugly": 10,
+      "AlphaPurugly": 1
+    },
+    "Day/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Purugly": 10,
+      "AlphaPurugly": 1
+    },
+    "Dusk/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Purugly": 10,
+      "AlphaPurugly": 1
+    },
+    "Night/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Purugly": 10,
+      "AlphaPurugly": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_ra_03": {
+    "Dawn/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1,
+      "Ambipom": 30,
+      "AlphaAmbipom": 1
+    },
+    "Day/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1,
+      "Ambipom": 30,
+      "AlphaAmbipom": 1
+    },
+    "Dusk/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1,
+      "Ambipom": 30,
+      "AlphaAmbipom": 1
+    },
+    "Night/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1,
+      "Ambipom": 30,
+      "AlphaAmbipom": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_04": {
+    "Dawn/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Dawn/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Dawn/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Dawn/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Day/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Day/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Day/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Day/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Dusk/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Dusk/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Dusk/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Dusk/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Night/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_ra_04": {
+    "Dawn/None": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Sunny": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Dawn/Cloudy": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Rain": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Snow": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Dawn/Drought": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Dawn/Fog": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Rainstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dawn/Snowstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Day/None": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Sunny": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Day/Cloudy": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Rain": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Snow": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Day/Drought": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Day/Fog": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Rainstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Day/Snowstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Dusk/None": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Sunny": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929
+    },
+    "Dusk/Cloudy": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Rain": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Snow": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372
+    },
+    "Dusk/Drought": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5
+    },
+    "Dusk/Fog": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Rainstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1
+    },
+    "Dusk/Snowstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5
+    },
+    "Night/None": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Sunny": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 80,
+      "AlphaSpheal": 1.60000002384186,
+      "Sealeo": 40,
+      "AlphaSealeo": 0.800000011920929,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Cloudy": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rain": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snow": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 2.40000009536743,
+      "Sealeo": 60.0000038146973,
+      "AlphaSealeo": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Drought": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 50,
+      "AlphaSpheal": 1,
+      "Sealeo": 25,
+      "AlphaSealeo": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Fog": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rainstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 100,
+      "AlphaSpheal": 2,
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snowstorm": {
+      "Happiny": 20,
+      "AlphaHappiny": 1,
+      "Chansey": 30,
+      "AlphaChansey": 1,
+      "Spheal": 150,
+      "AlphaSpheal": 3,
+      "Sealeo": 75,
+      "AlphaSealeo": 1.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_05": {
+    "Dawn/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Day/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Dusk/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Night/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_06": {
+    "Dawn/All Weather": {
+      "Togepi": 30,
+      "AlphaTogepi": 1,
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 50,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Togepi": 30,
+      "AlphaTogepi": 1,
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 50,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Togepi": 30,
+      "AlphaTogepi": 1,
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 50,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 50,
+      "AlphaDrifblim": 1
+    }
+  },
+  "lnd_ra_06": {
+    "Dawn/All Weather": {
+      "Togepi": 100,
+      "AlphaTogepi": 1
+    },
+    "Day/All Weather": {
+      "Togepi": 100,
+      "AlphaTogepi": 1
+    },
+    "Dusk/All Weather": {
+      "Togepi": 100,
+      "AlphaTogepi": 1
+    },
+    "Night/All Weather": {
+      " None": 0
+    }
+  },
+  "lnd_no_07": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Duskull": 100,
+      "AlphaDuskull": 2,
+      "Dusclops": 20,
+      "AlphaDusclops": 1
+    }
+  },
+  "lnd_no_08": {
+    "Dawn/None": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Sunny": {
+      "Growlithe-1": 24,
+      "AlphaGrowlithe-1": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Cloudy": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Rain": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Snow": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Drought": {
+      "Growlithe-1": 30,
+      "AlphaGrowlithe-1": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Fog": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Rainstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Snowstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/None": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Sunny": {
+      "Growlithe-1": 24,
+      "AlphaGrowlithe-1": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Cloudy": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Rain": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Snow": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Drought": {
+      "Growlithe-1": 30,
+      "AlphaGrowlithe-1": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Fog": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Rainstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Snowstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/None": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Sunny": {
+      "Growlithe-1": 24,
+      "AlphaGrowlithe-1": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Cloudy": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Rain": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Snow": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Drought": {
+      "Growlithe-1": 30,
+      "AlphaGrowlithe-1": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Fog": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Rainstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Snowstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Night/None": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Sunny": {
+      "Growlithe-1": 24,
+      "AlphaGrowlithe-1": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Cloudy": {
+      "Growlithe-1": 20,
+      "AlphaGrowlithe-1": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rain": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snow": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Drought": {
+      "Growlithe-1": 30,
+      "AlphaGrowlithe-1": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Fog": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rainstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snowstorm": {
+      "Growlithe-1": 10,
+      "AlphaGrowlithe-1": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_no_09": {
+    "Dawn/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dawn/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 0.800000011920929
+    },
+    "Dawn/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dawn/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dawn/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 1.20000004768372
+    },
+    "Dawn/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 0.5
+    },
+    "Dawn/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dawn/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dawn/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 1.5
+    },
+    "Day/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Day/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 0.800000011920929
+    },
+    "Day/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Day/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Day/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 1.20000004768372
+    },
+    "Day/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 0.5
+    },
+    "Day/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Day/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Day/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 1.5
+    },
+    "Dusk/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dusk/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 0.800000011920929
+    },
+    "Dusk/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dusk/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dusk/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 1.20000004768372
+    },
+    "Dusk/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 0.5
+    },
+    "Dusk/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dusk/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    },
+    "Dusk/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 1.5
+    },
+    "Night/None": {
+      "Spheal": 100,
+      "AlphaSpheal": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Sunny": {
+      "Spheal": 80,
+      "AlphaSpheal": 0.800000011920929,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Cloudy": {
+      "Spheal": 100,
+      "AlphaSpheal": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Rain": {
+      "Spheal": 100,
+      "AlphaSpheal": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Snow": {
+      "Spheal": 120.000007629395,
+      "AlphaSpheal": 1.20000004768372,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Drought": {
+      "Spheal": 50,
+      "AlphaSpheal": 0.5,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Fog": {
+      "Spheal": 100,
+      "AlphaSpheal": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Rainstorm": {
+      "Spheal": 100,
+      "AlphaSpheal": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    },
+    "Night/Snowstorm": {
+      "Spheal": 150,
+      "AlphaSpheal": 1.5,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2
+    }
+  },
+  "lnd_no_11": {
+    "Any Time/None": {
+      "Magmar": 100,
+      "AlphaMagmar": 1,
+      "Magby": 10,
+      "AlphaMagby": 1,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Sunny": {
+      "Magmar": 120.000007629395,
+      "AlphaMagmar": 1.20000004768372,
+      "Magby": 12,
+      "AlphaMagby": 1.20000004768372,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Cloudy": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Rain": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Snow": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Drought": {
+      "Magmar": 150,
+      "AlphaMagmar": 1.5,
+      "Magby": 15,
+      "AlphaMagby": 1.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Fog": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Rainstorm": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    },
+    "Any Time/Snowstorm": {
+      "Magmar": 50,
+      "AlphaMagmar": 0.5,
+      "Magby": 5,
+      "AlphaMagby": 0.5,
+      "Graveler": 60,
+      "AlphaGraveler": 1
+    }
+  },
+  "lnd_no_12": {
+    "Dawn/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    },
+    "Day/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    },
+    "Dusk/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    },
+    "Night/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_no_13": {
+    "Any Time/None": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Sunny": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Cloudy": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Rain": {
+      "Buizel": 120.000007629395,
+      "AlphaBuizel": 2.40000009536743,
+      "Floatzel": 72,
+      "AlphaFloatzel": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Drought": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Fog": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Rainstorm": {
+      "Buizel": 150,
+      "AlphaBuizel": 3,
+      "Floatzel": 90,
+      "AlphaFloatzel": 1.5
+    },
+    "Any Time/Snowstorm": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    }
+  },
+  "lnd_no_14": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "lnd_no_15": {
+    "Dawn/None": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dawn/Sunny": {
+      "Sealeo": 80,
+      "AlphaSealeo": 1.60000002384186,
+      "Walrein": 40,
+      "AlphaWalrein": 0.800000011920929
+    },
+    "Dawn/Cloudy": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dawn/Rain": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dawn/Snow": {
+      "Sealeo": 120.000007629395,
+      "AlphaSealeo": 2.40000009536743,
+      "Walrein": 60.0000038146973,
+      "AlphaWalrein": 1.20000004768372
+    },
+    "Dawn/Drought": {
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Walrein": 25,
+      "AlphaWalrein": 0.5
+    },
+    "Dawn/Fog": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dawn/Rainstorm": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dawn/Snowstorm": {
+      "Sealeo": 150,
+      "AlphaSealeo": 3,
+      "Walrein": 75,
+      "AlphaWalrein": 1.5
+    },
+    "Day/None": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Day/Sunny": {
+      "Sealeo": 80,
+      "AlphaSealeo": 1.60000002384186,
+      "Walrein": 40,
+      "AlphaWalrein": 0.800000011920929
+    },
+    "Day/Cloudy": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Day/Rain": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Day/Snow": {
+      "Sealeo": 120.000007629395,
+      "AlphaSealeo": 2.40000009536743,
+      "Walrein": 60.0000038146973,
+      "AlphaWalrein": 1.20000004768372
+    },
+    "Day/Drought": {
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Walrein": 25,
+      "AlphaWalrein": 0.5
+    },
+    "Day/Fog": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Day/Rainstorm": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Day/Snowstorm": {
+      "Sealeo": 150,
+      "AlphaSealeo": 3,
+      "Walrein": 75,
+      "AlphaWalrein": 1.5
+    },
+    "Dusk/None": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dusk/Sunny": {
+      "Sealeo": 80,
+      "AlphaSealeo": 1.60000002384186,
+      "Walrein": 40,
+      "AlphaWalrein": 0.800000011920929
+    },
+    "Dusk/Cloudy": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dusk/Rain": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dusk/Snow": {
+      "Sealeo": 120.000007629395,
+      "AlphaSealeo": 2.40000009536743,
+      "Walrein": 60.0000038146973,
+      "AlphaWalrein": 1.20000004768372
+    },
+    "Dusk/Drought": {
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Walrein": 25,
+      "AlphaWalrein": 0.5
+    },
+    "Dusk/Fog": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dusk/Rainstorm": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1
+    },
+    "Dusk/Snowstorm": {
+      "Sealeo": 150,
+      "AlphaSealeo": 3,
+      "Walrein": 75,
+      "AlphaWalrein": 1.5
+    },
+    "Night/None": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Sunny": {
+      "Sealeo": 80,
+      "AlphaSealeo": 1.60000002384186,
+      "Walrein": 40,
+      "AlphaWalrein": 0.800000011920929,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Cloudy": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rain": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snow": {
+      "Sealeo": 120.000007629395,
+      "AlphaSealeo": 2.40000009536743,
+      "Walrein": 60.0000038146973,
+      "AlphaWalrein": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Drought": {
+      "Sealeo": 50,
+      "AlphaSealeo": 1,
+      "Walrein": 25,
+      "AlphaWalrein": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Fog": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rainstorm": {
+      "Sealeo": 100,
+      "AlphaSealeo": 2,
+      "Walrein": 50,
+      "AlphaWalrein": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snowstorm": {
+      "Sealeo": 150,
+      "AlphaSealeo": 3,
+      "Walrein": 75,
+      "AlphaWalrein": 1.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_16": {
+    "Dawn/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Dawn/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Dawn/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Day/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Day/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Day/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Dusk/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Dusk/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Dusk/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Night/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_17": {
+    "Dawn/All Weather": {
+      "Combee": 100,
+      "AlphaCombee": 1
+    },
+    "Day/All Weather": {
+      "Combee": 100,
+      "AlphaCombee": 1
+    },
+    "Dusk/All Weather": {
+      "Combee": 100,
+      "AlphaCombee": 1
+    },
+    "Night/All Weather": {
+      "Combee": 50,
+      "AlphaCombee": 0.5
+    }
+  },
+  "lnd_no_18": {
+    "Any Time/None": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    },
+    "Any Time/Sunny": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    },
+    "Any Time/Cloudy": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    },
+    "Any Time/Rain": {
+      "Golduck": 120.000007629395,
+      "AlphaGolduck": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    },
+    "Any Time/Drought": {
+      "Golduck": 50,
+      "AlphaGolduck": 0.5
+    },
+    "Any Time/Fog": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    },
+    "Any Time/Rainstorm": {
+      "Golduck": 150,
+      "AlphaGolduck": 1.5
+    },
+    "Any Time/Snowstorm": {
+      "Golduck": 100,
+      "AlphaGolduck": 1
+    }
+  },
+  "lnd_no_19": {
+    "Dawn/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372
+    },
+    "Dawn/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dawn/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372
+    },
+    "Day/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Day/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372
+    },
+    "Dusk/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Dusk/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1
+    },
+    "Night/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_ra_19": {
+    "Dawn/None": {
+      "Vulpix": 25,
+      "AlphaVulpix": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Sunny": {
+      "Vulpix": 30.0000019073486,
+      "AlphaVulpix": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Cloudy": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Rain": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Snow": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Drought": {
+      "Vulpix": 37.5,
+      "AlphaVulpix": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Fog": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Rainstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dawn/Snowstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/None": {
+      "Vulpix": 25,
+      "AlphaVulpix": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Sunny": {
+      "Vulpix": 30.0000019073486,
+      "AlphaVulpix": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Cloudy": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Rain": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Snow": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Drought": {
+      "Vulpix": 37.5,
+      "AlphaVulpix": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Fog": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Rainstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/Snowstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/None": {
+      "Vulpix": 25,
+      "AlphaVulpix": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Sunny": {
+      "Vulpix": 30.0000019073486,
+      "AlphaVulpix": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Cloudy": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Rain": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Snow": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Drought": {
+      "Vulpix": 37.5,
+      "AlphaVulpix": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Fog": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Rainstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/Snowstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Night/None": {
+      "Vulpix": 25,
+      "AlphaVulpix": 1,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Sunny": {
+      "Vulpix": 30.0000019073486,
+      "AlphaVulpix": 1.20000004768372,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Cloudy": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rain": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snow": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Drought": {
+      "Vulpix": 37.5,
+      "AlphaVulpix": 1.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Fog": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rainstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snowstorm": {
+      "Vulpix": 12.5,
+      "AlphaVulpix": 0.5,
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_no_20": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "lnd_no_22": {
+    "Any Time/None": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Sunny": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Cloudy": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Rain": {
+      "Bibarel": 120.000007629395,
+      "AlphaBibarel": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Drought": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Fog": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Rainstorm": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Snowstorm": {
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    }
+  },
+  "lnd_no_23": {
+    "Any Time/All Weather": {
+      "Toxicroak": 100,
+      "AlphaToxicroak": 1
+    }
+  },
+  "lnd_no_24": {
+    "Dawn/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Day/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Dusk/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Night/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_27": {
+    "Dawn/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Dawn/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Dawn/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dawn/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Day/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Day/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Day/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Day/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Dusk/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372
+    },
+    "Dusk/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929
+    },
+    "Dusk/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    },
+    "Dusk/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5
+    },
+    "Night/None": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Sunny": {
+      "Tangela": 120.000007629395,
+      "AlphaTangela": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Cloudy": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rain": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snow": {
+      "Tangela": 80,
+      "AlphaTangela": 0.800000011920929,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Drought": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Fog": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Rainstorm": {
+      "Tangela": 100,
+      "AlphaTangela": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    },
+    "Night/Snowstorm": {
+      "Tangela": 50,
+      "AlphaTangela": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_28": {
+    "Any Time/None": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Sunny": {
+      "Parasect": 120.000007629395,
+      "AlphaParasect": 1.20000004768372
+    },
+    "Any Time/Cloudy": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Rain": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Snow": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Drought": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Fog": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Rainstorm": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    },
+    "Any Time/Snowstorm": {
+      "Parasect": 100,
+      "AlphaParasect": 1
+    }
+  },
+  "lnd_no_29": {
+    "Any Time/None": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Sunny": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Cloudy": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Rain": {
+      "Buizel": 120.000007629395,
+      "AlphaBuizel": 2.40000009536743,
+      "Floatzel": 72,
+      "AlphaFloatzel": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Drought": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Fog": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    },
+    "Any Time/Rainstorm": {
+      "Buizel": 150,
+      "AlphaBuizel": 3,
+      "Floatzel": 90,
+      "AlphaFloatzel": 1.5
+    },
+    "Any Time/Snowstorm": {
+      "Buizel": 100,
+      "AlphaBuizel": 2,
+      "Floatzel": 60,
+      "AlphaFloatzel": 1
+    }
+  },
+  "lnd_no_32": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1,
+      "Gastrodon-1": 20,
+      "AlphaGastrodon-1": 1
+    }
+  },
+  "lnd_no_33": {
+    "Any Time/None": {
+      "Vulpix": 100,
+      "AlphaVulpix": 1
+    },
+    "Any Time/Sunny": {
+      "Vulpix": 120.000007629395,
+      "AlphaVulpix": 1.20000004768372
+    },
+    "Any Time/Cloudy": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    },
+    "Any Time/Rain": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    },
+    "Any Time/Snow": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    },
+    "Any Time/Drought": {
+      "Vulpix": 150,
+      "AlphaVulpix": 1.5
+    },
+    "Any Time/Fog": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    },
+    "Any Time/Rainstorm": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    },
+    "Any Time/Snowstorm": {
+      "Vulpix": 50,
+      "AlphaVulpix": 0.5
+    }
+  },
+  "lnd_ra_34": {
+    "Any Time/All Weather": {
+      "Stantler": 100,
+      "AlphaStantler": 1
+    }
+  },
+  "lnd_no_35": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "lnd_no_36": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "lnd_no_38": {
+    "Dawn/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Day/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Dusk/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    },
+    "Night/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_39": {
+    "Any Time/All Weather": {
+      "Stantler": 100,
+      "AlphaStantler": 1
+    }
+  },
+  "lnd_no_40": {
+    "Dawn/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dawn/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Day/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Dusk/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1
+    },
+    "Night/None": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Sunny": {
+      "Paras": 120.000007629395,
+      "AlphaParas": 2.40000009536743,
+      "Parasect": 72,
+      "AlphaParasect": 1.20000004768372,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Cloudy": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rain": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snow": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Drought": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Fog": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rainstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snowstorm": {
+      "Paras": 100,
+      "AlphaParas": 2,
+      "Parasect": 60,
+      "AlphaParasect": 1,
+      "Pikachu": 20,
+      "AlphaPikachu": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_no_41": {
+    "Dawn/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 2,
+      "Eevee": 15,
+      "AlphaEevee": 1
+    },
+    "Day/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 2,
+      "Eevee": 15,
+      "AlphaEevee": 1
+    },
+    "Dusk/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 2,
+      "Eevee": 15,
+      "AlphaEevee": 1
+    },
+    "Night/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 2,
+      "Eevee": 15,
+      "AlphaEevee": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_42": {
+    "Dawn/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Day/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Dusk/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    },
+    "Night/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "lnd_no_43": {
+    "Dawn/None": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dawn/Sunny": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dawn/Cloudy": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dawn/Rain": {
+      "Psyduck": 120.000007629395,
+      "AlphaPsyduck": 2.40000009536743,
+      "Golduck": 72,
+      "AlphaGolduck": 1.20000004768372
+    },
+    "Dawn/Snow": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dawn/Drought": {
+      "Psyduck": 50,
+      "AlphaPsyduck": 1,
+      "Golduck": 30,
+      "AlphaGolduck": 0.5
+    },
+    "Dawn/Fog": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dawn/Rainstorm": {
+      "Psyduck": 150,
+      "AlphaPsyduck": 3,
+      "Golduck": 90,
+      "AlphaGolduck": 1.5
+    },
+    "Dawn/Snowstorm": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/None": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/Sunny": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/Cloudy": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/Rain": {
+      "Psyduck": 120.000007629395,
+      "AlphaPsyduck": 2.40000009536743,
+      "Golduck": 72,
+      "AlphaGolduck": 1.20000004768372
+    },
+    "Day/Snow": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/Drought": {
+      "Psyduck": 50,
+      "AlphaPsyduck": 1,
+      "Golduck": 30,
+      "AlphaGolduck": 0.5
+    },
+    "Day/Fog": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Day/Rainstorm": {
+      "Psyduck": 150,
+      "AlphaPsyduck": 3,
+      "Golduck": 90,
+      "AlphaGolduck": 1.5
+    },
+    "Day/Snowstorm": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/None": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/Sunny": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/Cloudy": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/Rain": {
+      "Psyduck": 120.000007629395,
+      "AlphaPsyduck": 2.40000009536743,
+      "Golduck": 72,
+      "AlphaGolduck": 1.20000004768372
+    },
+    "Dusk/Snow": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/Drought": {
+      "Psyduck": 50,
+      "AlphaPsyduck": 1,
+      "Golduck": 30,
+      "AlphaGolduck": 0.5
+    },
+    "Dusk/Fog": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Dusk/Rainstorm": {
+      "Psyduck": 150,
+      "AlphaPsyduck": 3,
+      "Golduck": 90,
+      "AlphaGolduck": 1.5
+    },
+    "Dusk/Snowstorm": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1
+    },
+    "Night/None": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Sunny": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Cloudy": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rain": {
+      "Psyduck": 120.000007629395,
+      "AlphaPsyduck": 2.40000009536743,
+      "Golduck": 72,
+      "AlphaGolduck": 1.20000004768372,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snow": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Drought": {
+      "Psyduck": 50,
+      "AlphaPsyduck": 1,
+      "Golduck": 30,
+      "AlphaGolduck": 0.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Fog": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Rainstorm": {
+      "Psyduck": 150,
+      "AlphaPsyduck": 3,
+      "Golduck": 90,
+      "AlphaGolduck": 1.5,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    },
+    "Night/Snowstorm": {
+      "Psyduck": 100,
+      "AlphaPsyduck": 2,
+      "Golduck": 60,
+      "AlphaGolduck": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 1
+    }
+  },
+  "lnd_no_44": {
+    "Any Time/None": {
+      "Growlithe-1": 100,
+      "AlphaGrowlithe-1": 1
+    },
+    "Any Time/Sunny": {
+      "Growlithe-1": 120.000007629395,
+      "AlphaGrowlithe-1": 1.20000004768372
+    },
+    "Any Time/Cloudy": {
+      "Growlithe-1": 100,
+      "AlphaGrowlithe-1": 1
+    },
+    "Any Time/Rain": {
+      "Growlithe-1": 50,
+      "AlphaGrowlithe-1": 0.5
+    },
+    "Any Time/Snow": {
+      "Growlithe-1": 50,
+      "AlphaGrowlithe-1": 0.5
+    },
+    "Any Time/Drought": {
+      "Growlithe-1": 150,
+      "AlphaGrowlithe-1": 1.5
+    },
+    "Any Time/Fog": {
+      "Growlithe-1": 50,
+      "AlphaGrowlithe-1": 0.5
+    },
+    "Any Time/Rainstorm": {
+      "Growlithe-1": 50,
+      "AlphaGrowlithe-1": 0.5
+    },
+    "Any Time/Snowstorm": {
+      "Growlithe-1": 50,
+      "AlphaGrowlithe-1": 0.5
+    }
+  },
+  "lnd_no_46": {
+    "Dawn/All Weather": {
+      "Togepi": 20,
+      "AlphaTogepi": 1,
+      "Togetic": 5,
+      "AlphaTogetic": 1,
+      "Staravia": 100,
+      "AlphaStaravia": 2,
+      "Staraptor": 30,
+      "AlphaStaraptor": 1
+    },
+    "Day/All Weather": {
+      "Togepi": 20,
+      "AlphaTogepi": 1,
+      "Togetic": 5,
+      "AlphaTogetic": 1,
+      "Staravia": 100,
+      "AlphaStaravia": 2,
+      "Staraptor": 30,
+      "AlphaStaraptor": 1
+    },
+    "Dusk/All Weather": {
+      "Togepi": 20,
+      "AlphaTogepi": 1,
+      "Togetic": 5,
+      "AlphaTogetic": 1,
+      "Staravia": 100,
+      "AlphaStaravia": 2,
+      "Staraptor": 30,
+      "AlphaStaraptor": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 50,
+      "AlphaDrifblim": 1
+    }
+  },
+  "lnd_ex_00": {
+    "Any Time/None": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Sunny": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Cloudy": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Rain": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 120.000007629395,
+      "AlphaBibarel": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Drought": {
+      "Piplup": 5,
+      "AlphaPiplup": 0.5,
+      "Prinplup": 1.5,
+      "AlphaPrinplup": 0.5,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Fog": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Rainstorm": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    },
+    "Any Time/Snowstorm": {
+      "Piplup": 10,
+      "AlphaPiplup": 1,
+      "Prinplup": 3,
+      "AlphaPrinplup": 1,
+      "Bibarel": 100,
+      "AlphaBibarel": 1
+    }
+  },
+  "lnd_ex_01": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Dusclops": 100
+    }
+  },
+  "lnd_ex_02": {
+    "Any Time/None": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Sunny": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Cloudy": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Rain": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Snow": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Drought": {
+      "Piplup": 50,
+      "AlphaPiplup": 0.5
+    },
+    "Any Time/Fog": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Rainstorm": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    },
+    "Any Time/Snowstorm": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    }
+  },
+  "swm_no_00": {
+    "Any Time/All Weather": {
+      "Remoraid": 100,
+      "AlphaRemoraid": 1
+    }
+  },
+  "swm_no_01": {
+    "Any Time/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    },
+    "Any Time/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 1.5
+    },
+    "Any Time/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    }
+  },
+  "swm_ra_01": {
+    "Dawn/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dawn/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dawn/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Day/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Day/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dusk/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dusk/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Night/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_05": {
+    "Dawn/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 1
+    },
+    "Day/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 1
+    },
+    "Dusk/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 1
+    },
+    "Night/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_ra_05": {
+    "Dawn/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 2,
+      "Lumineon": 60,
+      "AlphaLumineon": 1
+    },
+    "Day/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 2,
+      "Lumineon": 60,
+      "AlphaLumineon": 1
+    },
+    "Dusk/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 2,
+      "Lumineon": 60,
+      "AlphaLumineon": 1
+    },
+    "Night/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 2,
+      "Lumineon": 60,
+      "AlphaLumineon": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_07": {
+    "Dawn/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Day/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Dusk/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Night/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_08": {
+    "Dawn/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Day/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Dusk/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    },
+    "Night/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_17": {
+    "Any Time/All Weather": {
+      "Remoraid": 100,
+      "AlphaRemoraid": 1
+    }
+  },
+  "swm_no_18": {
+    "Any Time/All Weather": {
+      "Remoraid": 100,
+      "AlphaRemoraid": 1
+    }
+  },
+  "swm_no_19": {
+    "Any Time/None": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    },
+    "Any Time/Sunny": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    },
+    "Any Time/Cloudy": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    },
+    "Any Time/Rain": {
+      "Gyarados": 120.000007629395,
+      "AlphaGyarados": 1.20000004768372
+    },
+    "Any Time/Snow": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    },
+    "Any Time/Drought": {
+      "Gyarados": 50,
+      "AlphaGyarados": 0.5
+    },
+    "Any Time/Fog": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    },
+    "Any Time/Rainstorm": {
+      "Gyarados": 150,
+      "AlphaGyarados": 1.5
+    },
+    "Any Time/Snowstorm": {
+      "Gyarados": 100,
+      "AlphaGyarados": 1
+    }
+  },
+  "swm_no_21": {
+    "Dawn/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Day/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Dusk/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Night/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_22": {
+    "Dawn/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Day/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Dusk/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Night/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_23": {
+    "Dawn/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Day/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Dusk/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Night/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_26": {
+    "Dawn/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Day/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Dusk/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    },
+    "Night/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_27": {
+    "Dawn/All Weather": {
+      "Mantine": 100,
+      "AlphaMantine": 1
+    },
+    "Day/All Weather": {
+      "Mantine": 100,
+      "AlphaMantine": 1
+    },
+    "Dusk/All Weather": {
+      "Mantine": 100,
+      "AlphaMantine": 1
+    },
+    "Night/All Weather": {
+      "Mantine": 100,
+      "AlphaMantine": 1,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_29": {
+    "Dawn/All Weather": {
+      "Mantyke": 100,
+      "AlphaMantyke": 1
+    },
+    "Day/All Weather": {
+      "Mantyke": 100,
+      "AlphaMantyke": 1
+    },
+    "Dusk/All Weather": {
+      "Mantyke": 100,
+      "AlphaMantyke": 1
+    },
+    "Night/All Weather": {
+      "Mantyke": 100,
+      "AlphaMantyke": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_ra_30": {
+    "Dawn/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dawn/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dawn/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Day/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Day/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dusk/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dusk/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Night/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_ra_32": {
+    "Dawn/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dawn/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dawn/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dawn/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Day/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Day/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Day/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372
+    },
+    "Dusk/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Dusk/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5
+    },
+    "Dusk/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1
+    },
+    "Night/None": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Sunny": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Cloudy": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rain": {
+      "Tentacool": 120.000007629395,
+      "AlphaTentacool": 2.40000009536743,
+      "Tentacruel": 72,
+      "AlphaTentacruel": 1.20000004768372,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snow": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Drought": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Fog": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Rainstorm": {
+      "Tentacool": 150,
+      "AlphaTentacool": 3,
+      "Tentacruel": 90,
+      "AlphaTentacruel": 1.5,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    },
+    "Night/Snowstorm": {
+      "Tentacool": 100,
+      "AlphaTentacool": 2,
+      "Tentacruel": 60,
+      "AlphaTentacruel": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "swm_no_33": {
+    "Dawn/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Day/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Dusk/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1
+    },
+    "Night/All Weather": {
+      "Basculin-2": 100,
+      "AlphaBasculin-2": 1,
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_00": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_ra_00": {
+    "Dawn/All Weather": {
+      "Staravia": 100,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Staravia": 100,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Staravia": 100,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifblim": 100,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_01": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "fly_no_02": {
+    "Dawn/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    },
+    "Day/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    },
+    "Dusk/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    },
+    "Night/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1,
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "fly_no_03": {
+    "Any Time/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    }
+  },
+  "fly_no_04": {
+    "Dawn/All Weather": {
+      "Staraptor": 100,
+      "AlphaStaraptor": 1
+    },
+    "Day/All Weather": {
+      "Staraptor": 100,
+      "AlphaStaraptor": 1
+    },
+    "Dusk/All Weather": {
+      "Staraptor": 100,
+      "AlphaStaraptor": 1
+    },
+    "Night/All Weather": {
+      "Murkrow": 60,
+      "AlphaMurkrow": 1
+    }
+  },
+  "fly_no_05": {
+    "Dawn/All Weather": {
+      "Chatot": 100,
+      "AlphaChatot": 1
+    },
+    "Day/All Weather": {
+      "Chatot": 100,
+      "AlphaChatot": 1
+    },
+    "Dusk/All Weather": {
+      "Chatot": 100,
+      "AlphaChatot": 1
+    },
+    "Night/All Weather": {
+      " None": 0
+    }
+  },
+  "fly_no_06": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_07": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_08": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_ra_08": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1,
+      "Staraptor": 10,
+      "AlphaStaraptor": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1,
+      "Staraptor": 10,
+      "AlphaStaraptor": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1,
+      "Staraptor": 10,
+      "AlphaStaraptor": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_09": {
+    "Dawn/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Day/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Dusk/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 2,
+      "Staravia": 60,
+      "AlphaStaravia": 1
+    },
+    "Night/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 2,
+      "Drifblim": 60,
+      "AlphaDrifblim": 1
+    }
+  },
+  "fly_no_10": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "fly_no_11": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "fly_no_12": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Murkrow": 100,
+      "AlphaMurkrow": 2
+    }
+  },
+  "fly_no_13": {
+    "Any Time/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    }
+  },
+  "fly_no_14": {
+    "Dawn/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Day/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Dusk/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Night/All Weather": {
+      "Dustox": 100,
+      "AlphaDustox": 1
+    }
+  },
+  "fly_no_15": {
+    "Any Time/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    }
+  },
+  "fly_no_16": {
+    "Dawn/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Day/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Dusk/All Weather": {
+      "Beautifly": 100,
+      "AlphaBeautifly": 1
+    },
+    "Night/All Weather": {
+      "Dustox": 100,
+      "AlphaDustox": 1
+    }
+  },
+  "fly_no_17": {
+    "Any Time/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    }
+  },
+  "fly_no_18": {
+    "Any Time/All Weather": {
+      "Mothim": 100,
+      "AlphaMothim": 1
+    }
+  },
+  "gmk_no_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100
+    }
+  },
+  "oyb_ex_00": {
+    "Any Time/All Weather": {
+      "AlphaAmbipom": 100
+    }
+  },
+  "oyb_ex_01": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "AlphaDusknoir": 100
+    }
+  },
+  "oyb_ex_02": {
+    "Any Time/None": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Cloudy": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Rain": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Snow": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Drought": {
+      "AlphaEmpoleon": 50
+    },
+    "Any Time/Fog": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Rainstorm": {
+      "AlphaEmpoleon": 100
+    },
+    "Any Time/Snowstorm": {
+      "AlphaEmpoleon": 100
+    }
+  },
+  "oyb_ex_03": {
+    "Any Time/None": {
+      "AlphaWalrein": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaWalrein": 80
+    },
+    "Any Time/Cloudy": {
+      "AlphaWalrein": 100
+    },
+    "Any Time/Rain": {
+      "AlphaWalrein": 100
+    },
+    "Any Time/Snow": {
+      "AlphaWalrein": 120.000007629395
+    },
+    "Any Time/Drought": {
+      "AlphaWalrein": 50
+    },
+    "Any Time/Fog": {
+      "AlphaWalrein": 100
+    },
+    "Any Time/Rainstorm": {
+      "AlphaWalrein": 100
+    },
+    "Any Time/Snowstorm": {
+      "AlphaWalrein": 150
+    }
+  },
+  "oyb_ex_04": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "AlphaMurkrow": 100
+    }
+  },
+  "oyb_ex_05": {
+    "Any Time/None": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Cloudy": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Rain": {
+      "AlphaTentacruel": 120.000007629395
+    },
+    "Any Time/Snow": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Drought": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Fog": {
+      "AlphaTentacruel": 100
+    },
+    "Any Time/Rainstorm": {
+      "AlphaTentacruel": 150
+    },
+    "Any Time/Snowstorm": {
+      "AlphaTentacruel": 100
+    }
+  },
+  "oyb_ex_06": {
+    "Any Time/All Weather": {
+      "AlphaLumineon": 100
+    }
+  },
+  "oyb_ex_07": {
+    "Any Time/All Weather": {
+      "AlphaMachoke": 100
+    }
+  },
+  "oyb_ex_08": {
+    "Any Time/All Weather": {
+      "AlphaDrapion": 100
+    }
+  },
+  "oyb_ex_09": {
+    "Any Time/All Weather": {
+      "AlphaOctillery": 100
+    }
+  },
+  "oyb_ex_10": {
+    "Any Time/All Weather": {
+      "AlphaChansey": 100
+    }
+  },
+  "oyb_ex_11": {
+    "Any Time/All Weather": {
+      "AlphaMantine": 100
+    }
+  },
+  "oyb_ex_12": {
+    "Any Time/All Weather": {
+      "AlphaPurugly": 100
+    }
+  },
+  "oyb_ex_13": {
+    "Any Time/None": {
+      "AlphaNinetales": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaNinetales": 120.000007629395
+    },
+    "Any Time/Cloudy": {
+      "AlphaNinetales": 50
+    },
+    "Any Time/Rain": {
+      "AlphaNinetales": 50
+    },
+    "Any Time/Snow": {
+      "AlphaNinetales": 50
+    },
+    "Any Time/Drought": {
+      "AlphaNinetales": 150
+    },
+    "Any Time/Fog": {
+      "AlphaNinetales": 50
+    },
+    "Any Time/Rainstorm": {
+      "AlphaNinetales": 50
+    },
+    "Any Time/Snowstorm": {
+      "AlphaNinetales": 50
+    }
+  },
+  "oyb_ex_14": {
+    "Any Time/All Weather": {
+      "AlphaGastrodon-1": 100
+    }
+  },
+  "oyb_ex_15": {
+    "Any Time/All Weather": {
+      "AlphaQwilfish-1": 100
+    }
+  },
+  "oyb_ex_16": {
+    "Any Time/All Weather": {
+      "AlphaMothim": 100
+    }
+  },
+  "oyb_ex_17": {
+    "Any Time/None": {
+      "AlphaGyarados": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaGyarados": 100
+    },
+    "Any Time/Cloudy": {
+      "AlphaGyarados": 100
+    },
+    "Any Time/Rain": {
+      "AlphaGyarados": 120.000007629395
+    },
+    "Any Time/Snow": {
+      "AlphaGyarados": 100
+    },
+    "Any Time/Drought": {
+      "AlphaGyarados": 50
+    },
+    "Any Time/Fog": {
+      "AlphaGyarados": 100
+    },
+    "Any Time/Rainstorm": {
+      "AlphaGyarados": 150
+    },
+    "Any Time/Snowstorm": {
+      "AlphaGyarados": 100
+    }
+  },
+  "oyb_ex_18": {
+    "Any Time/None": {
+      "AlphaGolduck": 100
+    },
+    "Any Time/Sunny": {
+      "AlphaGolduck": 100
+    },
+    "Any Time/Cloudy": {
+      "AlphaGolduck": 100
+    },
+    "Any Time/Rain": {
+      "AlphaGolduck": 120.000007629395
+    },
+    "Any Time/Snow": {
+      "AlphaGolduck": 100
+    },
+    "Any Time/Drought": {
+      "AlphaGolduck": 50
+    },
+    "Any Time/Fog": {
+      "AlphaGolduck": 100
+    },
+    "Any Time/Rainstorm": {
+      "AlphaGolduck": 150
+    },
+    "Any Time/Snowstorm": {
+      "AlphaGolduck": 100
+    }
+  },
+  "whl_no_00": {
+    "Any Time/All Weather": {
+      "Kadabra": 100,
+      "AlphaKadabra": 1,
+      "Alakazam": 10,
+      "AlphaAlakazam": 1,
+      "Rhydon": 100,
+      "AlphaRhydon": 1,
+      "Rhyperior": 10,
+      "AlphaRhyperior": 1,
+      "Skuntank": 100,
+      "AlphaSkuntank": 1,
+      "Carnivine": 100,
+      "AlphaCarnivine": 1,
+      "Mr. Mime": 100,
+      "AlphaMr. Mime": 1,
+      "Eevee": 50,
+      "AlphaEevee": 1,
+      "Vaporeon": 10,
+      "AlphaVaporeon": 1,
+      "Flareon": 10,
+      "AlphaFlareon": 1
+    }
+  },
+  "whl_ra_00": {
+    "Any Time/All Weather": {
+      "Magnemite": 100,
+      "AlphaMagnemite": 1,
+      "Magneton": 50,
+      "AlphaMagneton": 1,
+      "Magnezone": 10,
+      "AlphaMagnezone": 1
+    }
+  },
+  "eve_ex_07": {
+    "Any Time/None": {
+      "Thundurus": 100
+    },
+    "Any Time/Sunny": {
+      " None": 0
+    },
+    "Any Time/Cloudy": {
+      " None": 0
+    },
+    "Any Time/Rain": {
+      " None": 0
+    },
+    "Any Time/Snow": {
+      " None": 0
+    },
+    "Any Time/Drought": {
+      " None": 0
+    },
+    "Any Time/Fog": {
+      " None": 0
+    },
+    "Any Time/Rainstorm": {
+      "Thundurus": 100
+    },
+    "Any Time/Snowstorm": {
+      " None": 0
+    }
+  },
+  "eve_ex_08": {
+    "Any Time/All Weather": {
+      "Heatran": 100
+    }
+  },
+  "eve_ex_09": {
+    "Any Time/All Weather": {
+      "Manaphy": 100
+    }
+  },
+  "eve_ex_16": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "eve_ex_17": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "eve_ex_18": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "eve_ex_16_b": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "eve_ex_17_b": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "eve_ex_18_b": {
+    "Any Time/All Weather": {
+      "Phione": 100
+    }
+  },
+  "swm_ex_00": {
+    "Any Time/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1,
+      "Phione": 2
+    }
+  },
+  "mas_no_00": {
+    "Any Time/All Weather": {
+      "Vulpix": 100,
+      "AlphaVulpix": 1
+    }
+  },
+  "mas_no_01": {
+    "Any Time/All Weather": {
+      "Growlithe-1": 100,
+      "AlphaGrowlithe-1": 1
+    }
+  },
+  "mas_no_02": {
+    "Any Time/All Weather": {
+      "Machop": 100,
+      "AlphaMachop": 1
+    }
+  },
+  "mas_no_03": {
+    "Any Time/All Weather": {
+      "Machoke": 100,
+      "AlphaMachoke": 1
+    }
+  },
+  "mas_no_04": {
+    "Any Time/All Weather": {
+      "Tentacool": 100,
+      "AlphaTentacool": 1
+    }
+  },
+  "mas_no_05": {
+    "Any Time/All Weather": {
+      "Tentacruel": 100,
+      "AlphaTentacruel": 1
+    }
+  },
+  "mas_no_06": {
+    "Any Time/All Weather": {
+      "Happiny": 100,
+      "AlphaHappiny": 1
+    }
+  },
+  "mas_no_07": {
+    "Any Time/All Weather": {
+      "Chansey": 100,
+      "AlphaChansey": 1
+    }
+  },
+  "mas_no_08": {
+    "Any Time/All Weather": {
+      "Tangela": 100,
+      "AlphaTangela": 1
+    }
+  },
+  "mas_no_09": {
+    "Any Time/All Weather": {
+      "Tangrowth": 100,
+      "AlphaTangrowth": 1
+    }
+  },
+  "mas_no_10": {
+    "Any Time/All Weather": {
+      "Magby": 100,
+      "AlphaMagby": 1
+    }
+  },
+  "mas_no_11": {
+    "Any Time/All Weather": {
+      "Magmar": 100,
+      "AlphaMagmar": 1
+    }
+  },
+  "mas_no_12": {
+    "Any Time/All Weather": {
+      "Togepi": 100,
+      "AlphaTogepi": 1
+    }
+  },
+  "mas_no_13": {
+    "Any Time/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    }
+  },
+  "mas_no_14": {
+    "Any Time/All Weather": {
+      "Ambipom": 100,
+      "AlphaAmbipom": 1
+    }
+  },
+  "mas_no_15": {
+    "Any Time/All Weather": {
+      "Qwilfish-1": 100,
+      "AlphaQwilfish-1": 1
+    }
+  },
+  "mas_no_16": {
+    "Any Time/All Weather": {
+      "Remoraid": 100,
+      "AlphaRemoraid": 1
+    }
+  },
+  "mas_no_17": {
+    "Any Time/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    }
+  },
+  "mas_no_18": {
+    "Any Time/All Weather": {
+      "Mantyke": 100,
+      "AlphaMantyke": 1
+    }
+  },
+  "mas_no_19": {
+    "Any Time/All Weather": {
+      "Mantine": 100,
+      "AlphaMantine": 1
+    }
+  },
+  "mas_no_20": {
+    "Any Time/All Weather": {
+      "Duskull": 100,
+      "AlphaDuskull": 1
+    }
+  },
+  "mas_no_21": {
+    "Any Time/All Weather": {
+      "Dusclops": 100,
+      "AlphaDusclops": 1
+    }
+  },
+  "mas_no_22": {
+    "Any Time/All Weather": {
+      "Spheal": 100,
+      "AlphaSpheal": 1
+    }
+  },
+  "mas_no_23": {
+    "Any Time/All Weather": {
+      "Sealeo": 100,
+      "AlphaSealeo": 1
+    }
+  },
+  "mas_no_24": {
+    "Any Time/All Weather": {
+      "Walrein": 100,
+      "AlphaWalrein": 1
+    }
+  },
+  "mas_no_25": {
+    "Any Time/All Weather": {
+      "Piplup": 100,
+      "AlphaPiplup": 1
+    }
+  },
+  "mas_no_26": {
+    "Any Time/All Weather": {
+      "Prinplup": 100,
+      "AlphaPrinplup": 1
+    }
+  },
+  "mas_no_27": {
+    "Any Time/All Weather": {
+      "Starly": 100,
+      "AlphaStarly": 1
+    }
+  },
+  "mas_no_28": {
+    "Any Time/All Weather": {
+      "Staravia": 100,
+      "AlphaStaravia": 1
+    }
+  },
+  "mas_no_29": {
+    "Any Time/All Weather": {
+      "Staraptor": 100,
+      "AlphaStaraptor": 1
+    }
+  },
+  "mas_no_30": {
+    "Any Time/All Weather": {
+      "Buizel": 100,
+      "AlphaBuizel": 1
+    }
+  },
+  "mas_no_31": {
+    "Any Time/All Weather": {
+      "Floatzel": 100,
+      "AlphaFloatzel": 1
+    }
+  },
+  "mas_no_32": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1
+    }
+  },
+  "mas_no_33": {
+    "Any Time/All Weather": {
+      "Gastrodon-1": 100,
+      "AlphaGastrodon-1": 1
+    }
+  },
+  "mas_no_34": {
+    "Any Time/All Weather": {
+      "Drifloon": 100,
+      "AlphaDrifloon": 1
+    }
+  },
+  "mas_no_35": {
+    "Any Time/All Weather": {
+      "Drifblim": 100,
+      "AlphaDrifblim": 1
+    }
+  },
+  "mas_no_36": {
+    "Any Time/All Weather": {
+      "Glameow": 100,
+      "AlphaGlameow": 1
+    }
+  },
+  "mas_no_37": {
+    "Any Time/All Weather": {
+      "Purugly": 100,
+      "AlphaPurugly": 1
+    }
+  },
+  "mas_no_38": {
+    "Any Time/All Weather": {
+      "Chatot": 100,
+      "AlphaChatot": 1
+    }
+  },
+  "mas_no_39": {
+    "Any Time/All Weather": {
+      "Skorupi": 100,
+      "AlphaSkorupi": 1
+    }
+  },
+  "mas_no_40": {
+    "Any Time/All Weather": {
+      "Drapion": 100,
+      "AlphaDrapion": 1
+    }
+  },
+  "mas_no_41": {
+    "Any Time/All Weather": {
+      "Finneon": 100,
+      "AlphaFinneon": 1
+    }
+  },
+  "mas_no_42": {
+    "Any Time/All Weather": {
+      "Lumineon": 100,
+      "AlphaLumineon": 1
+    }
+  },
+  "mas_no_43": {
+    "Any Time/All Weather": {
+      "Staraptor": 100
+    }
+  },
+  "gmk_tree_01_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_03_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_04_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_05_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_06_00": {
+    "Any Time/All Weather": {
+      "Aipom": 100,
+      "AlphaAipom": 1
+    }
+  },
+  "gmk_tree_06_01": {
+    "Any Time/All Weather": {
+      "Combee": 100,
+      "AlphaCombee": 1
+    }
+  },
+  "gmk_tree_07_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_07_01": {
+    "Any Time/All Weather": {
+      "Combee": 100,
+      "AlphaCombee": 1
+    }
+  },
+  "gmk_tree_10_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_14_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_15_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_17_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_19_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_20_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_21_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_23_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_26_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_28_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_29_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_31_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_32_00": {
+    "Any Time/All Weather": {
+      "Burmy-2": 100,
+      "AlphaBurmy-2": 1,
+      "Wormadam-2": 20,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_32_01": {
+    "Any Time/All Weather": {
+      "Wormadam-2": 100,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_33_00": {
+    "Any Time/All Weather": {
+      "Wormadam-2": 100,
+      "AlphaWormadam-2": 1
+    }
+  },
+  "gmk_tree_33_01": {
+    "Any Time/All Weather": {
+      "Ambipom": 100,
+      "AlphaAmbipom": 1
+    }
+  },
+  "gmk_crystal_01_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_03_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_04_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_06_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_07_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_08_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_09_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_10_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_13_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_15_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_17_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_29_00": {
+    "Any Time/All Weather": {
+      "Geodude": 100,
+      "AlphaGeodude": 1,
+      "Graveler": 50,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_20_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_21_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_22_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_23_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_27_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_28_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_30_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_31_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_32_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_33_00": {
+    "Any Time/All Weather": {
+      "Graveler": 100,
+      "AlphaGraveler": 1
+    }
+  },
+  "gmk_crystal_20_01": {
+    "Any Time/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    }
+  },
+  "gmk_crystal_32_01": {
+    "Any Time/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    }
+  },
+  "gmk_box_15_00": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1
+    }
+  },
+  "gmk_box_19_00": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1
+    }
+  },
+  "gmk_box_26_00": {
+    "Any Time/All Weather": {
+      "Shellos-1": 100,
+      "AlphaShellos-1": 1
+    }
+  },
+  "gmk_box_31_00": {
+    "Any Time/All Weather": {
+      "Octillery": 100,
+      "AlphaOctillery": 1
+    }
+  },
+  "sky_area3_01": {
+    "Any Time/All Weather": {
+      "Staraptor": 100
+    }
+  },
+  "sky_area3_02": {
+    "Dawn/All Weather": {
+      " None": 0
+    },
+    "Day/All Weather": {
+      " None": 0
+    },
+    "Dusk/All Weather": {
+      " None": 0
+    },
+    "Night/All Weather": {
+      "Honchkrow": 100
+    }
+  }
+}

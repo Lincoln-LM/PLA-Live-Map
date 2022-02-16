@@ -111,14 +111,36 @@ def load_map(name):
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{name}.json"
     markers = json.loads(requests.get(url).text)
+    with open(f"./static/resources/{name}.json",encoding="utf-8") as slot_file:
+        slots = json.load(slot_file)
     return render_template('map.html',
                            markers=markers.values(),
                            map_name=name,
-                           custom_markers=json.dumps(CUSTOM_MARKERS[name]))
+                           custom_markers=json.dumps(CUSTOM_MARKERS[name]),
+                           slots=slots)
 
-def generate_next_filtered(group_id,rolls,guaranteed_ivs,init_spawn,poke_filter):
+def find_slot_range(time,weather,species,sp_slots):
+    """Find slot range of a species for a spawner"""
+    for time_weather, values in sp_slots.items():
+        slot_time,slot_weather = time_weather.split("/")
+        if (slot_time in ("Any Time", time)) and (slot_weather in ("All Weather", weather)):
+            pokemon = list(values.keys())
+            slot_values = list(values.values())
+            if not species in pokemon:
+                return 0,0,0
+            start = sum(slot_values[:pokemon.index(species)])
+            end = start + values[species]
+            return start,end,sum(slot_values)
+    return 0,0,0
+
+def generate_next_filtered(group_id,
+                           rolls,
+                           guaranteed_ivs,
+                           init_spawn,
+                           poke_filter,
+                           stopping_point=50000):
     """Find the next advance that matches poke_filter for a spawner"""
-    # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals,too-many-arguments
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
@@ -129,8 +151,12 @@ def generate_next_filtered(group_id,rolls,guaranteed_ivs,init_spawn,poke_filter)
         main_rng.next() # spawner 1
         main_rng.reseed(main_rng.next())
     adv = -1
+    if poke_filter['slotTotal'] == 0:
+        return -1,-1,-1,[],-1,-1,-1
     while True:
         adv += 1
+        if adv > stopping_point:
+            return -2,-1,-1,[],-1,-1,-1
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
@@ -150,7 +176,7 @@ def generate_mass_outbreak(main_rng,rolls,spawns,poke_filter):
     """Generate the current set of a mass outbreak and return a string representing it along with
        a bool to show if a pokemon passing poke_filter is present"""
     # pylint: disable=too-many-locals
-    # this many variables is appropriate to display all the information about
+    # this many locals is appropriate to display all the information about
     # the mass outbreak that a user might want
     display = ""
     filtered_present = False
@@ -210,7 +236,7 @@ def generate_next_filtered_mass_outbreak(main_rng,rolls,spawns,poke_filter):
 
 def generate_mass_outbreak_path(group_seed,rolls,steps,poke_filter,uniques,storage):
     """Generate all the pokemon of an outbreak based on a provided path"""
-    # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals, too-many-arguments
     # the generation is unique to each path, no use in splitting this function
     main_rng = XOROSHIRO(group_seed)
     for init_spawn in range(1,5):
@@ -382,9 +408,31 @@ def read_mass_outbreak():
                                                         request.json['filter'])]
     return json.dumps(display)
 
+@app.route('/check-possible', methods=['POST'])
+def check_possible():
+    """Check spawners that can spawn a given species"""
+    print(request.json)
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+         f"pla_spawners/jsons/{request.json['name']}.json"
+    markers = json.loads(requests.get(url).text)
+    possible = {}
+    for group_id, marker in markers.items():
+        with open(f"./static/resources/{request.json['name']}.json",encoding="utf-8") as slot_file:
+            sp_slots = \
+                json.load(slot_file)[marker['name']]
+        minimum, maximum, total \
+            = find_slot_range(request.json["filter"]["timeSelect"],
+                              request.json["filter"]["weatherSelect"],
+                              request.json["filter"]["speciesSelect"],
+                              sp_slots)
+        if total:
+            possible[group_id] = (maximum-minimum)/total*100
+    return json.dumps(possible)
+
 @app.route('/read-seed', methods=['POST'])
 def read_seed():
     """Read current information and next advance that passes filter for a spawner"""
+    # pylint: disable=too-many-locals
     group_id = request.json['groupID']
     thresh = request.json['thresh']
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
@@ -406,12 +454,30 @@ def read_seed():
               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
+    if request.json['filter']['filterSpeciesCheck']:
+        url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+             f"pla_spawners/jsons/{request.json['map']}.json"
+        with open(f"./static/resources/{request.json['map']}.json",encoding="utf-8") as slot_file:
+            sp_slots = \
+                json.load(slot_file)[json.loads(requests.get(url).text)[str(group_id)]['name']]
+        request.json['filter']['minSlotFilter'], \
+        request.json['filter']['maxSlotFilter'], \
+        request.json['filter']['slotTotal'] \
+            = find_slot_range(request.json["filter"]["timeSelect"],
+                              request.json["filter"]["weatherSelect"],
+                              request.json["filter"]["speciesSelect"],
+                              sp_slots)
+        request.json['filter']['slotFilterCheck'] = True
     adv,encryption_constant,pid,ivs,ability,gender,nature \
         = generate_next_filtered(group_id,
                                  request.json['rolls'],
                                  request.json['ivs'],
                                  request.json['initSpawn'],
-                              request.json['filter'])
+                                 request.json['filter'])
+    if adv == -1:
+        return "Impossible slot filters for this spawner"
+    if adv == -2:
+        return "No results before limit (50000)"
     if adv <= thresh:
         display += f"Next Filtered: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
@@ -465,6 +531,8 @@ def update_positions():
 @app.route('/check-near', methods=['POST'])
 def check_near():
     """Check all spawners' nearest advance that passes filters to update icons"""
+    # pylint: disable=too-many-locals
+    # store these locals before the loop to avoid accessing dictionary items repeatedly
     thresh = request.json['thresh']
     name = request.json['name']
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
@@ -472,15 +540,32 @@ def check_near():
     markers = json.loads(requests.get(url).text)
     maximum = list(markers.keys())[-1]
     near = []
+    poke_filter = request.json['filter']
+    time = request.json["filter"]["timeSelect"]
+    weather = request.json["filter"]["weatherSelect"]
+    species = request.json["filter"]["speciesSelect"]
+    with open(f"./static/resources/{name}.json",encoding="utf-8") as slot_file:
+        slots = json.load(slot_file)
     for group_id, marker in markers.items():
+        if poke_filter['filterSpeciesCheck']:
+            sp_slots = slots[markers[str(group_id)]['name']]
+            poke_filter['minSlotFilter'], \
+            poke_filter['maxSlotFilter'], \
+            poke_filter['slotTotal'] \
+                = find_slot_range(time,
+                                weather,
+                                species,
+                                sp_slots)
+            poke_filter['slotFilterCheck'] = True
         print(f"Checking group_id {group_id}/{maximum}")
         adv,_,_,_,_,_,_ = \
             generate_next_filtered(int(group_id),
                                 request.json['rolls'],
                                 marker["ivs"],
                                 request.json['initSpawn'],
-                                request.json['filter'])
-        if adv <= thresh:
+                                poke_filter,
+                                stopping_point=thresh)
+        if 0 <= adv <= thresh:
             near.append(group_id)
     return json.dumps(near)
 

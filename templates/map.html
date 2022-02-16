@@ -6,7 +6,7 @@
         * {
             font-family: "Montserrat", sans-serif
         }
-        :not(.unlocked)input {
+        input:not(.unlocked), select:not(.unlocked) {
             width: 40%;
             position: absolute;
             right: 10px;
@@ -81,7 +81,7 @@
                 </h1><br>
                 <button onclick="window.location.href='../'">Pick Another Map</button><br>
                 <button onclick=updatePositions()>Update Active Spawns</button><br>
-                <button onclick=checkNearShinies()>Check Near Shinies</button><br>
+                <button onclick=checkNearShinies()>Check Near Filtered</button><br>
                 <button onclick=trackPlayer() id="trackPlayerButton">Track Player Position</button><br>
                 <button onclick=placeTeleport() id="placeTeleportButton">Teleport</button><br>
                 <label for="y">Teleport Height:</label>
@@ -141,7 +141,32 @@
                 <label for="minSlotFilter">Slot:</label>
                 <input class="unlocked" style="width:30%" type="number" id="minSlotFilter" value=0>
                 <b>~</b>
-                <input class="unlocked" style="width:30%" type="number" id="maxSlotFilter" value=101>
+                <input class="unlocked" style="width:30%" type="number" id="maxSlotFilter" value=101><br>
+                <label for="filterSpeciesCheck">Filter by Species:</label>
+                <input type="checkbox" id="filterSpeciesCheck" onclick="toggleSlotFilter()" onchange="speciesSelectChanged()"><br>
+                <label for="timeSelect">Time:</label>
+                <select id="timeSelect" onchange="speciesSelectChanged()">
+                    <option value="Dawn">Dawn</option>
+                    <option value="Day">Day</option>
+                    <option value="Dusk">Dusk</option>
+                    <option value="Night">Night</option>
+                </select><br>
+                <label for="weatherSelect">Weather:</label>
+                <select id="weatherSelect" onchange="speciesSelectChanged()">
+                    <option value="None">None</option>
+                    <option value="Sunny">Sunny</option>
+                    <option value="Cloudy">Cloudy</option>
+                    <option value="Rain">Rain</option>
+                    <option value="Snow">Snow</option>
+                    <option value="Drought">Drought</option>
+                    <option value="Fog">Fog</option>
+                    <option value="Rainstorm">Rainstorm</option>
+                    <option value="Snowstorm">Snowstorm</option>
+                </select><br>
+                <label for="speciesSelect">Species:</label>
+                <select id="speciesSelect" onchange="speciesSelectChanged()"></select><br>
+                <label for="possibleSpawners">Possible Spawners for Species:</label><br>
+                <div id="possibleSpawners"></div>
             </div>
         </div>
     </div>
@@ -150,6 +175,7 @@
     <script>
         let coordinates = {};
         let markerObjs = {};
+        let possibleMarkerObjs = {};
         let popupCoordinates = [0,0,0];
         let teleporting = false;
         let tracking = false;
@@ -157,6 +183,21 @@
         let positionUpdater;
         let customMarkers = JSON.parse("{{custom_markers}}".replaceAll("&#34;",'"'))
         let customMarkerNames = Object.keys(customMarkers);
+        let slots = JSON.parse("{{slots}}".replaceAll("&#34;",'"').replaceAll("&#39;",'"'))
+        let slotKeys = Object.keys(slots);
+        let allSpecies = new Set();
+
+        Set.union = function(s1, s2) {
+            if (!s1 instanceof Set || !s2 instanceof Set) {
+                console.log("The given objects are not of type Set");
+                return null;
+            }
+            let newSet = new Set();
+            s1.forEach(elem => newSet.add(elem));
+            s2.forEach(elem => newSet.add(elem));
+            return newSet;
+        }
+
         for (let i = 0; i < customMarkerNames.length; i++) {
             let name = customMarkerNames[i];
             let marker = customMarkers[name];
@@ -167,6 +208,22 @@
                 className: "transparent-div-icon"
             });
             L.marker(convertCoords(marker.coords), { icon: icon }).addTo(map).bindPopup(L.responsivePopup().setContent(`<button data-coords=[${marker.coords}] onclick="teleport(JSON.parse(this.dataset.coords))">Teleport to ${name}</button>`));
+        }
+        for (let i = 0; i < slotKeys.length; i++) {
+            let weathers = slots[slotKeys[i]];
+            let weatherKeys = Object.keys(weathers);
+            for (let j = 0; j < weatherKeys.length; j++) {
+                let pokemon = weathers[weatherKeys[j]];
+                allSpecies = Set.union(allSpecies, new Set(Object.keys(pokemon)));
+            }
+        }
+        allSpecies = Array.from(allSpecies).sort();
+        let speciesSelect = document.getElementById("speciesSelect");
+        for (let i = 0; i < allSpecies.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = allSpecies[i];
+            opt.innerHTML = allSpecies[i];
+            speciesSelect.appendChild(opt);
         }
         function collapsibleOnClick() {
             let info = document.getElementById(this.dataset.for);
@@ -187,11 +244,61 @@
             }
         }
 
+        function speciesSelectChanged() {
+            if (!filterSpeciesCheck.checked) {
+                possibleMarkerObjs = markerObjs;
+                document.getElementById("possibleSpawners").innerHTML = "";
+                let keys = Object.keys(markerObjs);
+                for (let i = 0; i < keys.length; i++) {
+                    let marker = markerObjs[keys[i]];
+                    marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
+                }
+                return
+            }
+            let keys = Object.keys(markerObjs);
+            for (let i = 0; i < keys.length; i++) {
+                let marker = markerObjs[keys[i]];
+                marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl.slice(0,-4) + "-grey.png", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/check-possible", true);
+            xhr.onload = parseInfo;
+            function parseInfo()
+            {
+                let display = document.getElementById("possibleSpawners");
+                let possible = JSON.parse(xhr.responseText);
+                let groupIDs = Object.keys(possible);
+                if (groupIDs.length == 0) {
+                    display.innerHTML = "<b>No possible spawners</b>";
+                    return;
+                }
+                display.innerHTML = "";
+                for (let i = 0; i < groupIDs.length; i++) {
+                    let possibleID = groupIDs[i];
+                    possibleMarkerObjs[possibleID] = markerObjs[possibleID];
+                    let possibleChance = possible[possibleID];
+                    let marker = markerObjs[possibleID];
+                    marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
+                    display.innerHTML += `ID: ${possibleID}, ${possibleChance.toFixed(2)}% Spawn<br>`
+                }
+            }
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                name: "{{map_name}}",
+                filter: getFilter()
+            }));
+        }
+
         function toggleSlotFilter() {
             let slotFilterChecked = document.getElementById("slotFilterCheck").checked;
             let outbreakAlphaFilter = document.getElementById("outbreakAlphaFilter").checked;
+            let filterSpeciesChecked = document.getElementById("filterSpeciesCheck").checked;
             document.getElementById("outbreakAlphaFilter").disabled = false;
             document.getElementById("slotFilterCheck").disabled = false;
+            document.getElementById("filterSpeciesCheck").disabled = false;
+            document.getElementById("timeSelect").disabled = false;
+            document.getElementById("weatherSelect").disabled = false;
+            document.getElementById("speciesSelect").disabled = false;
             document.getElementById("slotTotal").disabled = false;
             document.getElementById("minSlotFilter").disabled = false;
             document.getElementById("maxSlotFilter").disabled = false;
@@ -200,10 +307,21 @@
                 document.getElementById("minSlotFilter").disabled = true;
                 document.getElementById("maxSlotFilter").disabled = true;
             }
+            if (!filterSpeciesChecked) {
+                document.getElementById("timeSelect").disabled = true;
+                document.getElementById("weatherSelect").disabled = true;
+                document.getElementById("speciesSelect").disabled = true;
+            }
             if (slotFilterChecked) {
                 document.getElementById("outbreakAlphaFilter").disabled = true;
+                document.getElementById("filterSpeciesCheck").disabled = false;
             }
             if (outbreakAlphaFilter) {
+                document.getElementById("slotFilterCheck").disabled = true;
+                document.getElementById("filterSpeciesCheck").disabled = true;
+            }
+            if (filterSpeciesChecked) {
+                document.getElementById("outbreakAlphaFilter").disabled = true;
                 document.getElementById("slotFilterCheck").disabled = true;
             }
         }
@@ -216,6 +334,10 @@
             filter["maxSlotFilter"] = parseInt(document.getElementById("maxSlotFilter").value);
             filter["slotTotal"] = parseInt(document.getElementById("slotTotal").value);
             filter["shinyFilterCheck"] = document.getElementById("shinyFilterCheck").checked;
+            filter["filterSpeciesCheck"] = document.getElementById("filterSpeciesCheck").checked;
+            filter["timeSelect"] = document.getElementById("timeSelect").value;
+            filter["weatherSelect"] = document.getElementById("weatherSelect").value;
+            filter["speciesSelect"] = document.getElementById("speciesSelect").value;
             return filter;
         }
 
@@ -362,14 +484,15 @@
                     rolls: parseInt(document.getElementById("rolls").value),
                     thresh: parseInt(document.getElementById("thresh").value),
                     initSpawn: document.getElementById("initSpawn").checked,
-                    filter: getFilter()
+                    filter: getFilter(),
+                    map: "{{map_name}}"
                 }));
             }
         }
         function checkNearShinies(e) {
-            let keys = Object.keys(markerObjs);
+            let keys = Object.keys(possibleMarkerObjs);
             for (let i = 0; i < keys.length; i++) {
-                let marker = markerObjs[keys[i]];
+                let marker = possibleMarkerObjs[keys[i]];
                 marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl, iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
             }
             var xhr = new XMLHttpRequest();
@@ -380,7 +503,7 @@
                 let near = JSON.parse(xhr.responseText);
                 for (let i = 0; i < near.length; i++) {
                     let groupID = near[i];
-                    let marker = markerObjs[groupID];
+                    let marker = possibleMarkerObjs[groupID];
                     marker.setIcon(L.icon({ iconUrl: marker.options.iconUrl.slice(0,-4) + "-green.png", iconSize: [ 32, 32 ], iconAnchor: [ 16, 16 ] }));
                 }
             }
