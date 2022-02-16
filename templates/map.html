@@ -6,7 +6,7 @@
         * {
             font-family: "Montserrat", sans-serif
         }
-        input {
+        :not(.unlocked)input {
             width: 40%;
             position: absolute;
             right: 10px;
@@ -66,6 +66,7 @@
         <div class="sidebar-tabs">
             <ul role="tablist">
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#filter" role="tab"><i class="fa fa-filter"></i></a></li>
                 <li><a href="#mass-outbreak" role="tab"><i class="fa fa-bug"></i></a></li>
                 <li><a href="#battle" role="tab"><i class="icon-pokeball"></i></a></li>
             </ul>
@@ -87,7 +88,7 @@
                 <input type="number" id="y" value=50><br>
                 <label for="rolls">Shiny Rolls:</label>
                 <input type="number" id="rolls" value=1><br>
-                <label for="thresh">Near Shiny Limit</label>
+                <label for="thresh">Near Filtered Limit</label>
                 <input type="number" id="thresh" value=50><br>
                 <label for="initialSpawn">Initial Spawn</label>
                 <input type="checkbox" id="initSpawn">
@@ -100,7 +101,7 @@
                 </h1><br>
                 <label for="massOutbreakRolls">Shiny Rolls:</label>
                 <input type="number" id="massOutbreakRolls" value=26><br>
-                <label for="aggressivePath">Aggressive Shiny Pathfinding</label>
+                <label for="aggressivePath">Aggressive Pathfinding</label>
                 <input type="checkbox" id="aggressivePath"><br>
                 <label for="massOutbreakSpawns">Total Spawns:</label>
                 <input type="number" id="massOutbreakSpawns" value=10><br>
@@ -109,7 +110,7 @@
                 <div class="info" id="currentMassOutbreak">
                     <b>No info present</b>
                 </div><br>
-                <button type="button" class="collapsible" data-for="shinyMassOutbreak">Next Shiny Mass Outbreak</button>
+                <button type="button" class="collapsible" data-for="shinyMassOutbreak">Next Filtered Mass Outbreak</button>
                 <div class="info" id="shinyMassOutbreak">
                     <b>No info present</b>
                 </div>
@@ -122,6 +123,25 @@
                 </h1><br>
                 <button onclick=loadBattleInfo()>Update Battle Info</button><br><br>
                 <div id="battleInfo"></div>
+            </div>
+
+            <div class="sidebar-pane" id="filter">
+                <h1 class="sidebar-header">
+                    Filter
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1><br>
+                <label for="shinyFilter">Shiny Only:</label>
+                <input type="checkbox" id="shinyFilterCheck" checked=true><br>
+                <label for="outbreakAlphaFilter">Alpha (Outbreak) Filter:</label>
+                <input type="checkbox" id="outbreakAlphaFilter" onclick="toggleSlotFilter()"><br>
+                <label for="slotFilterCheck">Encounter Slot Filter:</label>
+                <input type="checkbox" id="slotFilterCheck" onclick="toggleSlotFilter()"><br>
+                <label for="slotTotal">Slot Total:</label>
+                <input style="width:30%" type="number" id="slotTotal" value=101><br>
+                <label for="minSlotFilter">Slot:</label>
+                <input class="unlocked" style="width:30%" type="number" id="minSlotFilter" value=0>
+                <b>~</b>
+                <input class="unlocked" style="width:30%" type="number" id="maxSlotFilter" value=101>
             </div>
         </div>
     </div>
@@ -149,7 +169,6 @@
             L.marker(convertCoords(marker.coords), { icon: icon }).addTo(map).bindPopup(L.responsivePopup().setContent(`<button data-coords=[${marker.coords}] onclick="teleport(JSON.parse(this.dataset.coords))">Teleport to ${name}</button>`));
         }
         function collapsibleOnClick() {
-            console.log(this);
             let info = document.getElementById(this.dataset.for);
             this.classList.toggle("activeCollapsible")
             if (info.style.maxHeight) {
@@ -161,13 +180,46 @@
         }
 
         function updateCollapsibleOnClick() {
-        let elements = document.getElementsByClassName("collapsible");
+            let elements = document.getElementsByClassName("collapsible");
             for (let i = 0; i < elements.length; i++) {
                 let element = elements[i];
                 element.onclick = collapsibleOnClick;
             }
         }
 
+        function toggleSlotFilter() {
+            let slotFilterChecked = document.getElementById("slotFilterCheck").checked;
+            let outbreakAlphaFilter = document.getElementById("outbreakAlphaFilter").checked;
+            document.getElementById("outbreakAlphaFilter").disabled = false;
+            document.getElementById("slotFilterCheck").disabled = false;
+            document.getElementById("slotTotal").disabled = false;
+            document.getElementById("minSlotFilter").disabled = false;
+            document.getElementById("maxSlotFilter").disabled = false;
+            if (!slotFilterChecked) {
+                document.getElementById("slotTotal").disabled = true;
+                document.getElementById("minSlotFilter").disabled = true;
+                document.getElementById("maxSlotFilter").disabled = true;
+            }
+            if (slotFilterChecked) {
+                document.getElementById("outbreakAlphaFilter").disabled = true;
+            }
+            if (outbreakAlphaFilter) {
+                document.getElementById("slotFilterCheck").disabled = true;
+            }
+        }
+
+        function getFilter() {
+            let filter = {};
+            filter["outbreakAlphaFilter"] = document.getElementById("outbreakAlphaFilter").checked;
+            filter["slotFilterCheck"] = document.getElementById("slotFilterCheck").checked;
+            filter["minSlotFilter"] = parseInt(document.getElementById("minSlotFilter").value);
+            filter["maxSlotFilter"] = parseInt(document.getElementById("maxSlotFilter").value);
+            filter["slotTotal"] = parseInt(document.getElementById("slotTotal").value);
+            filter["shinyFilterCheck"] = document.getElementById("shinyFilterCheck").checked;
+            return filter;
+        }
+
+        toggleSlotFilter();
         updateCollapsibleOnClick();
 
         map.on('click', function(e){
@@ -244,7 +296,8 @@
                 name: "{{map_name}}",
                 rolls: parseInt(document.getElementById("massOutbreakRolls").value),
                 aggressivePath: document.getElementById("aggressivePath").checked,
-                spawns: parseInt(document.getElementById("massOutbreakSpawns").value)
+                spawns: parseInt(document.getElementById("massOutbreakSpawns").value),
+                filter: getFilter()
             }));
         }
         function readPlayerCoords() {
@@ -308,7 +361,8 @@
                     ivs: e.sourceTarget.options.ivs,
                     rolls: parseInt(document.getElementById("rolls").value),
                     thresh: parseInt(document.getElementById("thresh").value),
-                    initSpawn: document.getElementById("initSpawn").checked
+                    initSpawn: document.getElementById("initSpawn").checked,
+                    filter: getFilter()
                 }));
             }
         }
@@ -335,7 +389,8 @@
                 name: "{{map_name}}",
                 rolls: parseInt(document.getElementById("rolls").value),
                 thresh: parseInt(document.getElementById("thresh").value),
-                initSpawn: document.getElementById("initSpawn").checked
+                initSpawn: document.getElementById("initSpawn").checked,
+                filter: getFilter()
             }))             
         }
         function trackPlayer() {

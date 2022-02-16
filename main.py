@@ -116,8 +116,8 @@ def load_map(name):
                            map_name=name,
                            custom_markers=json.dumps(CUSTOM_MARKERS[name]))
 
-def generate_next_shiny(group_id,rolls,guaranteed_ivs,init_spawn=False):
-    """Find the next shiny advance for a spawner"""
+def generate_next_filtered(group_id,rolls,guaranteed_ivs,init_spawn,poke_filter):
+    """Find the next advance that matches poke_filter for a spawner"""
     # pylint: disable=too-many-locals
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
@@ -128,31 +128,38 @@ def generate_next_shiny(group_id,rolls,guaranteed_ivs,init_spawn=False):
         main_rng.next() # spawner 0
         main_rng.next() # spawner 1
         main_rng.reseed(main_rng.next())
-    for adv in range(0,40960):
+    adv = -1
+    while True:
+        adv += 1
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
-        rng.next()
+        slot = poke_filter['slotTotal'] * rng.next() / 2**64
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(rng.next(),rolls,guaranteed_ivs)
-        if shiny:
+        break_flag = ((poke_filter['shinyFilterCheck'] and not shiny)
+                    or poke_filter['slotFilterCheck']
+                       and not (poke_filter['minSlotFilter'] <= slot < poke_filter['maxSlotFilter'])
+                    or poke_filter['outbreakAlphaFilter'] and not 100 <= slot < 101)
+        if not break_flag:
             break
         main_rng.reseed(main_rng.next())
     return adv,encryption_constant,pid,ivs,ability,gender,nature
 
-def generate_mass_outbreak(main_rng,rolls,spawns):
+def generate_mass_outbreak(main_rng,rolls,spawns,poke_filter):
     """Generate the current set of a mass outbreak and return a string representing it along with
-       a bool to show if a shiny is present"""
+       a bool to show if a pokemon passing poke_filter is present"""
     # pylint: disable=too-many-locals
     # this many variables is appropriate to display all the information about
     # the mass outbreak that a user might want
     display = ""
-    shiny_present = False
+    filtered_present = False
     for init_spawn in range(1,5):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         fixed_rng = XOROSHIRO(generator_seed)
-        alpha = (fixed_rng.next() / (2**64) * 101) > 100
+        slot = (fixed_rng.next() / (2**64) * 101)
+        alpha = slot >= 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
@@ -163,7 +170,9 @@ def generate_mass_outbreak(main_rng,rolls,spawns):
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
-        shiny_present |= shiny
+        filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
+                  or poke_filter['outbreakAlphaFilter'] and not 100 <= slot < 101)
+        filtered_present |= not filtered
     group_seed = main_rng.next()
     main_rng.reseed(group_seed)
     respawn_rng = XOROSHIRO(group_seed)
@@ -172,7 +181,8 @@ def generate_mass_outbreak(main_rng,rolls,spawns):
         respawn_rng.next() # spawner 1's seed, unused
         respawn_rng.reseed(respawn_rng.next())
         fixed_rng = XOROSHIRO(generator_seed)
-        alpha = (fixed_rng.next() / (2**64) * 101) > 100
+        slot = (fixed_rng.next() / (2**64) * 101)
+        alpha = slot >= 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
@@ -183,19 +193,22 @@ def generate_mass_outbreak(main_rng,rolls,spawns):
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>" \
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                    f"{'/'.join(str(iv) for iv in ivs)}<br>"
-        shiny_present |= shiny
-    return display,shiny_present
+        filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
+                  or poke_filter['outbreakAlphaFilter'] and not 100 <= slot < 101)
+        filtered_present |= not filtered
+    return display,filtered_present
 
-def generate_next_shiny_mass_outbreak(main_rng,rolls,spawns):
-    """Find the next shiny of a mass outbreak and return a string representing it"""
-    shiny_present = False
+def generate_next_filtered_mass_outbreak(main_rng,rolls,spawns,poke_filter):
+    """Find the next pokemon of a mass outbreak that passes poke_filter
+       and return a string representing it"""
+    filtered_present = False
     advance = 0
-    while not shiny_present:
+    while not filtered_present:
         advance += 1
-        display, shiny_present = generate_mass_outbreak(main_rng,rolls,spawns)
+        display, filtered_present = generate_mass_outbreak(main_rng,rolls,spawns,poke_filter)
     return f"<b>Advance: {advance}</b><br>{display}"
 
-def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
+def generate_mass_outbreak_path(group_seed,rolls,steps,poke_filter,uniques,storage):
     """Generate all the pokemon of an outbreak based on a provided path"""
     # pylint: disable=too-many-locals
     # the generation is unique to each path, no use in splitting this function
@@ -204,16 +217,20 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         fixed_rng = XOROSHIRO(generator_seed)
-        alpha = (fixed_rng.next() / (2**64) * 101) > 100
+        slot = (fixed_rng.next() / (2**64) * 101)
+        alpha = slot >= 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
             generate_from_seed(fixed_seed,rolls,0)
-        if shiny and not fixed_seed in uniques:
+        filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
+                  or poke_filter['outbreakAlphaFilter'] and not 100 <= slot < 101)
+        if not filtered and not fixed_seed in uniques:
             uniques.add(fixed_seed)
             storage.append(
                    f"<b>Init Spawn {init_spawn}</b> Shiny: "
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>"
-                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">{alpha}</font></b><br>" \
+                   f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">" \
+                   f"{alpha}</font></b><br>" \
                    f"EC: {encryption_constant:08X} PID: {pid:08X}<br>"
                    f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>"
                    f"{'/'.join(str(iv) for iv in ivs)}")
@@ -224,11 +241,14 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
             generator_seed = respawn_rng.next()
             respawn_rng.next() # spawner 1's seed, unused
             fixed_rng = XOROSHIRO(generator_seed)
-            alpha = (fixed_rng.next() / (2**64) * 101) > 100
+            slot = (fixed_rng.next() / (2**64) * 101)
+            alpha = slot >= 100
             fixed_seed = fixed_rng.next()
             encryption_constant,pid,ivs,ability,gender,nature,shiny = \
                 generate_from_seed(fixed_seed,rolls,0)
-            if shiny and not fixed_seed in uniques:
+            filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
+                      or poke_filter['outbreakAlphaFilter'] and not 100 <= slot < 101)
+            if not filtered and not fixed_seed in uniques:
                 uniques.add(fixed_seed)
                 storage.append(
                    f"<b>Path: {'|'.join(str(s) for s in steps[:step_i]+[pokemon])} " \
@@ -242,7 +262,13 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,uniques,storage):
                 )
         respawn_rng = XOROSHIRO(respawn_rng.next())
 
-def outbreak_pathfind(group_seed,rolls,spawns,step=0,steps=None,uniques=None,storage=None):
+def outbreak_pathfind(group_seed,
+                      rolls,spawns,
+                      poke_filter,
+                      step=0,
+                      steps=None,
+                      uniques=None,
+                      storage=None):
     """Recursively pathfind to all possible shinies for the current outbreak"""
     # pylint: disable=too-many-arguments
     # can this algo be improved?
@@ -256,17 +282,24 @@ def outbreak_pathfind(group_seed,rolls,spawns,step=0,steps=None,uniques=None,sto
     if sum(_steps) + step < spawns - 4:
         for _step in range(1, min(5, (spawns - 4) - sum(_steps))):
             storage[0] += 1
-            if outbreak_pathfind(group_seed,rolls,spawns,_step,_steps,uniques,storage) is not None:
+            if outbreak_pathfind(group_seed,
+                                 rolls,
+                                 spawns,
+                                 poke_filter,
+                                 _step,
+                                 _steps,
+                                 uniques,
+                                 storage) is not None:
                 return storage[1:]
     else:
         _steps.append(spawns - sum(_steps) - 4)
-        generate_mass_outbreak_path(group_seed,rolls,_steps,uniques,storage)
+        generate_mass_outbreak_path(group_seed,rolls,_steps,poke_filter,uniques,storage)
         if storage[0] == SEARCH_STOPPING_POINT[spawns-10]:
             return storage[1:]
     return None
 
-def next_shiny_outbreak_pathfind(group_seed,rolls,spawns):
-    """Check the next outbreak advances until a path to a shiny exists"""
+def next_filtered_outbreak_pathfind(group_seed,rolls,spawns,poke_filter):
+    """Check the next outbreak advances until a path to a pokemon that passes poke_filter exists"""
     main_rng = XOROSHIRO(group_seed)
     result = []
     advance = -1
@@ -277,10 +310,8 @@ def next_shiny_outbreak_pathfind(group_seed,rolls,spawns):
             group_seed = main_rng.next()
             main_rng.reseed(group_seed)
         advance += 1
-        result = outbreak_pathfind(group_seed, rolls, spawns)
-    info = '<br>'.join(outbreak_pathfind(group_seed,
-                                         request.json['rolls'],
-                                         request.json['spawns']))
+        result = outbreak_pathfind(group_seed, rolls, spawns, poke_filter)
+    info = '<br>'.join(result)
     return f"<b>Advance: {advance}</b><br>{info}"
 
 @app.route('/read-battle', methods=['GET'])
@@ -312,7 +343,7 @@ def read_battle():
 
 @app.route('/read-mass-outbreak', methods=['POST'])
 def read_mass_outbreak():
-    """Read current mass outbreak information and predict next shiny"""
+    """Read current mass outbreak information and predict next pokemon that passes filter"""
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{request.json['name']}.json"
     minimum = int(list(json.loads(requests.get(url).text).keys())[-1])-5
@@ -332,24 +363,28 @@ def read_mass_outbreak():
         display = [f"Group Seed: {group_seed:X}<br>"
                  + "<br>".join(outbreak_pathfind(group_seed,
                                                  request.json['rolls'],
-                                                 request.json['spawns'])),
-                   next_shiny_outbreak_pathfind(group_seed,
-                                                request.json['rolls'],
-                                                request.json['spawns'])]
+                                                 request.json['spawns'],
+                                                 request.json['filter'])),
+                   next_filtered_outbreak_pathfind(group_seed,
+                                                   request.json['rolls'],
+                                                   request.json['spawns'],
+                                                   request.json['filter'])]
     else:
         main_rng = XOROSHIRO(group_seed)
         display = [f"Group Seed: {group_seed:X}<br>"
-                + generate_mass_outbreak(main_rng,
-                                         request.json['rolls'],
-                                         request.json['spawns'])[0],
-                generate_next_shiny_mass_outbreak(main_rng,
-                                                  request.json['rolls'],
-                                                  request.json['spawns'])]
+                   + generate_mass_outbreak(main_rng,
+                                            request.json['rolls'],
+                                            request.json['spawns'],
+                                            request.json['filter'])[0],
+                   generate_next_filtered_mass_outbreak(main_rng,
+                                                        request.json['rolls'],
+                                                        request.json['spawns'],
+                                                        request.json['filter'])]
     return json.dumps(display)
 
 @app.route('/read-seed', methods=['POST'])
 def read_seed():
-    """Read current information and next shiny for a spawner"""
+    """Read current information and next advance that passes filter for a spawner"""
     group_id = request.json['groupID']
     thresh = request.json['thresh']
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
@@ -372,14 +407,15 @@ def read_seed():
               f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     adv,encryption_constant,pid,ivs,ability,gender,nature \
-        = generate_next_shiny(group_id,
-                              request.json['rolls'],
-                              request.json['ivs'],
-                              request.json['initSpawn'])
+        = generate_next_filtered(group_id,
+                                 request.json['rolls'],
+                                 request.json['ivs'],
+                                 request.json['initSpawn'],
+                              request.json['filter'])
     if adv <= thresh:
-        display += f"Next Shiny: <font color=\"green\"><b>{adv}</b></font><br>"
+        display += f"Next Filtered: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
-        display += f"Next Shiny: {adv} <br>"
+        display += f"Next Filtered: {adv} <br>"
     display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
                f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                f"{'/'.join(str(iv) for iv in ivs)}<br>"
@@ -428,7 +464,7 @@ def update_positions():
 
 @app.route('/check-near', methods=['POST'])
 def check_near():
-    """Check all spawners' nearest shiny advance to update icons"""
+    """Check all spawners' nearest advance that passes filters to update icons"""
     thresh = request.json['thresh']
     name = request.json['name']
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
@@ -439,10 +475,11 @@ def check_near():
     for group_id, marker in markers.items():
         print(f"Checking group_id {group_id}/{maximum}")
         adv,_,_,_,_,_,_ = \
-            generate_next_shiny(int(group_id),
+            generate_next_filtered(int(group_id),
                                 request.json['rolls'],
                                 marker["ivs"],
-                                request.json['initSpawn'])
+                                request.json['initSpawn'],
+                                request.json['filter'])
         if adv <= thresh:
             near.append(group_id)
     return json.dumps(near)
