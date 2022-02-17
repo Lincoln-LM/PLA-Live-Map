@@ -119,19 +119,32 @@ def load_map(name):
                            custom_markers=json.dumps(CUSTOM_MARKERS[name]),
                            slots=slots)
 
-def find_slot_range(time,weather,species,sp_slots):
-    """Find slot range of a species for a spawner"""
+def slot_to_pokemon(values,slot):
+    """Compare slot to list of slots to find pokemon"""
+    for pokemon,slot_value in values.items():
+        if slot <= slot_value:
+            return pokemon
+        slot -= slot_value
+    return None
+
+def find_slots(time,weather,sp_slots):
+    """Get slots based on sp_slots, time, and weather"""
     for time_weather, values in sp_slots.items():
         slot_time,slot_weather = time_weather.split("/")
         if (slot_time in ("Any Time", time)) and (slot_weather in ("All Weather", weather)):
-            pokemon = list(values.keys())
-            slot_values = list(values.values())
-            if not species in pokemon:
-                return 0,0,0
-            start = sum(slot_values[:pokemon.index(species)])
-            end = start + values[species]
-            return start,end,sum(slot_values)
-    return 0,0,0
+            return values
+    return None
+
+def find_slot_range(time,weather,species,sp_slots):
+    """Find slot range of a species for a spawner"""
+    values = find_slots(time,weather,sp_slots)
+    pokemon = list(values.keys())
+    slot_values = list(values.values())
+    if not species in pokemon:
+        return 0,0,0
+    start = sum(slot_values[:pokemon.index(species)])
+    end = start + values[species]
+    return start,end,sum(slot_values)
 
 def generate_next_filtered(group_id,
                            rolls,
@@ -152,11 +165,11 @@ def generate_next_filtered(group_id,
         main_rng.reseed(main_rng.next())
     adv = -1
     if poke_filter['slotTotal'] == 0:
-        return -1,-1,-1,[],-1,-1,-1
+        return -1,-1,-1,-1,[],-1,-1,-1,False
     while True:
         adv += 1
         if adv > stopping_point:
-            return -2,-1,-1,[],-1,-1,-1
+            return -2,-1,-1,-1,[],-1,-1,-1,False
         generator_seed = main_rng.next()
         main_rng.next() # spawner 1's seed, unused
         rng = XOROSHIRO(generator_seed)
@@ -170,7 +183,7 @@ def generate_next_filtered(group_id,
         if not break_flag:
             break
         main_rng.reseed(main_rng.next())
-    return adv,encryption_constant,pid,ivs,ability,gender,nature
+    return adv,slot,encryption_constant,pid,ivs,ability,gender,nature,shiny
 
 def generate_mass_outbreak(main_rng,rolls,spawns,poke_filter):
     """Generate the current set of a mass outbreak and return a string representing it along with
@@ -435,6 +448,11 @@ def read_seed():
     # pylint: disable=too-many-locals
     group_id = request.json['groupID']
     thresh = request.json['thresh']
+    url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
+            f"pla_spawners/jsons/{request.json['map']}.json"
+    with open(f"./static/resources/{request.json['map']}.json",encoding="utf-8") as slot_file:
+        sp_slots = \
+            json.load(slot_file)[json.loads(requests.get(url).text)[str(group_id)]['name']]
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}"\
                                              f"+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
@@ -445,21 +463,20 @@ def read_seed():
         rng.next() # spawner 1
         rng.reseed(rng.next()) # reseed group rng
     rng.reseed(rng.next()) # use spawner 0 to reseed
-    rng.next()
+    slot = rng.next() / (2**64) * request.json['filter']['slotTotal']
     fixed_seed = rng.next()
     encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_from_seed(fixed_seed,request.json['rolls'],request.json['ivs'])
+    species = slot_to_pokemon(find_slots(request.json["filter"]["timeSelect"],
+                                         request.json["filter"]["weatherSelect"],
+                                         sp_slots),slot)
     display = f"Generator Seed: {generator_seed:X}<br>" \
+              f"Species: {species}<br>" \
               f"Shiny: <font color=\"{'green' if shiny else 'red'}\"><b>{shiny}</b></font><br>" \
               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
               f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
               f"{'/'.join(str(iv) for iv in ivs)}<br>"
     if request.json['filter']['filterSpeciesCheck']:
-        url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
-             f"pla_spawners/jsons/{request.json['map']}.json"
-        with open(f"./static/resources/{request.json['map']}.json",encoding="utf-8") as slot_file:
-            sp_slots = \
-                json.load(slot_file)[json.loads(requests.get(url).text)[str(group_id)]['name']]
         request.json['filter']['minSlotFilter'], \
         request.json['filter']['maxSlotFilter'], \
         request.json['filter']['slotTotal'] \
@@ -468,7 +485,7 @@ def read_seed():
                               request.json["filter"]["speciesSelect"],
                               sp_slots)
         request.json['filter']['slotFilterCheck'] = True
-    adv,encryption_constant,pid,ivs,ability,gender,nature \
+    adv,slot,encryption_constant,pid,ivs,ability,gender,nature,shiny \
         = generate_next_filtered(group_id,
                                  request.json['rolls'],
                                  request.json['ivs'],
@@ -482,7 +499,13 @@ def read_seed():
         display += f"Next Filtered: <font color=\"green\"><b>{adv}</b></font><br>"
     else:
         display += f"Next Filtered: {adv} <br>"
-    display += f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
+
+    species = slot_to_pokemon(find_slots(request.json["filter"]["timeSelect"],
+                                         request.json["filter"]["weatherSelect"],
+                                         sp_slots),slot)
+    display += f"Species: {species}<br>" \
+               f"Shiny: <font color=\"{'green' if shiny else 'red'}\"><b>{shiny}</b></font><br>" \
+               f"EC: {encryption_constant:X} PID: {pid:X}<br>" \
                f"Nature: {NATURES[nature]} Ability: {ability} Gender: {gender}<br>" \
                f"{'/'.join(str(iv) for iv in ivs)}<br>"
     return display
@@ -558,7 +581,7 @@ def check_near():
                                 sp_slots)
             poke_filter['slotFilterCheck'] = True
         print(f"Checking group_id {group_id}/{maximum}")
-        adv,_,_,_,_,_,_ = \
+        adv,_,_,_,_,_,_,_,_ = \
             generate_next_filtered(int(group_id),
                                 request.json['rolls'],
                                 marker["ivs"],
