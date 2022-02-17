@@ -385,12 +385,12 @@ def read_mass_outbreak():
     """Read current mass outbreak information and predict next pokemon that passes filter"""
     url = "https://raw.githubusercontent.com/Lincoln-LM/JS-Finder/main/Resources/" \
          f"pla_spawners/jsons/{request.json['name']}.json"
-    minimum = int(list(json.loads(requests.get(url).text).keys())[-1])-5
-    group_id = 510
+    minimum = int(list(json.loads(requests.get(url).text).keys())[-1])-15
+    group_id = minimum+30
     group_seed = 0
     while group_seed == 0 and group_id != minimum:
         group_id -= 1
-        print(f"Finding group_id {510-group_id}/{510-minimum}")
+        print(f"Finding group_id {minimum-group_id+30}/30")
         group_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x408:X}",8)
     if group_id == minimum:
         print("No mass outbreak found")
