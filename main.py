@@ -68,7 +68,6 @@ CUSTOM_MARKERS = {
         }
     }
 }
-SEARCH_STOPPING_POINT = [23,46,86,172,331,639]
 
 with open("config.json","r",encoding="utf-8") as config:
     IP_ADDRESS = json.load(config)["IP"]
@@ -301,6 +300,14 @@ def generate_mass_outbreak_path(group_seed,rolls,steps,poke_filter,uniques,stora
                 )
         respawn_rng = XOROSHIRO(respawn_rng.next())
 
+def get_final(spawns):
+    """Get the final path that will be generated to know when to stop recursion"""
+    spawns -= 4
+    path = [4] * (spawns // 4)
+    if spawns % 4 != 0:
+        path.append(spawns % 4)
+    return path
+
 def outbreak_pathfind(group_seed,
                       rolls,spawns,
                       poke_filter,
@@ -314,13 +321,12 @@ def outbreak_pathfind(group_seed,
     if steps is None or uniques is None or storage is None:
         steps = []
         uniques = set()
-        storage = [0]
+        storage = []
     _steps = steps.copy()
     if step != 0:
         _steps.append(step)
     if sum(_steps) + step < spawns - 4:
         for _step in range(1, min(5, (spawns - 4) - sum(_steps))):
-            storage[0] += 1
             if outbreak_pathfind(group_seed,
                                  rolls,
                                  spawns,
@@ -329,12 +335,12 @@ def outbreak_pathfind(group_seed,
                                  _steps,
                                  uniques,
                                  storage) is not None:
-                return storage[1:]
+                return storage
     else:
         _steps.append(spawns - sum(_steps) - 4)
         generate_mass_outbreak_path(group_seed,rolls,_steps,poke_filter,uniques,storage)
-        if storage[0] == SEARCH_STOPPING_POINT[spawns-10]:
-            return storage[1:]
+        if _steps == get_final(spawns):
+            return storage
     return None
 
 def next_filtered_outbreak_pathfind(group_seed,rolls,spawns,poke_filter):
