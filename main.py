@@ -264,7 +264,7 @@ def generate_mass_outbreak_passive_path(group_seed,
     rng = XOROSHIRO(group_seed)
     for step_i,step in enumerate(steps):
         left = total_spawns - sum(steps[:step_i+1])
-        final_in_init = (step_i == (len(steps) - 1)) and left < 5
+        final_in_init = (step_i == (len(steps) - 1)) and left + step <= 4
         all_in_init = (step_i != (len(steps) - 1)) and left <= 4
         down_to_init = final_in_init or all_in_init
         if final_in_init:
@@ -515,7 +515,6 @@ def read_mass_outbreak():
     if request.json['spawns'] == -1:
         for i in range(4):
             spawns = reader.read_pointer_int(f"{OUTBREAK_PTR}+{0x60+i*0x50:X}",1)
-            print(spawns)
             if 10 <= spawns <= 15:
                 request.json['spawns'] = spawns
                 break
