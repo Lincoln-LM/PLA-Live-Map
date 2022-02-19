@@ -101,16 +101,27 @@
                 </h1><br>
                 <label for="massOutbreakRolls">Shiny Rolls:</label>
                 <input type="number" id="massOutbreakRolls" value=26><br>
+
+                <label for="noPath">Basic Pathfinding</label>
+                <input type="radio" id="noPath" name="pathfinding" value="noPath" onchange=updatePath() checked><br>
                 <label for="aggressivePath">Aggressive Pathfinding</label>
-                <input type="checkbox" id="aggressivePath"><br>
+                <input type="radio" id="aggressivePath" name="pathfinding" value="aggressivePath" onchange=updatePath()><br>
+                <label for="passivePath">Passive Pathfinding</label>
+                <input type="radio" id="passivePath" name="pathfinding" value="passivePath" onchange=updatePath()><br>
+
                 <label for="massOutbreakSpawns">Total Spawns:</label>
                 <input type="number" id="massOutbreakSpawns" value=10><br>
+                <div id="passiveMoveLimitDiv">
+                    <label for="passiveMoveLimit" id="passiveMoveLimitLabel">Passive Move Limit:</label>
+                    <input type="number" id="passiveMoveLimit" value=10><br>
+                </div>
+
                 <button onclick=loadMassOutbreakInfo()>Update Mass Outbreak Info</button><br><br>
-                <button type="button" class="collapsible" data-for="currentMassOutbreak">Current Mass Outbreak</button>
+                <button type="button" class="collapsible" data-for="currentMassOutbreak" id="currentMassOutbreakButton">Current Mass Outbreak</button>
                 <div class="info" id="currentMassOutbreak">
                     <b>No info present</b>
                 </div><br>
-                <button type="button" class="collapsible" data-for="shinyMassOutbreak">Next Filtered Mass Outbreak</button>
+                <button type="button" class="collapsible" data-for="shinyMassOutbreak" id="shinyMassOutbreakButton">Next Filtered Mass Outbreak</button>
                 <div class="info" id="shinyMassOutbreak">
                     <b>No info present</b>
                 </div>
@@ -326,6 +337,24 @@
             }
         }
 
+        function updatePath() {
+            let noPath = document.getElementById("noPath").checked;
+            let aggressivePath = document.getElementById("aggressivePath").checked;
+            let passivePath = document.getElementById("passivePath").checked;
+            document.getElementById("passiveMoveLimitDiv").style.display = null;
+            document.getElementById("currentMassOutbreak").style.display = null;
+            document.getElementById("currentMassOutbreakButton").style.display = null;
+            document.getElementById("shinyMassOutbreak").style.display = null;
+            document.getElementById("shinyMassOutbreakButton").style.display = null;
+            if (!passivePath) {
+                    document.getElementById("passiveMoveLimitDiv").style.display = "none";
+            }
+            if (!noPath) {
+                document.getElementById("currentMassOutbreak").style.display = "none";
+                document.getElementById("currentMassOutbreakButton").style.display = "none";
+            }
+        }
+
         function getFilter() {
             let filter = {};
             filter["outbreakAlphaFilter"] = document.getElementById("outbreakAlphaFilter").checked;
@@ -418,7 +447,9 @@
                 name: "{{map_name}}",
                 rolls: parseInt(document.getElementById("massOutbreakRolls").value),
                 aggressivePath: document.getElementById("aggressivePath").checked,
+                passivePath: document.getElementById("passivePath").checked,
                 spawns: parseInt(document.getElementById("massOutbreakSpawns").value),
+                passiveMoveLimit: parseInt(document.getElementById("passiveMoveLimit").value),
                 filter: getFilter()
             }));
         }
