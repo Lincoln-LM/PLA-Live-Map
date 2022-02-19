@@ -513,7 +513,11 @@ def read_mass_outbreak():
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
     if request.json['spawns'] == -1:
-        request.json['spawns'] = reader.read_pointer_int(f"{OUTBREAK_PTR}+60",1)
+        for i in range(2):
+            spawns = reader.read_pointer_int(f"{OUTBREAK_PTR}+{0x60+i*0x50:X}",1)
+            if 10 <= spawns <= 15:
+                request.json['spawns'] = spawns
+                break
         print(f"Spawns: {request.json['spawns']}")
     if request.json['aggressivePath']:
         # should display multiple aggressive paths like whats done with passive
