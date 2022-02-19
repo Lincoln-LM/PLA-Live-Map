@@ -17,6 +17,7 @@ PLAYER_LOCATION_PTR = "[[[[[[main+42B3558]+88]+90]+1F0]+18]+80]+90"
 SPAWNER_PTR = "[[main+4268ee0]+330]"
 PARTY_PTR = "[[[main+4269000]+d0]+58]"
 WILD_PTR = "[[[[main+4268f00]+b0]+e0]+d0]"
+OUTBREAK_PTR = "[[[[main+427C470]+2B0]+58]+18]"
 CUSTOM_MARKERS = {
     "obsidianfieldlands": {
         "camp": {
@@ -511,6 +512,9 @@ def read_mass_outbreak():
     print(f"Found group_id {group_id}")
     generator_seed = reader.read_pointer_int(f"{SPAWNER_PTR}+{0x70+group_id*0x440+0x20:X}",8)
     group_seed = (generator_seed - 0x82A2B175229D6A5B) & 0xFFFFFFFFFFFFFFFF
+    if request.json['spawns'] == -1:
+        request.json['spawns'] = reader.read_pointer_int(f"{OUTBREAK_PTR}+60",1)
+        print(f"Spawns: {request.json['spawns']}")
     if request.json['aggressivePath']:
         # should display multiple aggressive paths like whats done with passive
         display = ["",

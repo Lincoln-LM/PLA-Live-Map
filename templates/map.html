@@ -109,7 +109,9 @@
                 <label for="passivePath">Passive Pathfinding</label>
                 <input type="radio" id="passivePath" name="pathfinding" value="passivePath" onchange=updatePath()><br>
 
-                <label for="massOutbreakSpawns">Total Spawns:</label>
+                <label for="readSpawns">Read Spawn Count:</label>
+                <input type="checkbox" id="readSpawns" onchange=updatePath() checked><br>
+                <label for="massOutbreakSpawns" id="massOutbreakSpawnsLabel">Total Spawns:</label>
                 <input type="number" id="massOutbreakSpawns" value=10><br>
                 <div id="passiveMoveLimitDiv">
                     <label for="passiveMoveLimit" id="passiveMoveLimitLabel">Passive Move Limit:</label>
@@ -341,17 +343,24 @@
             let noPath = document.getElementById("noPath").checked;
             let aggressivePath = document.getElementById("aggressivePath").checked;
             let passivePath = document.getElementById("passivePath").checked;
+            let readSpawns = document.getElementById("readSpawns").checked;
             document.getElementById("passiveMoveLimitDiv").style.display = null;
             document.getElementById("currentMassOutbreak").style.display = null;
             document.getElementById("currentMassOutbreakButton").style.display = null;
             document.getElementById("shinyMassOutbreak").style.display = null;
             document.getElementById("shinyMassOutbreakButton").style.display = null;
+            document.getElementById("massOutbreakSpawns").style.display = null;
+            document.getElementById("massOutbreakSpawnsLabel").style.display = null;
             if (!passivePath) {
                     document.getElementById("passiveMoveLimitDiv").style.display = "none";
             }
             if (!noPath) {
                 document.getElementById("currentMassOutbreak").style.display = "none";
                 document.getElementById("currentMassOutbreakButton").style.display = "none";
+            }
+            if (readSpawns) {
+                document.getElementById("massOutbreakSpawns").style.display = "none";
+                document.getElementById("massOutbreakSpawnsLabel").style.display = "none";
             }
         }
 
@@ -372,6 +381,7 @@
 
         toggleSlotFilter();
         updateCollapsibleOnClick();
+        updatePath();
 
         map.on('click', function(e){
             if (teleporting) {
@@ -448,7 +458,7 @@
                 rolls: parseInt(document.getElementById("massOutbreakRolls").value),
                 aggressivePath: document.getElementById("aggressivePath").checked,
                 passivePath: document.getElementById("passivePath").checked,
-                spawns: parseInt(document.getElementById("massOutbreakSpawns").value),
+                spawns: document.getElementById("readSpawns").checked ? -1 : parseInt(document.getElementById("massOutbreakSpawns").value),
                 passiveMoveLimit: parseInt(document.getElementById("passiveMoveLimit").value),
                 filter: getFilter()
             }));
