@@ -202,7 +202,7 @@ def generate_mass_outbreak(main_rng,rolls,spawns,poke_filter):
         alpha = slot >= 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
-            generate_from_seed(fixed_seed,rolls,0)
+            generate_from_seed(fixed_seed,rolls,3 if alpha else 0)
         display += f"<b>Init Spawn {init_spawn}</b> <b>Shiny: " \
                    f"<font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
                    f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">" \
@@ -225,7 +225,7 @@ def generate_mass_outbreak(main_rng,rolls,spawns,poke_filter):
         alpha = slot >= 100
         fixed_seed = fixed_rng.next()
         encryption_constant,pid,ivs,ability,gender,nature,shiny = \
-            generate_from_seed(fixed_seed,rolls,0)
+            generate_from_seed(fixed_seed,rolls,3 if alpha else 0)
         display += f"<b>Respawn {respawn}</b> Shiny: " \
                    f"<b><font color=\"{'green' if shiny else 'red'}\">{shiny}</font></b><br>" \
                    f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">" \
