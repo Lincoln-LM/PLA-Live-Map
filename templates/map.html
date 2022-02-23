@@ -114,8 +114,10 @@
                 <label for="massOutbreakSpawns" id="massOutbreakSpawnsLabel">Total Spawns:</label>
                 <input type="number" id="massOutbreakSpawns" value=10><br>
                 <div id="passiveMoveLimitDiv">
-                    <label for="passiveMoveLimit" id="passiveMoveLimitLabel">Passive Move Limit:</label>
+                    <label for="passiveMoveLimit">Passive Move Limit:</label>
                     <input type="number" id="passiveMoveLimit" value=10><br>
+                    <label for="passiveFindFirst">Only Find First: </label>
+                    <input type="checkbox" id="passiveFindFirst"><br>
                 </div>
 
                 <button onclick=loadMassOutbreakInfo()>Update Mass Outbreak Info</button><br><br>
@@ -352,7 +354,7 @@
             document.getElementById("massOutbreakSpawns").style.display = null;
             document.getElementById("massOutbreakSpawnsLabel").style.display = null;
             if (!passivePath) {
-                    document.getElementById("passiveMoveLimitDiv").style.display = "none";
+                document.getElementById("passiveMoveLimitDiv").style.display = "none";
             }
             if (!noPath) {
                 document.getElementById("currentMassOutbreak").style.display = "none";
@@ -460,6 +462,7 @@
                 passivePath: document.getElementById("passivePath").checked,
                 spawns: document.getElementById("readSpawns").checked ? -1 : parseInt(document.getElementById("massOutbreakSpawns").value),
                 passiveMoveLimit: parseInt(document.getElementById("passiveMoveLimit").value),
+                passiveFindFirst: parseInt(document.getElementById("passiveFindFirst").checked),
                 filter: getFilter()
             }));
         }
