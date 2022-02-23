@@ -462,7 +462,7 @@
                 passivePath: document.getElementById("passivePath").checked,
                 spawns: document.getElementById("readSpawns").checked ? -1 : parseInt(document.getElementById("massOutbreakSpawns").value),
                 passiveMoveLimit: parseInt(document.getElementById("passiveMoveLimit").value),
-                passiveFindFirst: parseInt(document.getElementById("passiveFindFirst").checked),
+                passiveFindFirst: document.getElementById("passiveFindFirst").checked,
                 filter: getFilter()
             }));
         }
@@ -611,6 +611,7 @@
             let outbreakAlphaFilter = readBoolFromStorage("outbreakAlphaFilter", false);
             let massOutbreakRolls = readIntFromStorage("massOutbreakRolls", 26);
             let passiveMoveLimit = readIntFromStorage("passiveMoveLimit", 10);
+            let passiveFindFirst = readBoolFromStorage("passiveFindFirst", false);
 
             document.getElementById("y").value = teleportHeight;
             document.getElementById("rolls").value = rolls;
@@ -620,6 +621,7 @@
             document.getElementById("outbreakAlphaFilter").checked = outbreakAlphaFilter;
             document.getElementById("massOutbreakRolls").value = massOutbreakRolls;
             document.getElementById("passiveMoveLimit").value = passiveMoveLimit;
+            document.getElementById("passiveFindFirst").checked = passiveFindFirst;
         }
         function savePreferences() {
             document.getElementById("y").addEventListener("change", function(e) {
@@ -645,6 +647,9 @@
             });
             document.getElementById("passiveMoveLimit").addEventListener("change", function(e) {
                 saveIntToStorage("passiveMoveLimit", e.target.value);
+            });
+            document.getElementById("passiveFindFirst").addEventListener("change", function(e) {
+                saveBoolToStorage("passiveFindFirst", e.target.checked);
             });
         }
         var sidebar = L.control.sidebar('sidebar').addTo(map);
