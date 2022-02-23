@@ -91,7 +91,26 @@
                 <label for="thresh">Near Filtered Limit</label>
                 <input type="number" id="thresh" value=50><br>
                 <label for="initialSpawn">Initial Spawn</label>
-                <input type="checkbox" id="initSpawn">
+                <input type="checkbox" id="initSpawn"><br>
+                <label for="timeSelect">Time:</label>
+                <select id="timeSelect" onchange="speciesSelectChanged()">
+                    <option value="Dawn">Dawn</option>
+                    <option value="Day">Day</option>
+                    <option value="Dusk">Dusk</option>
+                    <option value="Night">Night</option>
+                </select><br>
+                <label for="weatherSelect">Weather:</label>
+                <select id="weatherSelect" onchange="speciesSelectChanged()">
+                    <option value="None">None</option>
+                    <option value="Sunny">Sunny</option>
+                    <option value="Cloudy">Cloudy</option>
+                    <option value="Rain">Rain</option>
+                    <option value="Snow">Snow</option>
+                    <option value="Drought">Drought</option>
+                    <option value="Fog">Fog</option>
+                    <option value="Rainstorm">Rainstorm</option>
+                    <option value="Snowstorm">Snowstorm</option>
+                </select><br>
             </div>
 
             <div class="sidebar-pane" id="mass-outbreak">
@@ -159,25 +178,6 @@
                 <input class="unlocked" style="width:30%" type="number" id="maxSlotFilter" value=101><br>
                 <label for="filterSpeciesCheck">Filter by Species:</label>
                 <input type="checkbox" id="filterSpeciesCheck" onclick="toggleSlotFilter()" onchange="speciesSelectChanged()"><br>
-                <label for="timeSelect">Time:</label>
-                <select id="timeSelect" onchange="speciesSelectChanged()">
-                    <option value="Dawn">Dawn</option>
-                    <option value="Day">Day</option>
-                    <option value="Dusk">Dusk</option>
-                    <option value="Night">Night</option>
-                </select><br>
-                <label for="weatherSelect">Weather:</label>
-                <select id="weatherSelect" onchange="speciesSelectChanged()">
-                    <option value="None">None</option>
-                    <option value="Sunny">Sunny</option>
-                    <option value="Cloudy">Cloudy</option>
-                    <option value="Rain">Rain</option>
-                    <option value="Snow">Snow</option>
-                    <option value="Drought">Drought</option>
-                    <option value="Fog">Fog</option>
-                    <option value="Rainstorm">Rainstorm</option>
-                    <option value="Snowstorm">Snowstorm</option>
-                </select><br>
                 <label for="speciesSelect">Species:</label>
                 <select id="speciesSelect" onchange="speciesSelectChanged()"></select><br>
                 <label for="possibleSpawners">Possible Spawners for Species:</label><br>
@@ -308,11 +308,10 @@
             let slotFilterChecked = document.getElementById("slotFilterCheck").checked;
             let outbreakAlphaFilter = document.getElementById("outbreakAlphaFilter").checked;
             let filterSpeciesChecked = document.getElementById("filterSpeciesCheck").checked;
-            document.getElementById("outbreakAlphaFilter").disabled = false;
+            console.log(filterSpeciesChecked)
             document.getElementById("slotFilterCheck").disabled = false;
+            document.getElementById("outbreakAlphaFilter").disabled = false;
             document.getElementById("filterSpeciesCheck").disabled = false;
-            document.getElementById("timeSelect").disabled = false;
-            document.getElementById("weatherSelect").disabled = false;
             document.getElementById("speciesSelect").disabled = false;
             document.getElementById("slotTotal").disabled = false;
             document.getElementById("minSlotFilter").disabled = false;
@@ -323,13 +322,11 @@
                 document.getElementById("maxSlotFilter").disabled = true;
             }
             if (!filterSpeciesChecked) {
-                document.getElementById("timeSelect").disabled = true;
-                document.getElementById("weatherSelect").disabled = true;
                 document.getElementById("speciesSelect").disabled = true;
             }
             if (slotFilterChecked) {
                 document.getElementById("outbreakAlphaFilter").disabled = true;
-                document.getElementById("filterSpeciesCheck").disabled = false;
+                document.getElementById("filterSpeciesCheck").disabled = true;
             }
             if (outbreakAlphaFilter) {
                 document.getElementById("slotFilterCheck").disabled = true;
@@ -380,10 +377,6 @@
             filter["speciesSelect"] = document.getElementById("speciesSelect").value;
             return filter;
         }
-
-        toggleSlotFilter();
-        updateCollapsibleOnClick();
-        updatePath();
 
         map.on('click', function(e){
             if (teleporting) {
@@ -608,7 +601,9 @@
             let thresh = readIntFromStorage("thresh", 50);
             let initSpawn = readBoolFromStorage("initSpawn", false);
             let shinyFilterCheck = readBoolFromStorage("shinyFilterCheck", true);
+            let slotFilterChecked = readBoolFromStorage("slotFilterChecked", false);
             let outbreakAlphaFilter = readBoolFromStorage("outbreakAlphaFilter", false);
+            let filterSpeciesChecked = readBoolFromStorage("filterSpeciesChecked", false);
             let massOutbreakRolls = readIntFromStorage("massOutbreakRolls", 26);
             let passiveMoveLimit = readIntFromStorage("passiveMoveLimit", 10);
             let passiveFindFirst = readBoolFromStorage("passiveFindFirst", false);
@@ -618,10 +613,15 @@
             document.getElementById("thresh").value = thresh;
             document.getElementById("initSpawn").checked = initSpawn;
             document.getElementById("shinyFilterCheck").checked = shinyFilterCheck;
+            document.getElementById("slotFilterCheck").checked = slotFilterChecked;
             document.getElementById("outbreakAlphaFilter").checked = outbreakAlphaFilter;
+            document.getElementById("slotFilterCheck").checked = filterSpeciesChecked;
             document.getElementById("massOutbreakRolls").value = massOutbreakRolls;
             document.getElementById("passiveMoveLimit").value = passiveMoveLimit;
             document.getElementById("passiveFindFirst").checked = passiveFindFirst;
+            toggleSlotFilter();
+            updateCollapsibleOnClick();
+            updatePath();
         }
         function savePreferences() {
             document.getElementById("y").addEventListener("change", function(e) {
@@ -639,8 +639,14 @@
             document.getElementById("shinyFilterCheck").addEventListener("change", function(e) {
                 saveBoolToStorage("shinyFilterCheck", e.target.checked);
             });
+            document.getElementById("slotFilterCheck").addEventListener("change", function(e) {
+                saveBoolToStorage("slotFilterChecked", e.target.checked);
+            });
             document.getElementById("outbreakAlphaFilter").addEventListener("change", function(e) {
-                saveBoolToStorage("outbreakAlphaFilter", e.target.value);
+                saveBoolToStorage("outbreakAlphaFilter", e.target.checked);
+            });
+            document.getElementById("slotFilterCheck").addEventListener("change", function(e) {
+                saveBoolToStorage("filterSpeciesChecked", e.target.checked);
             });
             document.getElementById("massOutbreakRolls").addEventListener("change", function(e) {
                 saveIntToStorage("massOutbreakRolls", e.target.value);
