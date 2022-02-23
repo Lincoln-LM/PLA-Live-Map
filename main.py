@@ -253,13 +253,23 @@ def generate_mass_outbreak_passive_path(group_seed,
                                         steps,
                                         total_spawns,
                                         poke_filter,
-                                        filtered_results):
+                                        filtered_results,
+                                        storage):
     """Generate all the pokemon of an outbreak based on a provided passive path"""
     # pylint: disable=too-many-locals, too-many-arguments
     # the generation is unique to each path, no use in splitting this function
     rng = XOROSHIRO(group_seed)
     passes_filters = False
-    for step_i,step in enumerate(steps):
+    skip = 0
+    for step_i in range(len(steps),0,-1):
+        path_str = tuple(steps[:step_i])
+        if path_str in storage:
+            rng.reseed(*storage[path_str]) # we've already calculated up to this point
+            skip = step_i
+            break
+    for step_i,step in enumerate(steps[skip:]):
+        step_i += skip
+        path_str = tuple(steps[:step_i+1])
         left = total_spawns - sum(steps[:step_i+1])
         final_in_init = (step_i == (len(steps) - 1)) and left + step <= 4
         all_in_init = (step_i != (len(steps) - 1)) and left <= 4
@@ -277,12 +287,12 @@ def generate_mass_outbreak_passive_path(group_seed,
             encryption_constant,pid,ivs,ability,gender,nature,shiny = \
                 generate_from_seed(fixed_seed,rolls,3 if alpha else 0)
             filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
-                      or poke_filter['outbreakAlphaFilter'] and not alpha)
+                    or poke_filter['outbreakAlphaFilter'] and not alpha)
             passes_filters |= not filtered
             if not filtered:
                 effective_path = steps[:step_i] + [max(0,pokemon-3)]
                 if fixed_seed in filtered_results["info"] \
-                  and effective_path not in filtered_results["paths"][fixed_seed]:
+                and effective_path not in filtered_results["paths"][fixed_seed]:
                     filtered_results["paths"][fixed_seed].append(effective_path)
                 else:
                     filtered_results["paths"][fixed_seed] = [effective_path]
@@ -297,6 +307,7 @@ def generate_mass_outbreak_passive_path(group_seed,
             rng.next() # spawner 1 seed, unused
             if not down_to_init and pokemon >= 3:
                 rng.reseed(rng.next())
+        storage[path_str] = rng.seed.copy()
     return passes_filters
 
 def generate_mass_outbreak_aggressive_path(group_seed,rolls,steps,poke_filter,uniques,storage):
@@ -370,11 +381,15 @@ def generate_passive_search_paths(group_seed,
     """Passively pathfind to all pokemon that pass poke_filter"""
     # pylint: disable=too-many-arguments,too-many-locals
     stack = []
-    storage = {"info": {}, "paths": {}}
+    filtered_results = {"info": {}, "paths": {}}
+    storage = {}
 
     work = spawns * (spawns + 3) # impossibly high work
     total_paths = round(factorial(spawns - 4 + move_limit) \
                      / (factorial(spawns - 4) * factorial(move_limit)))
+    progress_val = round(total_paths/100) # 1%
+    progress_mask = XOROSHIRO.get_mask(progress_val+1)
+    print(f"Progress update interval {progress_mask} (from {progress_val})")
 
     counter = 0
     for i in range(0, spawns + 1):
@@ -389,20 +404,21 @@ def generate_passive_search_paths(group_seed,
             break # results cannot get better
 
         counter = counter + 1
-        if counter & 63 == 0:
-            print(f"Scanned: {counter}/{total_paths}")
+        if counter & progress_mask == 0:
+            print(f"Scanned: {counter}/{total_paths} {counter/total_paths*100}%")
 
         passes_filters = generate_mass_outbreak_passive_path(group_seed,
-                                            rolls,
-                                            path,
-                                            spawns,
-                                            poke_filter,
-                                            storage)
+                                                             rolls,
+                                                             path,
+                                                             spawns,
+                                                             poke_filter,
+                                                             filtered_results,
+                                                             storage)
 
         c_work = len(path) * (spawns + 1) + sum(path)
         if passes_filters and c_work < work:
             if not exhaustive_search:
-                return storage
+                return filtered_results
 
         if len(path) == move_limit:
             continue
@@ -411,7 +427,7 @@ def generate_passive_search_paths(group_seed,
             path_ = path.copy()
             path_.append(i)
             stack.append((spawns_left - i, path_))
-    return storage
+    return filtered_results
 
 def aggressive_outbreak_pathfind(group_seed,
                                  rolls,
