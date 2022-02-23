@@ -253,15 +253,12 @@ def generate_mass_outbreak_passive_path(group_seed,
                                         steps,
                                         total_spawns,
                                         poke_filter,
-                                        total_paths,
-                                        storage):
+                                        filtered_results):
     """Generate all the pokemon of an outbreak based on a provided passive path"""
     # pylint: disable=too-many-locals, too-many-arguments
     # the generation is unique to each path, no use in splitting this function
-    storage['current'] += 1
-    if storage['current'] & 0xF == 0 or storage['current'] == total_paths:
-        print(f"Passive search {storage['current']}/{total_paths}")
     rng = XOROSHIRO(group_seed)
+    passes_filters = False
     for step_i,step in enumerate(steps):
         left = total_spawns - sum(steps[:step_i+1])
         final_in_init = (step_i == (len(steps) - 1)) and left + step <= 4
@@ -281,14 +278,15 @@ def generate_mass_outbreak_passive_path(group_seed,
                 generate_from_seed(fixed_seed,rolls,3 if alpha else 0)
             filtered = ((poke_filter['shinyFilterCheck'] and not shiny)
                       or poke_filter['outbreakAlphaFilter'] and not alpha)
-            effective_path = steps[:step_i] + [max(0,pokemon-3)]
+            passes_filters |= not filtered
             if not filtered:
-                if fixed_seed in storage["info"] \
-                  and effective_path not in storage["paths"][fixed_seed]:
-                    storage["paths"][fixed_seed].append(effective_path)
+                effective_path = steps[:step_i] + [max(0,pokemon-3)]
+                if fixed_seed in filtered_results["info"] \
+                  and effective_path not in filtered_results["paths"][fixed_seed]:
+                    filtered_results["paths"][fixed_seed].append(effective_path)
                 else:
-                    storage["paths"][fixed_seed] = [effective_path]
-                    storage["info"][fixed_seed] = \
+                    filtered_results["paths"][fixed_seed] = [effective_path]
+                    filtered_results["info"][fixed_seed] = \
                         f"<b>Shiny: <font color=\"{'green' if shiny else 'red'}\">" \
                         f"{shiny}</font></b><br>" \
                         f"<b>Alpha: <font color=\"{'green' if alpha else 'red'}\">" \
@@ -299,6 +297,7 @@ def generate_mass_outbreak_passive_path(group_seed,
             rng.next() # spawner 1 seed, unused
             if not down_to_init and pokemon >= 3:
                 rng.reseed(rng.next())
+    return passes_filters
 
 def generate_mass_outbreak_aggressive_path(group_seed,rolls,steps,poke_filter,uniques,storage):
     """Generate all the pokemon of an outbreak based on a provided aggressive path"""
@@ -362,57 +361,57 @@ def get_final(spawns):
         path.append(spawns % 4)
     return path
 
-def passive_outbreak_pathfind(group_seed,
-                              rolls,
-                              spawns,
-                              move_limit,
-                              poke_filter,
-                              total_paths=None,
-                              spawns_left=None,
-                              step=None,
-                              steps=None,
-                              storage=None):
-    """Recursively pathfind to possible shinies for the current outbreak via variable
-        Jubilife visits"""
-    # pylint: disable=too-many-arguments
-    # this could do with some optimization, there is a lot of overlap with passive paths
-    if spawns_left is None or steps is None or storage is None:
-        steps = []
-        storage = {"info": {}, "paths": {}, "current": 0}
-        spawns_left = spawns - 4
-        total_paths = round(factorial(spawns_left + move_limit) \
-                    / (factorial(spawns_left) * factorial(move_limit)))
-        move_limit += 1
-    move_limit -= 1
-    _steps = steps.copy()
-    if step is not None:
-        spawns_left -= step
-        _steps.append(step)
-    if spawns_left <= 0 or move_limit == 0:
-        generate_mass_outbreak_passive_path(group_seed,
+def generate_passive_search_paths(group_seed,
+                                  rolls,
+                                  spawns,
+                                  move_limit,
+                                  poke_filter,
+                                  exhaustive_search):
+    """Passively pathfind to all pokemon that pass poke_filter"""
+    # pylint: disable=too-many-arguments,too-many-locals
+    stack = []
+    storage = {"info": {}, "paths": {}}
+
+    work = spawns * (spawns + 3) # impossibly high work
+    total_paths = round(factorial(spawns - 4 + move_limit) \
+                     / (factorial(spawns - 4) * factorial(move_limit)))
+
+    counter = 0
+    for i in range(0, spawns + 1):
+        stack.append((spawns - 4 - i, [i])) # remaining spawns, path
+
+    while len(stack) > 0:
+        spawns_left, path = stack.pop(0) # breadth first search
+        if spawns_left <= 0 or len(path) > move_limit:
+            continue
+
+        if not exhaustive_search and len(path) * (spawns + 1) > work:
+            break # results cannot get better
+
+        counter = counter + 1
+        if counter & 63 == 0:
+            print(f"Scanned: {counter}/{total_paths}")
+
+        passes_filters = generate_mass_outbreak_passive_path(group_seed,
                                             rolls,
-                                            _steps,
+                                            path,
                                             spawns,
                                             poke_filter,
-                                            total_paths,
                                             storage)
-        if _steps == [spawns-4]:
-            return storage
-        return None
-    limit = spawns_left + 1
-    for _move in range(limit):
-        if passive_outbreak_pathfind(group_seed,
-                                     rolls,
-                                     spawns,
-                                     move_limit,
-                                     poke_filter,
-                                     total_paths,
-                                     spawns_left,
-                                     _move,
-                                     _steps,
-                                     storage) is not None:
-            return storage
-    return None
+
+        c_work = len(path) * (spawns + 1) + sum(path)
+        if passes_filters and c_work < work:
+            if not exhaustive_search:
+                return storage
+
+        if len(path) == move_limit:
+            continue
+
+        for i in range(0, spawns_left + 1):
+            path_ = path.copy()
+            path_.append(i)
+            stack.append((spawns_left - i, path_))
+    return storage
 
 def aggressive_outbreak_pathfind(group_seed,
                                  rolls,
@@ -528,11 +527,12 @@ def read_mass_outbreak():
                                                                 request.json['spawns'],
                                                                 request.json['filter'])]
     elif request.json['passivePath']:
-        full_info = passive_outbreak_pathfind(group_seed,
-                                              request.json['rolls'],
-                                              request.json['spawns'],
-                                              request.json['passiveMoveLimit'],
-                                              request.json['filter'])
+        full_info = generate_passive_search_paths(group_seed,
+                              request.json['rolls'],
+                              request.json['spawns'],
+                              request.json['passiveMoveLimit'],
+                              request.json['filter'],
+                              not request.json['passiveFindFirst'])
         display = ["",f"Group Seed: {group_seed:X}<br>"]
         if len(full_info["info"]) == 0:
             display[1] += "<b>No paths found</b>"
