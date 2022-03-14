@@ -68,6 +68,7 @@
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#filter" role="tab"><i class="fa fa-filter"></i></a></li>
                 <li><a href="#mass-outbreak" role="tab"><i class="fa fa-bug"></i></a></li>
+                <li><a href="#massive-mass-outbreak" role="tab"><i class="fa fa-spider"></i></a></li>
                 <li><a href="#battle" role="tab"><i class="icon-pokeball"></i></a></li>
             </ul>
         </div>
@@ -150,6 +151,24 @@
                 </div>
             </div>
 
+            <div class="sidebar-pane" id="massive-mass-outbreak">
+                <h1 class="sidebar-header">
+                    Massive Mass Outbreak Information
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1><br>
+                <button onclick=updateMMOs()>Update MMO Markers</button><br>
+                <!-- <label for="mmoRolls">Shiny Rolls:</label>
+                <input type="number" id="mmoRolls" value=13><br> -->
+                <label for="mmoSelect">Target MMO:</label>
+                <select id="mmoSelect"></select><br>
+                <!-- <label for="mmoSpawns" id="mmoSpawnsLabel">Total Spawns:</label>
+                <input type="number" id="mmoSpawns" value=7><br>
+                <button type="button" class="collapsible" data-for="currentMMO" id="currentMMOButton">Current MMO</button>
+                <div class="info" id="currentMMO">
+                    <b>No info present</b>
+                </div><br> -->
+            </div>
+
             <div class="sidebar-pane" id="battle">
                 <h1 class="sidebar-header">
                     Battle Information
@@ -191,6 +210,8 @@
         let coordinates = {};
         let markerObjs = {};
         let possibleMarkerObjs = {};
+        let mmoMarkerObjs = [];
+        let mmoInfo = {};
         let popupCoordinates = [0,0,0];
         let teleporting = false;
         let tracking = false;
@@ -201,6 +222,12 @@
         let slots = JSON.parse("{{slots}}".replaceAll("&#34;",'"').replaceAll("&#39;",'"'))
         let slotKeys = Object.keys(slots);
         let allSpecies = new Set();
+        let mmoSlots = null;
+        fetch("{{ url_for('static', filename='resources/mmo_es.json') }}")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => mmoSlots = data);
 
         Set.union = function(s1, s2) {
             if (!s1 instanceof Set || !s2 instanceof Set) {
@@ -308,7 +335,6 @@
             let slotFilterChecked = document.getElementById("slotFilterCheck").checked;
             let outbreakAlphaFilter = document.getElementById("outbreakAlphaFilter").checked;
             let filterSpeciesChecked = document.getElementById("filterSpeciesCheck").checked;
-            console.log(filterSpeciesChecked)
             document.getElementById("slotFilterCheck").disabled = false;
             document.getElementById("outbreakAlphaFilter").disabled = false;
             document.getElementById("filterSpeciesCheck").disabled = false;
@@ -504,6 +530,43 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(null);
         }
+        function updateMMOs(e) {
+            for (let i = 0; i < mmoMarkerObjs.length; i++) {
+                mmoMarkerObjs[i].remove()
+            }
+            var maps = ["obsidianfieldlands","crimsonmirelands","cobaltcoastlands","coronethighlands","alabastericelands"];
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update-mmos", true);
+            xhr.onload = parseInfo;
+            function parseInfo()
+            {
+                let mmoSelect = document.getElementById("mmoSelect");
+                while (mmoSelect.firstChild) {
+                    mmoSelect.firstChild.remove();
+                }
+                mmoInfo = JSON.parse(xhr.responseText);
+                let keys = Object.keys(mmoInfo);
+                for (let i = 0; i < keys.length; i++) {
+                    let key = keys[i];
+                    let item = mmoInfo[key];
+                    let coords = convertCoords([item['x'],item['y'],item['z']]);
+                    let opt = document.createElement("option");
+                    opt.innerText = `${i} - ${item["speciesName"]}`;
+                    opt.value = i;
+                    mmoSelect.appendChild(opt);
+                    mmoMarkerObjs.push(L.marker(coords, { icon: new L.DivIcon({ riseOnHover: true, html: `<img src=https://github.com/kwsch/PKHeX/raw/master/PKHeX.Drawing.PokeSprite/Resources/img/Legends%20Arceus%20Sprites/c_${item['species']}${item['form'] != 0 ? '-' + item['form'] : ''}.png>${item['bonusRound'] ? '<h1 style="position: relative; top: -85px">☆</h1>' : ""}`, iconSize: [ 64, 64 ], iconAnchor: [ 32, 32 ], className: "transparent-div-icon" }), mmoID: parseInt(key), encounterSlots: item['encounterSlots'], bonusSlots: item['bonusSlots'] }).addTo(map).bindPopup(L.responsivePopup().setContent(`<button onclick="teleport([${item['x']},${item['y']},${item['z']}])">Teleport to mmo id ${key}</button><br>`)).on("click",mmoPopupOnClick));
+                }
+            }
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({"mapID":maps.indexOf("{{map_name}}")}));
+        }
+        function mmoPopupOnClick(e) {
+            let info = e.sourceTarget.options;
+            let encounterSlots = mmoSlots[info["encounterSlots"]];
+            let bonusSlots = mmoSlots[info["bonusSlots"]];
+            let popup = e.target.getPopup();
+            popup.setContent(popup.getContent().split('<br>')[0] + '<br>' + `MMO Species: ${encounterSlots["0"]["name"]}<br>Bonus Species: ${bonusSlots["0"]["name"]}`);
+        }
         function popupOnClick(e) {
             popupCoordinates = e.sourceTarget.options.coords;
             if (e.sourceTarget.options.groupID != -1) {
@@ -511,7 +574,7 @@
                 xhr.open("POST", "/read-seed", true);
                 xhr.onload = parseInfo;
                 function parseInfo() {
-                    var popup = e.target.getPopup();
+                    let popup = e.target.getPopup();
                     popup.setContent( popup.getContent().split('<br>')[0] + '<br>' + xhr.responseText );
                 }
                 xhr.setRequestHeader('Content-Type', 'application/json');

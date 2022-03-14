@@ -702,6 +702,35 @@ def update_positions():
                                   "seed":seed}
     return json.dumps(spawns)
 
+@app.route('/update-mmos', methods=['POST'])
+def update_mmos():
+    """Scan all active mmos"""
+    mmos = {}
+    for index in range(15):
+        inf = reader.read_pointer(f"[[[[main+42BA6B0]+2B0]+58]+18]+" \
+                                  f"{request.json['mapID'] * 0xB80 + 0x1C0+index*0x90:X}",0x90)
+        location = struct.unpack("fff",inf[0:12])
+        species = int.from_bytes(inf[20:22],"little")
+        form_index = int.from_bytes(inf[24:26],"little")
+        encounter_slot_hash = int.from_bytes(inf[56:64],"little")
+        bonus_encounter_slot_hash = int.from_bytes(inf[64:72],"little")
+        seed = int.from_bytes(inf[88:96],"little")
+        total_spawns = int.from_bytes(inf[96:100],"little")
+        if species == 0:
+            break
+        mmos[str(index)] = {"x":location[0],
+                            "y":location[1],
+                            "z":location[2],
+                            "species":species,
+                            "speciesName":SPECIES[species],
+                            "form":form_index,
+                            "seed":seed,
+                            "bonusRound": bonus_encounter_slot_hash != 0xCBF29CE484222645,
+                            "encounterSlots":f"0x{encounter_slot_hash:016X}",
+                            "bonusSlots":f"0x{bonus_encounter_slot_hash:016X}",
+                            "totalSpawns":total_spawns}
+    return json.dumps(mmos)
+
 @app.route('/check-near', methods=['POST'])
 def check_near():
     """Check all spawners' nearest advance that passes filters to update icons"""
